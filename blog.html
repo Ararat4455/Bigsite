@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bigsite Blog - Latest insights, news, and articles on web development, design, digital marketing, and technology trends">
+    <meta name="keywords" content="blog, articles, web development, design, digital marketing, technology, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Blog - Bigsite</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                <span class="logo-text">Bigsite</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+                <li><a href="blog.html" class="active"><i class="fas fa-blog"></i> Blog</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="#" class="btn-login"><i class="fas fa-user"></i> Login</a>
+                <a href="#" class="btn-register"><i class="fas fa-user-plus"></i> Register</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <span class="logo">Bigsite</span>
+            <span class="close-btn"><i class="fas fa-times"></i></span>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+            <li><a href="blog.html" class="active"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="mobile-auth">
+            <a href="#" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            <a href="#" class="btn-register"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Blog</h1>
+            <p>Latest insights, news, and articles on web development, design, digital marketing, and technology trends</p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <span>Blog</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-content">
+                <div class="blog-hero-text">
+                    <span class="section-tag">Welcome to Our Blog</span>
+                    <h2>Stay Informed, Stay Inspired</h2>
+                    <p>
+                        Our blog is your go-to resource for the latest insights, trends, and best practices in the 
+                        digital world. We share our expertise on web development, design, digital marketing, and 
+                        technology to help you stay ahead of the curve.
+                    </p>
+                    <p>
+                        Whether you're a business owner, developer, designer, or marketing professional, you'll 
+                        find valuable content to help you grow and succeed in the digital age.
+                    </p>
+                    <div class="blog-hero-cta">
+                        <a href="#blog-categories" class="btn btn-primary">
+                            <i class="fas fa-tags"></i> Browse Categories
+                        </a>
+                        <a href="#latest-posts" class="btn btn-secondary">
+                            <i class="fas fa-newspaper"></i> Latest Posts
+                        </a>
+                    </div>
+                </div>
+                <div class="blog-hero-image">
+                    <img src="images/blog-hero.svg" alt="Our Blog" onerror="this.src='https://via.placeholder.com/600x500/4a6bff/ffffff?text=Our+Blog'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Categories Section -->
+    <section class="blog-categories" id="blog-categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Categories</span>
+                <h2>Browse by Topic</h2>
+                <p>Find articles that interest you the most</p>
+            </div>
+            <div class="categories-grid">
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Web Development</h3>
+                        <p>15 Articles</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Design</h3>
+                        <p>12 Articles</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Digital Marketing</h3>
+                        <p>10 Articles</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>SEO</h3>
+                        <p>8 Articles</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Technology</h3>
+                        <p>20 Articles</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Tips & Tricks</h3>
+                        <p>18 Articles</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Business</h3>
+                        <p>14 Articles</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>News</h3>
+                        <p>6 Articles</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Posts Section -->
+    <section class="latest-posts" id="latest-posts">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Latest Articles</span>
+                <h2>Recent Blog Posts</h2>
+                <p>Stay updated with our latest insights and industry news</p>
+            </div>
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog-1.jpg" alt="The Future of Web Development" onerror="this.src='https://via.placeholder.com/400x250/4a6bff/ffffff?text=Blog+1'">
+                        <span class="blog-category">Technology</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> October 15, 2024</span>
+                            <span class="blog-author"><i class="fas fa-user"></i> John Smith</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 8 min read</span>
+                        </div>
+                        <h3>The Future of Web Development: Trends to Watch in 2024 and Beyond</h3>
+                        <p>
+                            Explore the emerging trends and technologies that are shaping the future of web development. 
+                            From AI-powered tools to progressive web apps, discover what's next for the digital landscape.
+                        </p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog-2.jpg" alt="UI/UX Design Principles" onerror="this.src='https://via.placeholder.com/400x250/4a6bff/ffffff?text=Blog+2'">
+                        <span class="blog-category">Design</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> October 10, 2024</span>
+                            <span class="blog-author"><i class="fas fa-user"></i> Sarah Johnson</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 12 min read</span>
+                        </div>
+                        <h3>UI/UX Design Principles: Creating User-Centric Digital Experiences</h3>
+                        <p>
+                            Discover the essential principles of modern UI/UX design that will elevate your projects and 
+                            create memorable user experiences. Learn about accessibility, usability, and visual hierarchy.
+                        </p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog-3.jpg" alt="Digital Marketing Strategies" onerror="this.src='https://via.placeholder.com/400x250/4a6bff/ffffff?text=Blog+3'">
+                        <span class="blog-category">Marketing</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> October 5, 2024</span>
+                            <span class="blog-author"><i class="fas fa-user"></i> Mike Davis</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 10 min read</span>
+                        </div>
+                        <h3>Digital Marketing Strategies That Work: A Comprehensive Guide</h3>
+                        <p>
+                            Learn about proven digital marketing strategies that can help grow your business online. 
+                            From SEO to social media marketing, discover the tactics that deliver real results.
+                        </p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog-4.jpg" alt="Web Development Best Practices" onerror="this.src='https://via.placeholder.com/400x250/4a6bff/ffffff?text=Blog+4'">
+                        <span class="blog-category">Web Development</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> September 28, 2024</span>
+                            <span class="blog-author"><i class="fas fa-user"></i> Emily Wilson</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 15 min read</span>
+                        </div>
+                        <h3>Web Development Best Practices: Building Scalable and Maintainable Websites</h3>
+                        <p>
+                            Discover the best practices for modern web development that ensure your websites are scalable, 
+                            maintainable, and performant. Learn about clean code, responsive design, and performance optimization.
+                        </p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 5 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog-5.jpg" alt="SEO Optimization Guide" onerror="this.src='https://via.placeholder.com/400x250/4a6bff/ffffff?text=Blog+5'">
+                        <span class="blog-category">SEO</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> September 20, 2024</span>
+                            <span class="blog-author"><i class="fas fa-user"></i> David Brown</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 8 min read</span>
+                        </div>
+                        <h3>SEO Optimization: The Complete Guide to Improving Your Search Rankings</h3>
+                        <p>
+                            Master the art of SEO with our comprehensive guide. Learn about keyword research, on-page and 
+                            off-page optimization, technical SEO, and the latest trends in search engine optimization.
+                        </p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 6 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog-6.jpg" alt="Cloud Computing Benefits" onerror="this.src='https://via.placeholder.com/400x250/4a6bff/ffffff?text=Blog+6'">
+                        <span class="blog-category">Technology</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> September 15, 2024</span>
+                            <span class="blog-author"><i class="fas fa-user"></i> Lisa Taylor</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 12 min read</span>
+                        </div>
+                        <h3>Cloud Computing: Benefits and Best Practices for Businesses</h3>
+                        <p>
+                            Explore the benefits of cloud computing for businesses of all sizes. Learn about scalability, 
+                            cost-efficiency, security, and the best practices for migrating to the cloud.
+                        </p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 7 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog-7.jpg" alt="Mobile App Development" onerror="this.src='https://via.placeholder.com/400x250/4a6bff/ffffff?text=Blog+7'">
+                        <span class="blog-category">Technology</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> September 10, 2024</span>
+                            <span class="blog-author"><i class="fas fa-user"></i> John Smith</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 10 min read</span>
+                        </div>
+                        <h3>Mobile App Development: From Concept to Launch</h3>
+                        <p>
+                            Learn the complete process of mobile app development, from ideation and design to development 
+                            and launch. Discover the key considerations for creating successful mobile applications.
+                        </p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 8 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog-8.jpg" alt="Content Marketing Strategy" onerror="this.src='https://via.placeholder.com/400x250/4a6bff/ffffff?text=Blog+8'">
+                        <span class="blog-category">Digital Marketing</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> September 5, 2024</span>
+                            <span class="blog-author"><i class="fas fa-user"></i> Sarah Johnson</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 8 min read</span>
+                        </div>
+                        <h3>Content Marketing: Creating Engaging Content That Converts</h3>
+                        <p>
+                            Discover the power of content marketing and learn how to create engaging content that attracts, 
+                            educates, and converts your target audience. Explore different content formats and strategies.
+                        </p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 9 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog-9.jpg" alt="Branding Essentials" onerror="this.src='https://via.placeholder.com/400x250/4a6bff/ffffff?text=Blog+9'">
+                        <span class="blog-category">Business</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> August 28, 2024</span>
+                            <span class="blog-author"><i class="fas fa-user"></i> Mike Davis</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 10 min read</span>
+                        </div>
+                        <h3>Branding Essentials: Building a Strong and Memorable Brand Identity</h3>
+                        <p>
+                            Learn the essentials of branding and discover how to create a strong and memorable brand identity 
+                            that resonates with your target audience. Explore the key elements of successful branding.
+                        </p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="page-btn active">1</a>
+                <a href="#" class="page-btn">2</a>
+                <a href="#" class="page-btn">3</a>
+                <span class="page-dots">...</span>
+                <a href="#" class="page-btn">10</a>
+                <a href="#" class="page-btn next"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Posts Section -->
+    <section class="featured-posts">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Popular</span>
+                <h2>Featured Articles</h2>
+                <p>Our most popular and widely read blog posts</p>
+            </div>
+            <div class="featured-grid">
+                <article class="featured-post large">
+                    <div class="featured-image">
+                        <img src="images/featured-post-1.jpg" alt="The Complete Guide to Digital Transformation" onerror="this.src='https://via.placeholder.com/600x400/4a6bff/ffffff?text=Featured+Post+1'">
+                        <span class="blog-category">Business</span>
+                    </div>
+                    <div class="featured-content">
+                        <span class="section-tag">Featured</span>
+                        <h3>The Complete Guide to Digital Transformation for Businesses</h3>
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> August 1, 2024</span>
+                            <span class="blog-author"><i class="fas fa-user"></i> John Smith</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 20 min read</span>
+                        </div>
+                        <p>
+                            Digital transformation is no longer an option but a necessity for businesses that want to thrive in 
+                            today's competitive landscape. This comprehensive guide explores the key aspects of digital transformation 
+                            and provides actionable insights for businesses of all sizes.
+                        </p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <div class="featured-small-grid">
+                    <article class="featured-post small">
+                        <div class="featured-image">
+                            <img src="images/featured-post-2.jpg" alt="The Rise of AI in Web Development" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Featured+Post+2'">
+                            <span class="blog-category">Technology</span>
+                        </div>
+                        <div class="featured-content">
+                            <h4>The Rise of AI in Web Development: What You Need to Know</h4>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="fas fa-calendar-alt"></i> July 15, 2024</span>
+                            </div>
+                            <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="featured-post small">
+                        <div class="featured-image">
+                            <img src="images/featured-post-3.jpg" alt="The Psychology of Color in Design" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Featured+Post+3'">
+                            <span class="blog-category">Design</span>
+                        </div>
+                        <div class="featured-content">
+                            <h4>The Psychology of Color in Design: How to Choose the Right Palette</h4>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="fas fa-calendar-alt"></i> June 20, 2024</span>
+                            </div>
+                            <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="featured-post small">
+                        <div class="featured-image">
+                            <img src="images/featured-post-4.jpg" alt="The Power of Storytelling in Marketing" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Featured+Post+4'">
+                            <span class="blog-category">Marketing</span>
+                        </div>
+                        <div class="featured-content">
+                            <h4>The Power of Storytelling in Marketing: Connecting with Your Audience</h4>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="fas fa-calendar-alt"></i> May 10, 2024</span>
+                            </div>
+                            <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="featured-post small">
+                        <div class="featured-image">
+                            <img src="images/featured-post-5.jpg" alt="The Future of E-commerce" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Featured+Post+5'">
+                            <span class="blog-category">Business</span>
+                        </div>
+                        <div class="featured-content">
+                            <h4>The Future of E-commerce: Trends and Predictions for 2024</h4>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="fas fa-calendar-alt"></i> April 5, 2024</span>
+                            </div>
+                            <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <span class="section-tag">Newsletter</span>
+                    <h2>Stay Updated with Our Latest Insights</h2>
+                    <p>Subscribe to our newsletter to receive the latest blog posts, industry news, and exclusive content directly in your inbox.</p>
+                </div>
+                <form class="newsletter-form">
+                    <div class="form-group">
+                        <input type="email" placeholder="Enter your email address" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Subscribe
+                        </button>
+                    </div>
+                    <p class="form-privacy">We respect your privacy. Unsubscribe at any time.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-waves">
+            <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#ffffff" fill-opacity="1" d="M0,192L48,176C96,160,192,128,288,133.3C384,139,480,181,576,186.7C672,192,768,160,864,149.3C960,139,1056,149,1152,160C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-about">
+                        <a href="index.html" class="logo">
+                            <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                            <span class="logo-text">Bigsite</span>
+                        </a>
+                        <p>
+                            Bigsite is a leading digital solutions provider dedicated to helping businesses 
+                            transform their online presence with innovative technology and creative solutions.
+                        </p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                            <li><a href="blog.html" class="active"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Design</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> SEO</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Technology</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Silicon Valley, CA 94000</li>
+                            <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                            <li><i class="fas fa-envelope"></i> info@bigsite.com</li>
+                            <li><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 6:00 PM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 Bigsite. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
