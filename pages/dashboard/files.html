@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Files Management - Upload, organize, and manage your files on Bigsite Dashboard">
+    <meta name="keywords" content="files, documents, upload, storage, dashboard, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Files - Bigsite Dashboard</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <p>Loading Files...</p>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                <span class="logo-text">Bigsite</span>
+            </a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                <img src="../../images/avatar.jpg" alt="User Avatar" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=U'">
+                <span class="user-status online"></span>
+            </div>
+            <div class="user-info">
+                <h4>John Doe</h4>
+                <p>Premium Member</p>
+            </div>
+            <button class="user-dropdown" onclick="toggleUserMenu()">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                <div class="divider"></div>
+                <a href="../../pages/auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html"><i class="fas fa-project-diagram"></i><span>Projects</span><span class="badge">5</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="messages.html"><i class="fas fa-envelope"></i><span>Messages</span><span class="badge">12</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="calendar.html"><i class="fas fa-calendar-alt"></i><span>Calendar</span></a>
+                </li>
+            </ul>
+
+            <div class="nav-section">
+                <h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <a href="files.html"><i class="fas fa-file-alt"></i><span>Files</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span><span class="badge">3</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="subscriptions.html"><i class="fas fa-credit-card"></i><span>Subscriptions</span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h5>Account</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="profile.html"><i class="fas fa-user-circle"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                    <li class="nav-item"><a href="security.html"><i class="fas fa-shield-alt"></i><span>Security</span></a></li>
+                    <li class="nav-item"><a href="notifications.html"><i class="fas fa-bell"></i><span>Notifications</span><span class="badge">8</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h5>Extras</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="help.html"><i class="fas fa-question-circle"></i><span>Help Center</span></a></li>
+                    <li class="nav-item"><a href="../../index.html"><i class="fas fa-external-link-alt"></i><span>Visit Site</span></a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="storage-info">
+                <div class="storage-bar"><div class="storage-progress" style="width: 45%"></div></div>
+                <div class="storage-details"><span>45GB / 100GB Used</span><a href="upgrade.html">Upgrade</a></div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <a href="files.html">Files</a>
+            </div>
+            <div class="topbar-actions">
+                <div class="topbar-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search files..." oninput="searchFiles(this)">
+                    <button class="search-close" onclick="clearSearch(this)"><i class="fas fa-times"></i></button>
+                </div>
+                <button class="btn btn-primary" onclick="openUploadModal()"><i class="fas fa-upload"></i><span>Upload</span></button>
+                <button class="topbar-btn notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">8</span></button>
+                <div class="topbar-user"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=U'"><span>John Doe</span><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <section class="files-header">
+                <div class="files-title">
+                    <h1><i class="fas fa-file-alt"></i> Files Management</h1>
+                    <p>Upload, organize, and manage all your files</p>
+                </div>
+                <div class="files-actions">
+                    <button class="btn btn-secondary" onclick="createFolder()"><i class="fas fa-folder-plus"></i><span>New Folder</span></button>
+                    <button class="btn btn-primary" onclick="openUploadModal()"><i class="fas fa-upload"></i><span>Upload Files</span></button>
+                </div>
+            </section>
+
+            <section class="storage-section">
+                <div class="storage-card">
+                    <div class="storage-icon"><i class="fas fa-hard-drive"></i></div>
+                    <div class="storage-info"><span class="storage-value">45GB</span><span class="storage-label">Used</span></div>
+                    <div class="storage-bar-large"><div class="storage-progress" style="width: 45%"></div></div>
+                    <div class="storage-stats"><span>45GB / 100GB</span><span class="storage-percentage">45%</span></div>
+                </div>
+                <div class="storage-breakdown">
+                    <div class="breakdown-item"><div class="breakdown-color documents"></div><div class="breakdown-info"><span class="breakdown-label">Documents</span><span class="breakdown-value">22GB</span></div></div>
+                    <div class="breakdown-item"><div class="breakdown-color images"></div><div class="breakdown-info"><span class="breakdown-label">Images</span><span class="breakdown-value">15GB</span></div></div>
+                    <div class="breakdown-item"><div class="breakdown-color videos"></div><div class="breakdown-info"><span class="breakdown-label">Videos</span><span class="breakdown-value">5GB</span></div></div>
+                    <div class="breakdown-item"><div class="breakdown-color other"></div><div class="breakdown-info"><span class="breakdown-label">Other</span><span class="breakdown-value">3GB</span></div></div>
+                </div>
+            </section>
+
+            <section class="file-browser">
+                <div class="files-controls">
+                    <div class="files-sort">
+                        <span>Sort by:</span>
+                        <select onchange="sortFiles(this)"><option value="name">Name</option><option value="date">Date</option><option value="size">Size</option><option value="type">Type</option></select>
+                    </div>
+                    <div class="files-view">
+                        <button class="view-btn active" onclick="changeView('list')" title="List"><i class="fas fa-list"></i></button>
+                        <button class="view-btn" onclick="changeView('grid')" title="Grid"><i class="fas fa-th"></i></button>
+                    </div>
+                </div>
+
+                <div class="files-container" id="filesContainer">
+                    <table class="files-table" id="filesTable">
+                        <thead><tr><th><input type="checkbox" id="selectAll" onchange="toggleSelectAll()"></th><th>Name</th><th>Type</th><th>Size</th><th>Date Modified</th><th>Actions</th></tr></thead>
+                        <tbody id="filesList">
+                            <tr class="file-row folder" onclick="openFolder('documents')">
+                                <td><input type="checkbox" class="file-checkbox"></td>
+                                <td><div class="file-item"><div class="file-icon folder"><i class="fas fa-folder"></i></div><div class="file-name"><span>Documents</span></div></div></td>
+                                <td><span class="file-type">Folder</span></td>
+                                <td>12 items</td>
+                                <td>Nov 15, 2024</td>
+                                <td><div class="file-actions">
+                                    <button class="action-btn" title="Share" onclick="event.stopPropagation();shareFile('documents')"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Rename" onclick="event.stopPropagation();renameFile('documents')"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" title="Delete" onclick="event.stopPropagation();deleteFile('documents')"><i class="fas fa-trash"></i></button>
+                                </div></td>
+                            </tr>
+                            <tr class="file-row folder" onclick="openFolder('projects')">
+                                <td><input type="checkbox" class="file-checkbox"></td>
+                                <td><div class="file-item"><div class="file-icon folder"><i class="fas fa-folder"></i></div><div class="file-name"><span>Projects</span></div></div></td>
+                                <td><span class="file-type">Folder</span></td>
+                                <td>8 items</td>
+                                <td>Nov 14, 2024</td>
+                                <td><div class="file-actions">
+                                    <button class="action-btn" title="Share"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Rename"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                </div></td>
+                            </tr>
+                            <tr class="file-row file" onclick="previewFile('proposal.pdf')">
+                                <td><input type="checkbox" class="file-checkbox"></td>
+                                <td><div class="file-item"><div class="file-icon pdf"><i class="fas fa-file-pdf"></i></div><div class="file-name"><span>Proposal</span><span class="file-ext">.pdf</span></div></div></td>
+                                <td><span class="file-type">PDF</span></td>
+                                <td>2.4 MB</td>
+                                <td>Nov 12, 2024</td>
+                                <td><div class="file-actions">
+                                    <button class="action-btn" title="Download"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                </div></td>
+                            </tr>
+                            <tr class="file-row file" onclick="previewFile('mockups.fig')">
+                                <td><input type="checkbox" class="file-checkbox"></td>
+                                <td><div class="file-item"><div class="file-icon figma"><i class="fab fa-figma"></i></div><div class="file-name"><span>Mockups</span><span class="file-ext">.fig</span></div></div></td>
+                                <td><span class="file-type">Figma</span></td>
+                                <td>15.6 MB</td>
+                                <td>Nov 10, 2024</td>
+                                <td><div class="file-actions">
+                                    <button class="action-btn" title="Download"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                </div></td>
+                            </tr>
+                            <tr class="file-row file" onclick="previewFile('photo.jpg')">
+                                <td><input type="checkbox" class="file-checkbox"></td>
+                                <td><div class="file-item"><div class="file-icon image"><i class="fas fa-file-image"></i></div><div class="file-name"><span>Photo</span><span class="file-ext">.jpg</span></div></div></td>
+                                <td><span class="file-type">Image</span></td>
+                                <td>4.2 MB</td>
+                                <td>Nov 8, 2024</td>
+                                <td><div class="file-actions">
+                                    <button class="action-btn" title="Download"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Share"><i class="fas fa-share-alt"></i></button>
+                                    <button class="action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                </div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="files-grid" id="filesGrid" style="display:none;"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal" id="uploadModal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header"><h3>Upload Files</h3><button class="modal-close" onclick="closeUploadModal()"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body">
+                <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <h4>Drag & Drop files here</h4>
+                    <p>or click to browse</p>
+                    <p class="upload-hint">PDF, DOCX, JPG, PNG, MP4, MP3, ZIP</p>
+                    <input type="file" id="fileInput" multiple style="display:none;" onchange="handleFileSelect(this)">
+                </div>
+                <div class="upload-progress" id="uploadProgress" style="display:none;">
+                    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+                    <div class="progress-info"><span id="progressText">Uploading: 0%</span><span id="progressCount">0/0 files</span></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeUploadModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="startUpload()"><i class="fas fa-upload"></i><span>Upload</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="folderModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3>Create Folder</h3><button class="modal-close" onclick="closeFolderModal()"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body">
+                <div class="form-group"><label>Folder Name</label><input type="text" id="folderName" placeholder="Enter name" required></div>
+                <div class="form-group"><label>Description</label><textarea id="folderDescription" placeholder="Optional"></textarea></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeFolderModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="createNewFolder()"><i class="fas fa-folder-plus"></i><span>Create</span></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script>
+        let currentView = 'list';
+
+        function openUploadModal(){document.getElementById('uploadModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function closeUploadModal(){document.getElementById('uploadModal').classList.remove('active');document.getElementById('overlay').style.display='none'}
+        function createFolder(){document.getElementById('folderModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function closeFolderModal(){document.getElementById('folderModal').classList.remove('active');document.getElementById('overlay').style.display='none'}
+        function createNewFolder(){const name=document.getElementById('folderName').value;if(!name)return;showNotification('Folder created!','success');closeFolderModal()}
+        function handleFileSelect(input){const files=input.files;showNotification(`${files.length} file(s) selected`,'info')}
+        function startUpload(){showNotification('Uploading...','info');setTimeout(()=>{closeUploadModal();showNotification('Upload complete!','success')},2000)}
+        function openFolder(name){showNotification(`Opening ${name}`,'info')}
+        function previewFile(name){showNotification(`Previewing ${name}`,'info')}
+        function shareFile(name){showNotification(`Sharing ${name}`,'info')}
+        function deleteFile(name){if(confirm(`Delete ${name}?`))showNotification(`Deleted ${name}`,'success')}
+        function renameFile(name){showNotification(`Renaming ${name}`,'info')}
+        function changeView(view){currentView=view;const table=document.getElementById('filesTable');const grid=document.getElementById('filesGrid');const btns=document.querySelectorAll('.view-btn');btns.forEach(b=>b.classList.remove('active'));event.target.classList.add('active');table.style.display=view==='list'?'table':'none';grid.style.display=view==='grid'?'grid':'none'}
+        function sortFiles(select){showNotification(`Sorted by ${select.value}`,'info')}
+        function searchFiles(input){const q=input.value.toLowerCase();if(q.length>0)showNotification(`Search: ${q}`,'info')}
+        function clearSearch(btn){btn.previousElementSibling.value='';showNotification('Search cleared','info')}
+        function toggleSelectAll(){const cbs=document.querySelectorAll('.file-checkbox');const all=document.getElementById('selectAll');cbs.forEach(c=>c.checked=all.checked)}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',hideLoadingScreen);
+    </script>
+</body>
+</html>

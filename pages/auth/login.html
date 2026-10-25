@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login to your Bigsite account - Access your dashboard and manage your profile">
+    <meta name="keywords" content="login, sign in, account, Bigsite, authentication">
+    <meta name="author" content="Ararat4455">
+    <title>Login - Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/auth.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Auth Header -->
+    <div class="auth-header">
+        <a href="../../index.html" class="logo">
+            <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+            <span class="logo-text">Bigsite</span>
+        </a>
+        <div class="auth-nav">
+            <span>Don't have an account?</span>
+            <a href="register.html" class="btn btn-secondary">Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="auth-main">
+        <div class="auth-container">
+            <!-- Left Side - Illustration -->
+            <div class="auth-illustration">
+                <div class="illustration-content">
+                    <img src="../../images/login-illustration.svg" alt="Login Illustration" onerror="this.src='https://via.placeholder.com/500x400/4a6bff/ffffff?text=Login+Illustration'">
+                    <div class="illustration-text">
+                        <h2>Welcome Back</h2>
+                        <p>Sign in to access your personalized dashboard and manage your account.</p>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Manage your profile</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Track your orders</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Access exclusive content</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Form -->
+            <div class="auth-form-container">
+                <div class="auth-form-wrapper">
+                    <div class="auth-form-header">
+                        <h1>Sign In</h1>
+                        <p>Enter your credentials to access your account</p>
+                    </div>
+
+                    <!-- Social Login -->
+                    <div class="social-login">
+                        <p>Continue with</p>
+                        <div class="social-buttons">
+                            <button class="social-btn google" onclick="socialLogin('google')">
+                                <i class="fab fa-google"></i>
+                                <span>Google</span>
+                            </button>
+                            <button class="social-btn facebook" onclick="socialLogin('facebook')">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </button>
+                            <button class="social-btn github" onclick="socialLogin('github')">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </button>
+                            <button class="social-btn twitter" onclick="socialLogin('twitter')">
+                                <i class="fab fa-twitter"></i>
+                                <span>Twitter</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="divider">
+                        <span>or</span>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="loginForm" class="auth-form" novalidate>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="Enter your email"
+                                    required
+                                    autocomplete="email"
+                                >
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="Enter your password"
+                                    required
+                                    autocomplete="current-password"
+                                >
+                                <button type="button" class="toggle-password" onclick="togglePassword(this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+
+                        <div class="form-options">
+                            <div class="remember-me">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">Remember me</label>
+                            </div>
+                            <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Sign In</span>
+                        </button>
+
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
+
+                    <!-- Security Info -->
+                    <div class="security-info">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Your data is protected with 256-bit SSL encryption</span>
+                    </div>
+
+                    <!-- Two Factor Auth -->
+                    <div class="two-factor-info" id="twoFactorSection" style="display: none;">
+                        <div class="two-factor-header">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Two-Factor Authentication</h4>
+                        </div>
+                        <p>Enter the 6-digit code from your authenticator app</p>
+                        <div class="form-group">
+                            <div class="otp-inputs" id="otpInputs">
+                                <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, event)">
+                                <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, event)">
+                                <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, event)">
+                                <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, event)">
+                                <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, event)">
+                                <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, event)">
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-block" onclick="verifyOTP()">
+                            <i class="fas fa-check"></i>
+                            <span>Verify Code</span>
+                        </button>
+                        <div class="two-factor-footer">
+                            <a href="#" onclick="resendOTP()">Resend code</a>
+                            <span class="timer" id="otpTimer">00:59</span>
+                        </div>
+                    </div>
+
+                    <!-- Account Locked -->
+                    <div class="account-locked" id="accountLocked" style="display: none;">
+                        <div class="locked-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h4>Account Temporarily Locked</h4>
+                        <p>Too many failed login attempts. Please try again in 15 minutes or reset your password.</p>
+                        <div class="locked-options">
+                            <a href="forgot-password.html" class="btn btn-primary">Reset Password</a>
+                            <a href="../../contact.html" class="btn btn-secondary">Contact Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Auth Footer -->
+    <div class="auth-footer">
+        <p>&copy; 2024 Bigsite. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="../../terms.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+            <a href="../../contact.html">Contact Us</a>
+        </div>
+    </div>
+
+    <!-- Back to Site -->
+    <a href="../../index.html" class="back-to-site">
+        <i class="fas fa-arrow-left"></i>
+        <span>Back to Bigsite</span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/auth.js"></script>
+</body>
+</html>

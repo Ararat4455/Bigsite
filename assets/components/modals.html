@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Components | Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .component-page {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+        .component-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+        .component-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .component-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+        }
+        .component-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .component-card .description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+        .modal-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .modal-title {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 1.3rem;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            cursor: pointer;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+        .modal-close:hover {
+            color: #2c3e50;
+        }
+        .modal-body {
+            padding: 25px;
+        }
+        .modal-footer {
+            padding: 20px 25px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .modal-sm {
+            max-width: 400px;
+        }
+        .modal-lg {
+            max-width: 800px;
+        }
+        .modal-fullscreen {
+            max-width: 95%;
+            max-height: 95%;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .btn-primary {
+            background: #4a6bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #3a5bef;
+        }
+        .btn-secondary {
+            background: white;
+            color: #4a6bff;
+            border: 2px solid #4a6bff;
+        }
+        .btn-secondary:hover {
+            background: #4a6bff;
+            color: white;
+        }
+        .btn-text {
+            background: transparent;
+            color: #4a6bff;
+            border: none;
+        }
+        .btn-text:hover {
+            background: rgba(74, 107, 255, 0.1);
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        @media (max-width: 768px) {
+            .component-main {
+                padding: 20px 15px;
+            }
+            .page-title {
+                font-size: 2rem;
+            }
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal {
+                width: 95%;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="component-page">
+    <header class="legal-header">
+        <a href="../../index.html" class="logo">
+            <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+            <span class="logo-text">Bigsite</span>
+        </a>
+        <nav class="legal-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../components.html">Components</a>
+            <a href="../../pages/dashboard/index.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="component-main">
+        <div class="page-header">
+            <h1 class="page-title"><i class="fas fa-window-maximize"></i> Modal Components</h1>
+            <p class="page-subtitle">Reusable modal dialog components</p>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Basic Modals</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Simple Modal</h3>
+                    <p class="description">Basic modal with title, content, and close button</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="openModal('simpleModal')">Open Modal</button>
+                        <p style="margin-top: 15px; color: #7f8c8d; font-size: 0.9rem;">Click the button to see the modal</p>
+                    </div>
+                    <div class="code-block">&lt;button onclick="openModal('simpleModal')"&gt;Open Modal&lt;/button&gt;
+
+&lt;div class="modal-overlay" id="simpleModal"&gt;
+  &lt;div class="modal"&gt;
+    &lt;div class="modal-header"&gt;
+      &lt;h3 class="modal-title"&gt;Modal Title&lt;/h3&gt;
+      &lt;button class="modal-close" onclick="closeModal('simpleModal')"&gt;&amp;times;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;
+      &lt;p&gt;Modal content goes here&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-footer"&gt;
+      &lt;button class="btn btn-primary" onclick="closeModal('simpleModal')"&gt;Close&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Confirm Modal</h3>
+                    <p class="description">Modal for confirmation dialogs</p>
+                    <div class="component-preview">
+                        <button class="btn btn-danger" onclick="openModal('confirmModal')">Delete Item</button>
+                        <p style="margin-top: 15px; color: #7f8c8d; font-size: 0.9rem;">Click to see confirmation modal</p>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-danger" onclick="openModal('confirmModal')"&gt;
+  Delete Item
+&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Alert Modal</h3>
+                    <p class="description">Modal for displaying alerts</p>
+                    <div class="component-preview">
+                        <button class="btn btn-warning" onclick="openModal('alertModal')">Show Alert</button>
+                        <p style="margin-top: 15px; color: #7f8c8d; font-size: 0.9rem;">Click to see alert modal</p>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-warning" onclick="openModal('alertModal')"&gt;
+  Show Alert
+&lt;/button&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Modal Sizes</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Small Modal</h3>
+                    <p class="description">Compact modal for small content</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="openModal('smallModal')">Open Small Modal</button>
+                    </div>
+                    <div class="code-block">&lt;button onclick="openModal('smallModal')"&gt;Open Small Modal&lt;/button&gt;
+
+&lt;div class="modal-overlay" id="smallModal"&gt;
+  &lt;div class="modal modal-sm"&gt;
+    &lt;!-- Modal content --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Large Modal</h3>
+                    <p class="description">Larger modal for more content</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="openModal('largeModal')">Open Large Modal</button>
+                    </div>
+                    <div class="code-block">&lt;button onclick="openModal('largeModal')"&gt;Open Large Modal&lt;/button&gt;
+
+&lt;div class="modal-overlay" id="largeModal"&gt;
+  &lt;div class="modal modal-lg"&gt;
+    &lt;!-- Modal content --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Fullscreen Modal</h3>
+                    <p class="description">Fullscreen modal for maximum content</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="openModal('fullscreenModal')">Open Fullscreen Modal</button>
+                    </div>
+                    <div class="code-block">&lt;button onclick="openModal('fullscreenModal')"&gt;Open Fullscreen&lt;/button&gt;
+
+&lt;div class="modal-overlay" id="fullscreenModal"&gt;
+  &lt;div class="modal modal-fullscreen"&gt;
+    &lt;!-- Modal content --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Form Modals</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Login Modal</h3>
+                    <p class="description">Modal with login form</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="openModal('loginModal')">Open Login Modal</button>
+                    </div>
+                    <div class="code-block">&lt;button onclick="openModal('loginModal')"&gt;Open Login Modal&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Signup Modal</h3>
+                    <p class="description">Modal with signup form</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="openModal('signupModal')">Open Signup Modal</button>
+                    </div>
+                    <div class="code-block">&lt;button onclick="openModal('signupModal')"&gt;Open Signup Modal&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Contact Modal</h3>
+                    <p class="description">Modal with contact form</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="openModal('contactModal')">Open Contact Modal</button>
+                    </div>
+                    <div class="code-block">&lt;button onclick="openModal('contactModal')"&gt;Open Contact Modal&lt;/button&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Custom Modals</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Image Modal</h3>
+                    <p class="description">Modal for displaying images</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="openModal('imageModal')">Open Image Modal</button>
+                    </div>
+                    <div class="code-block">&lt;button onclick="openModal('imageModal')"&gt;Open Image Modal&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Video Modal</h3>
+                    <p class="description">Modal for displaying videos</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="openModal('videoModal')">Open Video Modal</button>
+                    </div>
+                    <div class="code-block">&lt;button onclick="openModal('videoModal')"&gt;Open Video Modal&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Custom Content Modal</h3>
+                    <p class="description">Modal with custom HTML content</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="openModal('customModal')">Open Custom Modal</button>
+                    </div>
+                    <div class="code-block">&lt;button onclick="openModal('customModal')"&gt;Open Custom Modal&lt;/button&gt;</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Simple Modal -->
+    <div class="modal-overlay" id="simpleModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Simple Modal</h3>
+                <button class="modal-close" onclick="closeModal('simpleModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This is a simple modal dialog. It has a title, content area, and footer with action buttons.</p>
+                <p>You can use modals to display important information, forms, or confirmation dialogs.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('simpleModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="closeModal('simpleModal')">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal modal-sm">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirm Deletion</h3>
+                <button class="modal-close" onclick="closeModal('confirmModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: #7f8c8d;">Are you sure you want to delete this item? This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmModal')">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div class="modal-overlay" id="alertModal">
+        <div class="modal modal-sm">
+            <div class="modal-header">
+                <h3 class="modal-title">Alert</h3>
+                <button class="modal-close" onclick="closeModal('alertModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 2.5rem; color: #ffc107; margin-bottom: 15px;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <p>This is an alert message. Something important happened that needs your attention.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-block" onclick="closeModal('alertModal')">OK, I Understand</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Small Modal -->
+    <div class="modal-overlay" id="smallModal">
+        <div class="modal modal-sm">
+            <div class="modal-header">
+                <h3 class="modal-title">Small Modal</h3>
+                <button class="modal-close" onclick="closeModal('smallModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This is a small modal. It's more compact and suitable for simple messages or small forms.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal('smallModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Large Modal -->
+    <div class="modal-overlay" id="largeModal">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">Large Modal</h3>
+                <button class="modal-close" onclick="closeModal('largeModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This is a large modal. It can accommodate more content, such as detailed information, larger forms, or multiple sections.</p>
+                <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                    <h4>Additional Content</h4>
+                    <p>Large modals are useful when you need to display a lot of information or complex forms that wouldn't fit well in a smaller modal.</p>
+                    <ul>
+                        <li>More space for content</li>
+                        <li>Can include multiple sections</li>
+                        <li>Better for complex forms</li>
+                        <li>Good for displaying detailed information</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('largeModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="closeModal('largeModal')">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Modal -->
+    <div class="modal-overlay" id="fullscreenModal">
+        <div class="modal modal-fullscreen">
+            <div class="modal-header">
+                <h3 class="modal-title">Fullscreen Modal</h3>
+                <button class="modal-close" onclick="closeModal('fullscreenModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This is a fullscreen modal. It takes up almost the entire screen and is useful for displaying large amounts of content or complex interfaces.</p>
+                <div style="margin-top: 20px;">
+                    <h4>Use Cases</h4>
+                    <ul>
+                        <li>Image galleries</li>
+                        <li>Complex forms with many fields</li>
+                        <li>Document viewers</li>
+                        <li>Admin panels or dashboards</li>
+                        <li>Any content that needs maximum screen space</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal('fullscreenModal')">Close Fullscreen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal modal-sm">
+            <div class="modal-header">
+                <h3 class="modal-title">Login</h3>
+                <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div style="margin-bottom: 15px;">
+                        <label for="loginEmail" style="display: block; margin-bottom: 5px; color: #2c3e50;">Email</label>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="loginPassword" style="display: block; margin-bottom: 5px; color: #2c3e50;">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                            <input type="checkbox" id="loginRemember">
+                            <span style="color: #7f8c8d; font-size: 0.9rem;">Remember me</span>
+                        </label>
+                        <a href="#" style="color: #4a6bff; font-size: 0.9rem; text-decoration: none;">Forgot password?</a>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('loginModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitLogin()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal-overlay" id="signupModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Sign Up</h3>
+                <button class="modal-close" onclick="closeModal('signupModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div style="margin-bottom: 15px;">
+                        <label for="signupName" style="display: block; margin-bottom: 5px; color: #2c3e50;">Full Name</label>
+                        <input type="text" id="signupName" placeholder="Enter your full name" style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="signupEmail" style="display: block; margin-bottom: 5px; color: #2c3e50;">Email</label>
+                        <input type="email" id="signupEmail" placeholder="Enter your email" style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="signupPassword" style="display: block; margin-bottom: 5px; color: #2c3e50;">Password</label>
+                        <input type="password" id="signupPassword" placeholder="Create a password" style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="signupConfirm" style="display: block; margin-bottom: 5px; color: #2c3e50;">Confirm Password</label>
+                        <input type="password" id="signupConfirm" placeholder="Confirm your password" style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <p style="color: #7f8c8d; font-size: 0.85rem; margin-bottom: 15px;">
+                        By signing up, you agree to our Terms of Service and Privacy Policy.
+                    </p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('signupModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitSignup()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Contact Us</h3>
+                <button class="modal-close" onclick="closeModal('contactModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div style="margin-bottom: 15px;">
+                        <label for="contactName" style="display: block; margin-bottom: 5px; color: #2c3e50;">Name</label>
+                        <input type="text" id="contactName" placeholder="Your name" style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="contactEmail" style="display: block; margin-bottom: 5px; color: #2c3e50;">Email</label>
+                        <input type="email" id="contactEmail" placeholder="Your email" style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="contactSubject" style="display: block; margin-bottom: 5px; color: #2c3e50;">Subject</label>
+                        <select id="contactSubject" style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1rem;">
+                            <option value="">Select a subject</option>
+                            <option value="support">Technical Support</option>
+                            <option value="sales">Sales Inquiry</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="contactMessage" style="display: block; margin-bottom: 5px; color: #2c3e50;">Message</label>
+                        <textarea id="contactMessage" rows="5" placeholder="Your message" style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1rem; resize: vertical;"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('contactModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitContact()">Send Message</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">Image Preview</h3>
+                <button class="modal-close" onclick="closeModal('imageModal')">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <img src="https://via.placeholder.com/700x400/4a6bff/ffffff?text=Sample+Image" alt="Sample Image" style="max-width: 100%; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <p style="margin-top: 15px; color: #7f8c8d;">This is a sample image displayed in a modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal('imageModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">Video Player</h3>
+                <button class="modal-close" onclick="closeModal('videoModal')">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <div style="background: #000; border-radius: 5px; padding: 20px; margin-bottom: 15px;">
+                    <i class="fas fa-play-circle" style="font-size: 3rem; color: #fff;"></i>
+                    <p style="color: #fff; margin-top: 10px;">Video Player Placeholder</p>
+                </div>
+                <p style="color: #7f8c8d;">This is where a video would be embedded. In a real implementation, you would use an iframe or video element here.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal('videoModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Modal -->
+    <div class="modal-overlay" id="customModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Custom Content</h3>
+                <button class="modal-close" onclick="closeModal('customModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="padding: 20px; background: #f8f9fa; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 style="color: #2c3e50; margin-bottom: 10px;">Custom HTML Content</h4>
+                    <p>This modal contains custom HTML content. You can put any HTML structure inside a modal.</p>
+                </div>
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex: 1; background: #fff; padding: 15px; border-radius: 5px; border: 1px solid #e0e0e0;">
+                        <h5 style="color: #2c3e50; margin: 0 0 10px 0;">Section 1</h5>
+                        <p style="color: #7f8c8d; font-size: 0.9rem; margin: 0;">Content for section 1</p>
+                    </div>
+                    <div style="flex: 1; background: #fff; padding: 15px; border-radius: 5px; border: 1px solid #e0e0e0;">
+                        <h5 style="color: #2c3e50; margin: 0 0 10px 0;">Section 2</h5>
+                        <p style="color: #7f8c8d; font-size: 0.9rem; margin: 0;">Content for section 2</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('customModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="closeModal('customModal')">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="legal-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Bigsite. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../../index.html">Home</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function confirmDelete() {
+            alert('Item deleted successfully!');
+            closeModal('confirmModal');
+        }
+
+        function submitLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (email && password) {
+                alert('Login successful! (This is a demo)');
+                closeModal('loginModal');
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+
+        function submitSignup() {
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirm = document.getElementById('signupConfirm').value;
+            
+            if (name && email && password && confirm) {
+                if (password === confirm) {
+                    alert('Signup successful! (This is a demo)');
+                    closeModal('signupModal');
+                } else {
+                    alert('Passwords do not match');
+                }
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+
+        function submitContact() {
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            if (name && email && subject && message) {
+                alert('Message sent successfully! (This is a demo)');
+                closeModal('contactModal');
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeModal(overlay.id);
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

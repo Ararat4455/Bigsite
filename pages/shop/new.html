@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Arrivals - Bigsite Shop</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/shop.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="shop-page">
+    <div class="loading-screen">
+        <div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <p>Loading New Arrivals...</p>
+    </div>
+
+    <header class="shop-header">
+        <div class="header-main">
+            <a href="../../index.html" class="logo"><span class="logo-icon"><i class="fas fa-rocket"></i></span><span class="logo-text">Bigsite</span></a>
+            <nav class="nav-menu">
+                <a href="../../index.html">Home</a>
+                <a href="../dashboard/index.html">Dashboard</a>
+                <a href="index.html" class="active">Shop</a>
+                <a href="../../about.html">About</a>
+                <a href="../../blog.html">Blog</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search products..." oninput="searchProducts(this)">
+                    <button class="search-close" onclick="clearSearch(this)"><i class="fas fa-times"></i></button>
+                </div>
+                <a href="../auth/login.html" class="user-link"><i class="fas fa-user"></i></a>
+                <button class="cart-btn" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="shop-main">
+        <div class="shop-content">
+            <div class="page-header">
+                <h1><i class="fas fa-sparkles"></i> New Arrivals</h1>
+                <p>Discover the latest additions to our collection</p>
+            </div>
+
+            <div class="new-banner">
+                <div class="banner-content">
+                    <div class="banner-text">
+                        <h2>Just Arrived</h2>
+                        <p>Fresh picks just for you</p>
+                        <button class="btn btn-primary" onclick="browseNew()">Browse All</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-filters">
+                <div class="filter-group">
+                    <label>Sort by:</label>
+                    <select onchange="sortNew(this)">
+                        <option value="newest">Newest First</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="rating">Top Rated</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Category:</label>
+                    <select onchange="filterByCategory(this)">
+                        <option value="all">All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="books">Books</option>
+                        <option value="home">Home & Garden</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>View:</label>
+                    <div class="view-options">
+                        <button class="view-btn active" onclick="changeView('grid')" title="Grid"><i class="fas fa-th"></i></button>
+                        <button class="view-btn" onclick="changeView('list')" title="List"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-products">
+                <div class="products-grid" id="productsGrid">
+                    <div class="product-card new">
+                        <div class="product-badges">
+                            <span class="badge new">New</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250/f0f0f0/4a6bff?text=New" alt="New Product">
+                            <div class="product-quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                                <span>Quick View</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Wireless Earbuds Pro</h3>
+                            <div class="product-price">$149.99</div>
+                            <div class="product-rating">
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <span class="rating-count">(24)</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(this)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-icon" onclick="addToWishlist(this)"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon" onclick="compareProduct(this)"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card new">
+                        <div class="product-badges">
+                            <span class="badge new">New</span>
+                            <span class="badge sale">-10%</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250/f0f0f0/ff6b9d?text=New" alt="New Product">
+                            <div class="product-quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                                <span>Quick View</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Smart Fitness Watch</h3>
+                            <div class="product-price">
+                                <span class="price-old">$249.99</span>
+                                <span class="price-new">$224.99</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                                <span class="rating-count">(18)</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(this)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-icon" onclick="addToWishlist(this)"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon" onclick="compareProduct(this)"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card new">
+                        <div class="product-badges">
+                            <span class="badge new">New</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250/f0f0f0/4ecdc4?text=New" alt="New Product">
+                            <div class="product-quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                                <span>Quick View</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Portable Bluetooth Speaker</h3>
+                            <div class="product-price">$89.99</div>
+                            <div class="product-rating">
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <span class="rating-count">(35)</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(this)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-icon" onclick="addToWishlist(this)"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon" onclick="compareProduct(this)"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card new">
+                        <div class="product-badges">
+                            <span class="badge new">New</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250/f0f0f0/f39c12?text=New" alt="New Product">
+                            <div class="product-quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                                <span>Quick View</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Digital Camera</h3>
+                            <div class="product-price">$499.99</div>
+                            <div class="product-rating">
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <span class="rating-count">(12)</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(this)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-icon" onclick="addToWishlist(this)"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon" onclick="compareProduct(this)"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card new">
+                        <div class="product-badges">
+                            <span class="badge new">New</span>
+                            <span class="badge sale">-25%</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250/f0f0f0/9b59b6?text=New" alt="New Product">
+                            <div class="product-quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                                <span>Quick View</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Gaming Headset</h3>
+                            <div class="product-price">
+                                <span class="price-old">$129.99</span>
+                                <span class="price-new">$97.49</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                                <span class="rating-count">(8)</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(this)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-icon" onclick="addToWishlist(this)"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon" onclick="compareProduct(this)"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card new">
+                        <div class="product-badges">
+                            <span class="badge new">New</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250/f0f0f0/3498db?text=New" alt="New Product">
+                            <div class="product-quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                                <span>Quick View</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Wireless Charging Pad</h3>
+                            <div class="product-price">$29.99</div>
+                            <div class="product-rating">
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <span class="rating-count">(42)</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(this)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-icon" onclick="addToWishlist(this)"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon" onclick="compareProduct(this)"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card new">
+                        <div class="product-badges">
+                            <span class="badge new">New</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250/f0f0f0/e67e22?text=New" alt="New Product">
+                            <div class="product-quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                                <span>Quick View</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Smart Thermostat</h3>
+                            <div class="product-price">$199.99</div>
+                            <div class="product-rating">
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                                <span class="rating-count">(15)</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(this)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-icon" onclick="addToWishlist(this)"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon" onclick="compareProduct(this)"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card new">
+                        <div class="product-badges">
+                            <span class="badge new">New</span>
+                            <span class="badge sale">-15%</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250/f0f0f0/2ecc71?text=New" alt="New Product">
+                            <div class="product-quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                                <span>Quick View</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Laptop Backpack</h3>
+                            <div class="product-price">
+                                <span class="price-old">$79.99</span>
+                                <span class="price-new">$67.99</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <span class="rating-count">(28)</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(this)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-icon" onclick="addToWishlist(this)"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon" onclick="compareProduct(this)"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="products-list" id="productsList" style="display:none;"></div>
+
+                <div class="pagination">
+                    <div class="pagination-info">Showing 1-8 of 42 new products</div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" onclick="previousPage()"><i class="fas fa-chevron-left"></i></button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span>...</span>
+                        <button class="pagination-btn">6</button>
+                        <button class="pagination-btn" onclick="nextPage()"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-newsletter">
+                <div class="newsletter-content">
+                    <h2>Never Miss New Arrivals</h2>
+                    <p>Subscribe to our newsletter to get notified about new products, exclusive deals, and special offers.</p>
+                    <form class="newsletter-form" onsubmit="subscribe(event)">
+                        <input type="email" placeholder="Enter your email address" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="shop-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bigsite</h3>
+                <p>Your one-stop destination for all your shopping needs.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="index.html">Shop</a></li>
+                    <li><a href="../../about.html">About Us</a></li>
+                    <li><a href="../../contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul class="footer-links">
+                    <li><a href="../utility/faq.html">FAQ</a></li>
+                    <li><a href="../utility/shipping.html">Shipping</a></li>
+                    <li><a href="../utility/returns.html">Returns</a></li>
+                    <li><a href="../utility/privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                <form class="newsletter-form" onsubmit="subscribe(event)">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Bigsite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Shopping Cart</h3>
+            <button class="cart-close" onclick="closeCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-content" id="cartContent"></div>
+        <div class="cart-footer">
+            <div class="cart-total"><span>Total:</span><span class="total-amount">$0.00</span></div>
+            <div class="cart-actions">
+                <button class="btn btn-secondary" onclick="viewCart()">View Cart</button>
+                <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/shop.js"></script>
+    <script>
+        function browseNew(){showNotification('Browsing all new products','info')}
+        function sortNew(select){showNotification(`Sorted by: ${select.value}`,'info')}
+        function filterByCategory(select){showNotification(`Filtering by: ${select.value}`,'info')}
+        function changeView(view){const grid=document.getElementById('productsGrid');const list=document.getElementById('productsList');const btns=document.querySelectorAll('.view-btn');btns.forEach(b=>b.classList.remove('active'));event.target.classList.add('active');if(view==='grid'){grid.style.display='grid';list.style.display='none'}else{grid.style.display='none';list.style.display='block'}}
+        function searchProducts(input){const q=input.value.toLowerCase();if(q.length>0)showNotification(`Searching: ${q}`,'info')}
+        function clearSearch(btn){btn.previousElementSibling.value='';showNotification('Search cleared','info')}
+        function addToCart(btn){showNotification('Added to cart!','success')}
+        function addToWishlist(btn){showNotification('Added to wishlist!','success');btn.innerHTML='<i class="fas fa-heart"></i>';btn.classList.add('active')}
+        function compareProduct(btn){showNotification('Added to compare!','success')}
+        function quickView(btn){showNotification('Quick view opened','info')}
+        function previousPage(){showNotification('Previous page','info')}
+        function nextPage(){showNotification('Next page','info')}
+        function openCart(){document.getElementById('cartSidebar').classList.add('active');document.getElementById('cartOverlay').style.display='block'}
+        function closeCart(){document.getElementById('cartSidebar').classList.remove('active');document.getElementById('cartOverlay').style.display='none'}
+        function viewCart(){closeCart();window.location.href='cart.html'}
+        function checkout(){closeCart();window.location.href='checkout.html'}
+        function subscribe(e){e.preventDefault();showNotification('Subscribed to newsletter!','success')}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',hideLoadingScreen);
+    </script>
+</body>
+</html>

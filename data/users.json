@@ -1,0 +1,332 @@
+[
+    {
+        "id": 1,
+        "email": "admin@bigsite.com",
+        "password": "$2a$10$N9qo8uLOickgx2ZMRZoMy...",
+        "firstName": "Admin",
+        "lastName": "User",
+        "fullName": "Admin User",
+        "phone": "+1234567890",
+        "address": {
+            "street": "123 Main St",
+            "city": "New York",
+            "state": "NY",
+            "zipCode": "10001",
+            "country": "USA"
+        },
+        "roles": ["admin"],
+        "isActive": true,
+        "isVerified": true,
+        "createdAt": "2024-01-15T10:30:00Z",
+        "updatedAt": "2024-01-15T10:30:00Z",
+        "lastLogin": "2024-11-15T14:25:00Z",
+        "avatar": "/images/avatars/admin.jpg",
+        "preferences": {
+            "theme": "dark",
+            "language": "en",
+            "notifications": {
+                "email": true,
+                "sms": false,
+                "push": true
+            }
+        },
+        "orderHistory": [1, 2, 3, 4, 5]
+    },
+    {
+        "id": 2,
+        "email": "john.doe@email.com",
+        "password": "$2a$10$N9qo8uLOickgx2ZMRZoMy...",
+        "firstName": "John",
+        "lastName": "Doe",
+        "fullName": "John Doe",
+        "phone": "+15551234567",
+        "address": {
+            "street": "456 Oak Ave",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zipCode": "90001",
+            "country": "USA"
+        },
+        "roles": ["user"],
+        "isActive": true,
+        "isVerified": true,
+        "createdAt": "2024-02-20T14:45:00Z",
+        "updatedAt": "2024-11-10T09:15:00Z",
+        "lastLogin": "2024-11-14T11:30:00Z",
+        "avatar": "/images/avatars/john-doe.jpg",
+        "preferences": {
+            "theme": "light",
+            "language": "en",
+            "notifications": {
+                "email": true,
+                "sms": true,
+                "push": false
+            }
+        },
+        "orderHistory": [6, 7, 8]
+    },
+    {
+        "id": 3,
+        "email": "jane.smith@email.com",
+        "password": "$2a$10$N9qo8uLOickgx2ZMRZoMy...",
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "fullName": "Jane Smith",
+        "phone": "+15559876543",
+        "address": {
+            "street": "789 Pine Rd",
+            "city": "Chicago",
+            "state": "IL",
+            "zipCode": "60601",
+            "country": "USA"
+        },
+        "roles": ["user"],
+        "isActive": true,
+        "isVerified": true,
+        "createdAt": "2024-03-10T08:20:00Z",
+        "updatedAt": "2024-11-05T16:40:00Z",
+        "lastLogin": "2024-11-13T15:20:00Z",
+        "avatar": "/images/avatars/jane-smith.jpg",
+        "preferences": {
+            "theme": "dark",
+            "language": "en",
+            "notifications": {
+                "email": false,
+                "sms": true,
+                "push": true
+            }
+        },
+        "orderHistory": [9, 10]
+    },
+    {
+        "id": 4,
+        "email": "mike.johnson@email.com",
+        "password": "$2a$10$N9qo8uLOickgx2ZMRZoMy...",
+        "firstName": "Mike",
+        "lastName": "Johnson",
+        "fullName": "Mike Johnson",
+        "phone": "+15554567890",
+        "address": {
+            "street": "321 Elm St",
+            "city": "Houston",
+            "state": "TX",
+            "zipCode": "77001",
+            "country": "USA"
+        },
+        "roles": ["user", "premium"],
+        "isActive": true,
+        "isVerified": true,
+        "createdAt": "2024-04-05T12:10:00Z",
+        "updatedAt": "2024-10-28T14:30:00Z",
+        "lastLogin": "2024-11-12T08:45:00Z",
+        "avatar": "/images/avatars/mike-johnson.jpg",
+        "preferences": {
+            "theme": "light",
+            "language": "en",
+            "notifications": {
+                "email": true,
+                "sms": false,
+                "push": true
+            }
+        },
+        "orderHistory": [11, 12, 13, 14]
+    },
+    {
+        "id": 5,
+        "email": "sarah.williams@email.com",
+        "password": "$2a$10$N9qo8uLOickgx2ZMRZoMy...",
+        "firstName": "Sarah",
+        "lastName": "Williams",
+        "fullName": "Sarah Williams",
+        "phone": "+15557890123",
+        "address": {
+            "street": "654 Maple Ave",
+            "city": "Phoenix",
+            "state": "AZ",
+            "zipCode": "85001",
+            "country": "USA"
+        },
+        "roles": ["user"],
+        "isActive": true,
+        "isVerified": true,
+        "createdAt": "2024-05-15T16:25:00Z",
+        "updatedAt": "2024-10-15T10:20:00Z",
+        "lastLogin": "2024-11-11T18:10:00Z",
+        "avatar": "/images/avatars/sarah-williams.jpg",
+        "preferences": {
+            "theme": "dark",
+            "language": "en",
+            "notifications": {
+                "email": true,
+                "sms": true,
+                "push": true
+            }
+        },
+        "orderHistory": [15]
+    },
+    {
+        "id": 6,
+        "email": "david.brown@email.com",
+        "password": "$2a$10$N9qo8uLOickgx2ZMRZoMy...",
+        "firstName": "David",
+        "lastName": "Brown",
+        "fullName": "David Brown",
+        "phone": "+15552345678",
+        "address": {
+            "street": "987 Cedar Ln",
+            "city": "Philadelphia",
+            "state": "PA",
+            "zipCode": "19019",
+            "country": "USA"
+        },
+        "roles": ["user"],
+        "isActive": true,
+        "isVerified": true,
+        "createdAt": "2024-06-20T10:40:00Z",
+        "updatedAt": "2024-09-25T13:50:00Z",
+        "lastLogin": "2024-11-10T12:30:00Z",
+        "avatar": "/images/avatars/david-brown.jpg",
+        "preferences": {
+            "theme": "light",
+            "language": "en",
+            "notifications": {
+                "email": false,
+                "sms": false,
+                "push": false
+            }
+        },
+        "orderHistory": [16, 17]
+    },
+    {
+        "id": 7,
+        "email": "lisa.taylor@email.com",
+        "password": "$2a$10$N9qo8uLOickgx2ZMRZoMy...",
+        "firstName": "Lisa",
+        "lastName": "Taylor",
+        "fullName": "Lisa Taylor",
+        "phone": "+15558765432",
+        "address": {
+            "street": "135 Birch Blvd",
+            "city": "San Antonio",
+            "state": "TX",
+            "zipCode": "78201",
+            "country": "USA"
+        },
+        "roles": ["user", "premium"],
+        "isActive": true,
+        "isVerified": true,
+        "createdAt": "2024-07-10T09:15:00Z",
+        "updatedAt": "2024-10-05T11:25:00Z",
+        "lastLogin": "2024-11-08T14:20:00Z",
+        "avatar": "/images/avatars/lisa-taylor.jpg",
+        "preferences": {
+            "theme": "dark",
+            "language": "en",
+            "notifications": {
+                "email": true,
+                "sms": false,
+                "push": true
+            }
+        },
+        "orderHistory": [18, 19, 20]
+    },
+    {
+        "id": 8,
+        "email": "james.miller@email.com",
+        "password": "$2a$10$N9qo8uLOickgx2ZMRZoMy...",
+        "firstName": "James",
+        "lastName": "Miller",
+        "fullName": "James Miller",
+        "phone": "+15553456789",
+        "address": {
+            "street": "246 Spruce St",
+            "city": "San Diego",
+            "state": "CA",
+            "zipCode": "92101",
+            "country": "USA"
+        },
+        "roles": ["user"],
+        "isActive": true,
+        "isVerified": true,
+        "createdAt": "2024-08-01T14:30:00Z",
+        "updatedAt": "2024-09-10T08:40:00Z",
+        "lastLogin": "2024-11-05T16:15:00Z",
+        "avatar": "/images/avatars/james-miller.jpg",
+        "preferences": {
+            "theme": "light",
+            "language": "en",
+            "notifications": {
+                "email": true,
+                "sms": true,
+                "push": false
+            }
+        },
+        "orderHistory": [21]
+    },
+    {
+        "id": 9,
+        "email": "emily.davis@email.com",
+        "password": "$2a$10$N9qo8uLOickgx2ZMRZoMy...",
+        "firstName": "Emily",
+        "lastName": "Davis",
+        "fullName": "Emily Davis",
+        "phone": "+15554561234",
+        "address": {
+            "street": "369 Willow Dr",
+            "city": "Dallas",
+            "state": "TX",
+            "zipCode": "75201",
+            "country": "USA"
+        },
+        "roles": ["user"],
+        "isActive": true,
+        "isVerified": true,
+        "createdAt": "2024-09-15T11:20:00Z",
+        "updatedAt": "2024-10-20T15:30:00Z",
+        "lastLogin": "2024-11-02T10:00:00Z",
+        "avatar": "/images/avatars/emily-davis.jpg",
+        "preferences": {
+            "theme": "dark",
+            "language": "en",
+            "notifications": {
+                "email": false,
+                "sms": true,
+                "push": true
+            }
+        },
+        "orderHistory": [22, 23]
+    },
+    {
+        "id": 10,
+        "email": "robert.wilson@email.com",
+        "password": "$2a$10$N9qo8uLOickgx2ZMRZoMy...",
+        "firstName": "Robert",
+        "lastName": "Wilson",
+        "fullName": "Robert Wilson",
+        "phone": "+15555678901",
+        "address": {
+            "street": "482 Redwood Ave",
+            "city": "San Jose",
+            "state": "CA",
+            "zipCode": "95110",
+            "country": "USA"
+        },
+        "roles": ["user"],
+        "isActive": true,
+        "isVerified": true,
+        "createdAt": "2024-10-01T13:45:00Z",
+        "updatedAt": "2024-10-18T12:10:00Z",
+        "lastLogin": "2024-11-01T09:30:00Z",
+        "avatar": "/images/avatars/robert-wilson.jpg",
+        "preferences": {
+            "theme": "light",
+            "language": "en",
+            "notifications": {
+                "email": true,
+                "sms": false,
+                "push": false
+            }
+        },
+        "orderHistory": [24]
+    }
+]

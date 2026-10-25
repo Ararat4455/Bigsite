@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Product details - Explore features and purchase on Bigsite">
+    <meta name="keywords" content="product, details, purchase, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Product Details - Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/shop.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="shop-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <p>Loading Product...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="shop-header">
+        <div class="container">
+            <div class="shop-header-content">
+                <h1>Product Details</h1>
+                <p>Explore features, specifications, and make your purchase</p>
+            </div>
+            <div class="shop-header-actions">
+                <a href="index.html" class="btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Shop
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="shop-breadcrumb">
+        <div class="container">
+            <a href="../../index.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="index.html">Shop</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="categories.html" id="categoryLink">Category</a>
+            <i class="fas fa-chevron-right"></i>
+            <span id="productNameBreadcrumb">Product Name</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <!-- Product Detail -->
+            <div class="product-detail">
+                <div class="product-detail-grid">
+                    <!-- Product Gallery -->
+                    <div class="product-gallery">
+                        <div class="product-main-image">
+                            <img src="https://via.placeholder.com/600x600/4a6bff/ffffff?text=Main+Product+Image" alt="Product Image" id="mainProductImage">
+                            <div class="product-badge" id="productBadge">Featured</div>
+                        </div>
+                        <div class="product-thumbnails" id="productThumbnails">
+                            <!-- Thumbnails will be inserted here -->
+                        </div>
+                        <div class="product-actions-floating">
+                            <button class="action-btn wishlist" onclick="toggleWishlist(this)" title="Add to Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="action-btn" onclick="shareProduct()" title="Share Product">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="product-info-detail">
+                        <div class="product-category" id="productCategory">Category</div>
+                        <h1 id="productTitle">Product Name</h1>
+                        
+                        <div class="product-rating-detail">
+                            <div class="stars" id="productStars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span id="productRating">(4.8)</span>
+                            <span class="rating-count">124 reviews</span>
+                        </div>
+
+                        <div class="product-price-detail">
+                            <span class="current-price" id="productPrice">$99</span>
+                            <span class="original-price" id="productOriginalPrice"></span>
+                        </div>
+
+                        <div class="product-meta-detail">
+                            <div class="product-meta-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>In Stock</span>
+                            </div>
+                            <div class="product-meta-item">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Free Shipping</span>
+                            </div>
+                            <div class="product-meta-item">
+                                <i class="fas fa-box"></i>
+                                <span>124 Sales</span>
+                            </div>
+                        </div>
+
+                        <div class="product-description-detail" id="productDescription">
+                            <h4>Description</h4>
+                            <p>Detailed product description goes here. This is a placeholder text that will be replaced with the actual product description.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <ul>
+                                <li>Feature 1: High-quality design</li>
+                                <li>Feature 2: Fully responsive</li>
+                                <li>Feature 3: Easy to customize</li>
+                                <li>Feature 4: SEO optimized</li>
+                                <li>Feature 5: Fast loading</li>
+                            </ul>
+                        </div>
+
+                        <div class="product-quantity">
+                            <label for="productQty">Quantity:</label>
+                            <div class="qty-selector">
+                                <button onclick="updateQuantity(-1)">-</button>
+                                <input type="number" id="productQty" value="1" min="1" onchange="updateQuantityInput(this)">
+                                <button onclick="updateQuantity(1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="product-actions-detail">
+                            <button class="btn btn-primary btn-lg" onclick="addToCartFromDetail()">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                            <button class="btn btn-outline btn-lg" onclick="buyNow()">
+                                <i class="fas fa-credit-card"></i>
+                                Buy Now
+                            </button>
+                        </div>
+
+                        <div class="product-guarantees">
+                            <div class="guarantee-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>30-Day Money Back Guarantee</span>
+                            </div>
+                            <div class="guarantee-item">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>Free Updates</span>
+                            </div>
+                            <div class="guarantee-item">
+                                <i class="fas fa-headset"></i>
+                                <span>Premium Support</span>
+                            </div>
+                        </div>
+
+                        <div class="product-share">
+                            <span>Share:</span>
+                            <div class="social-share">
+                                <a href="#" class="social-share-btn" title="Share on Facebook">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                                <a href="#" class="social-share-btn" title="Share on Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-share-btn" title="Share on Pinterest">
+                                    <i class="fab fa-pinterest"></i>
+                                </a>
+                                <a href="#" class="social-share-btn" title="Share on LinkedIn">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Details Tabs -->
+                <div class="product-tabs">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" onclick="switchTab('description')">Description</button>
+                        <button class="tab-btn" onclick="switchTab('features')">Features</button>
+                        <button class="tab-btn" onclick="switchTab('reviews')">Reviews (<span id="reviewCount">0</span>)</button>
+                        <button class="tab-btn" onclick="switchTab('faq')">FAQ</button>
+                    </div>
+                    <div class="tabs-content">
+                        <div class="tab-pane active" id="descriptionTab">
+                            <div class="tab-pane-content" id="descriptionContent">
+                                <!-- Description content will be loaded here -->
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="featuresTab">
+                            <div class="tab-pane-content">
+                                <h4>Key Features</h4>
+                                <div class="features-list">
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-palette"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <h5>Fully Customizable</h5>
+                                            <p>Easily customize every aspect of the design to match your brand.</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <h5>Responsive Design</h5>
+                                            <p>Looks great on all devices, from desktop to mobile.</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-bolt"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <h5>Fast Performance</h5>
+                                            <p>Optimized for speed and performance.</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <h5>SEO Optimized</h5>
+                                            <p>Built with SEO best practices in mind.</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <h5>User-Friendly</h5>
+                                            <p>Intuitive interface that's easy to use.</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-globe"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <h5>Cross-Browser Support</h5>
+                                            <p>Works perfectly on all modern browsers.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="reviewsTab">
+                            <div class="tab-pane-content">
+                                <div class="reviews-section">
+                                    <div class="reviews-summary">
+                                        <div class="average-rating">
+                                            <div class="average-rating-value" id="averageRating">4.8</div>
+                                            <div class="average-rating-stars" id="averageRatingStars">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <div class="average-rating-text">Based on <span id="totalReviews">0</span> reviews</div>
+                                        </div>
+                                        <div class="rating-breakdown">
+                                            <div class="rating-bar">
+                                                <span>5 star</span>
+                                                <div class="bar-container">
+                                                    <div class="bar-fill" style="width: 80%;"></div>
+                                                </div>
+                                                <span class="bar-count">80%</span>
+                                            </div>
+                                            <div class="rating-bar">
+                                                <span>4 star</span>
+                                                <div class="bar-container">
+                                                    <div class="bar-fill" style="width: 15%;"></div>
+                                                </div>
+                                                <span class="bar-count">15%</span>
+                                            </div>
+                                            <div class="rating-bar">
+                                                <span>3 star</span>
+                                                <div class="bar-container">
+                                                    <div class="bar-fill" style="width: 3%;"></div>
+                                                </div>
+                                                <span class="bar-count">3%</span>
+                                            </div>
+                                            <div class="rating-bar">
+                                                <span>2 star</span>
+                                                <div class="bar-container">
+                                                    <div class="bar-fill" style="width: 1%;"></div>
+                                                </div>
+                                                <span class="bar-count">1%</span>
+                                            </div>
+                                            <div class="rating-bar">
+                                                <span>1 star</span>
+                                                <div class="bar-container">
+                                                    <div class="bar-fill" style="width: 1%;"></div>
+                                                </div>
+                                                <span class="bar-count">1%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="reviews-list" id="reviewsList">
+                                        <!-- Reviews will be loaded here -->
+                                    </div>
+
+                                    <div class="add-review">
+                                        <h4>Add Your Review</h4>
+                                        <div class="review-form">
+                                            <div class="review-rating">
+                                                <label>Your Rating:</label>
+                                                <div class="stars-selector" id="reviewStars">
+                                                    <i class="far fa-star" data-rating="1" onclick="selectRating(1)"></i>
+                                                    <i class="far fa-star" data-rating="2" onclick="selectRating(2)"></i>
+                                                    <i class="far fa-star" data-rating="3" onclick="selectRating(3)"></i>
+                                                    <i class="far fa-star" data-rating="4" onclick="selectRating(4)"></i>
+                                                    <i class="far fa-star" data-rating="5" onclick="selectRating(5)"></i>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="reviewTitle">Review Title</label>
+                                                <input type="text" id="reviewTitle" placeholder="Enter review title">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="reviewText">Your Review</label>
+                                                <textarea id="reviewText" rows="4" placeholder="Write your review here..."></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="reviewName">Your Name</label>
+                                                <input type="text" id="reviewName" placeholder="Enter your name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="reviewEmail">Your Email (Optional)</label>
+                                                <input type="email" id="reviewEmail" placeholder="Enter your email">
+                                            </div>
+                                            <button class="btn btn-primary" onclick="submitReview()">
+                                                <i class="fas fa-paper-plane"></i>
+                                                Submit Review
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="faqTab">
+                            <div class="tab-pane-content">
+                                <h4>Frequently Asked Questions</h4>
+                                <div class="faq-list">
+                                    <div class="faq-item">
+                                        <div class="faq-question" onclick="toggleFaq(this)">
+                                            <span>What is included in the package?</span>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>The package includes all source files, documentation, and assets needed to use the product. You'll receive the main files, CSS, JavaScript, and any images or fonts used.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question" onclick="toggleFaq(this)">
+                                            <span>Can I use this for commercial projects?</span>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Yes, you can use this product for both personal and commercial projects. The license allows you to use it in client projects as well.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question" onclick="toggleFaq(this)">
+                                            <span>Do you offer support?</span>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Yes, we offer premium support for all our products. You can contact us via email or through our support portal, and we'll be happy to help you with any questions or issues.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question" onclick="toggleFaq(this)">
+                                            <span>What is your refund policy?</span>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>We offer a 30-day money-back guarantee. If you're not satisfied with the product, you can request a full refund within 30 days of purchase.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question" onclick="toggleFaq(this)">
+                                            <span>How do I get updates?</span>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>All updates are free for lifetime. You'll receive an email notification when updates are available, and you can download them from your account dashboard.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <section class="related-products product-detail-related">
+                <h2>You May Also Like</h2>
+                <div class="products-grid" id="relatedProducts">
+                    <!-- Related products will be inserted here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2>Why Choose Us?</h2>
+            <p>We provide the best products with amazing benefits and support</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4>Premium Quality</h4>
+                    <p>All our products are built with the highest standards of quality.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4>Fast Delivery</h4>
+                    <p>Instant digital delivery after purchase completion.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h4>Free Updates</h4>
+                    <p>Lifetime free updates for all our products.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>24/7 Support</h4>
+                    <p>Dedicated support team ready to help you anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest updates, special offers, and exclusive deals delivered straight to your inbox.</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="../../index.html" class="logo">
+                        <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                        <span class="logo-text">Bigsite</span>
+                    </a>
+                    <p>Bigsite is your ultimate destination for premium digital products and services. We offer high-quality templates, themes, and tools to help you build amazing websites.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../about.html">About Us</a></li>
+                        <li><a href="../../services.html">Services</a></li>
+                        <li><a href="index.html">Shop</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="index.html">All Products</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="featured.html">Featured</a></li>
+                        <li><a href="new.html">New Arrivals</a></li>
+                        <li><a href="sale.html">On Sale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../../contact.html">Contact Us</a></li>
+                        <li><a href="../utility/faq.html">FAQ</a></li>
+                        <li><a href="../utility/returns.html">Returns</a></li>
+                        <li><a href="../utility/shipping.html">Shipping</a></li>
+                        <li><a href="../utility/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bigsite. All rights reserved.</p>
+                <div class="footer-payment">
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-discover"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/shop.js"></script>
+    <script>
+        // ============================================
+        // Product Detail Page Specific Functions
+        // ============================================
+
+        // Product data (in a real app, this would come from an API)
+        let currentProduct = null;
+
+        // Load product on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get product ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id') || 'premium-template';
+
+            // Load product based on ID
+            loadProduct(productId);
+            loadRelatedProducts();
+            loadReviews();
+        });
+
+        function loadProduct(productId) {
+            // Sample product data
+            const products = {
+                'premium-template': {
+                    id: 'premium-template',
+                    name: 'Premium Business Template',
+                    category: 'Web Templates',
+                    price: '$99',
+                    originalPrice: '$149',
+                    image: 'https://via.placeholder.com/600x600/4a6bff/ffffff?text=Premium+Template',
+                    images: [
+                        'https://via.placeholder.com/600x600/4a6bff/ffffff?text=Premium+Template+1',
+                        'https://via.placeholder.com/600x600/6a8bff/ffffff?text=Premium+Template+2',
+                        'https://via.placeholder.com/600x600/8aabff/ffffff?text=Premium+Template+3',
+                        'https://via.placeholder.com/600x600/aacbff/ffffff?text=Premium+Template+4'
+                    ],
+                    rating: 4.8,
+                    sales: 124,
+                    badge: 'Featured',
+                    description: '<p>This premium business template is perfect for creating professional websites. It includes all the features you need to build a stunning online presence for your business.</p>' +
+                                 '<p>With a modern design, fully responsive layout, and easy customization options, this template will help you create a website that stands out from the competition.</p>' +
+                                 '<ul><li>10+ unique page layouts</li><li>50+ customizable sections</li><li>10 color schemes</li><li>Google Fonts integration</li><li>Font Awesome icons</li><li>SEO optimized</li><li>Fast loading</li><li>Cross-browser compatible</li></ul>',
+                    features: [
+                        'Fully Responsive',
+                        'Modern Design',
+                        'Easy to Customize',
+                        'SEO Optimized',
+                        'Fast Loading',
+                        'Cross-Browser Support'
+                    ]
+                },
+                'ecommerce-theme': {
+                    id: 'ecommerce-theme',
+                    name: 'E-commerce WordPress Theme',
+                    category: 'WordPress',
+                    price: '$79',
+                    originalPrice: '',
+                    image: 'https://via.placeholder.com/600x600/ff6b9d/ffffff?text=E-commerce+Theme',
+                    images: [
+                        'https://via.placeholder.com/600x600/ff6b9d/ffffff?text=E-commerce+Theme+1',
+                        'https://via.placeholder.com/600x600/ff8aab/ffffff?text=E-commerce+Theme+2',
+                        'https://via.placeholder.com/600x600/ffaacb/ffffff?text=E-commerce+Theme+3'
+                    ],
+                    rating: 4.7,
+                    sales: 89,
+                    badge: 'New',
+                    description: '<p>Build your online store with this powerful e-commerce WordPress theme. It includes everything you need to create a professional e-commerce website.</p>' +
+                                 '<ul><li>WooCommerce ready</li><li>Product showcase layouts</li><li>Shopping cart integration</li><li>Payment gateway support</li><li>Responsive design</li></ul>',
+                    features: [
+                        'WooCommerce Ready',
+                        'Product Showcase',
+                        'Shopping Cart',
+                        'Payment Gateways',
+                        'Responsive Design'
+                    ]
+                }
+            };
+
+            currentProduct = products[productId] || products['premium-template'];
+            displayProduct(currentProduct);
+        }
+
+        function displayProduct(product) {
+            // Update breadcrumb
+            const categoryLink = document.getElementById('categoryLink');
+            const productNameBreadcrumb = document.getElementById('productNameBreadcrumb');
+            
+            if (categoryLink) categoryLink.textContent = product.category;
+            if (categoryLink) categoryLink.href = `categories.html?category=${product.category.toLowerCase()}`;
+            if (productNameBreadcrumb) productNameBreadcrumb.textContent = product.name;
+
+            // Update main image
+            const mainImage = document.getElementById('mainProductImage');
+            if (mainImage) mainImage.src = product.image;
+
+            // Update thumbnails
+            const thumbnailsContainer = document.getElementById('productThumbnails');
+            if (thumbnailsContainer && product.images) {
+                thumbnailsContainer.innerHTML = '';
+                product.images.forEach((img, index) => {
+                    const thumb = document.createElement('div');
+                    thumb.className = 'product-thumbnail';
+                    if (index === 0) thumb.classList.add('active');
+                    thumb.innerHTML = `<img src="${img}" alt="${product.name} - Image ${index + 1}" onclick="changeMainImage('${img}', this)">`;
+                    thumbnailsContainer.appendChild(thumb);
+                });
+            }
+
+            // Update badge
+            const badge = document.getElementById('productBadge');
+            if (badge) {
+                if (product.badge) {
+                    badge.textContent = product.badge;
+                    badge.style.display = 'block';
+                } else {
+                    badge.style.display = 'none';
+                }
+            }
+
+            // Update category
+            const category = document.getElementById('productCategory');
+            if (category) category.textContent = product.category;
+
+            // Update title
+            const title = document.getElementById('productTitle');
+            if (title) title.textContent = product.name;
+
+            // Update rating
+            const stars = document.getElementById('productStars');
+            const rating = document.getElementById('productRating');
+            if (stars) {
+                stars.innerHTML = generateStars(product.rating);
+            }
+            if (rating) {
+                rating.textContent = `(${product.rating})`;
+            }
+
+            // Update price
+            const price = document.getElementById('productPrice');
+            const originalPrice = document.getElementById('productOriginalPrice');
+            if (price) price.textContent = product.price;
+            if (originalPrice) {
+                originalPrice.textContent = product.originalPrice || '';
+                if (!product.originalPrice) {
+                    originalPrice.style.display = 'none';
+                } else {
+                    originalPrice.style.display = 'inline';
+                }
+            }
+
+            // Update sales
+            const salesElement = document.querySelector('.product-meta-item:last-child span');
+            if (salesElement) {
+                salesElement.textContent = `${product.sales || 0} Sales`;
+            }
+
+            // Update description
+            const description = document.getElementById('productDescription');
+            if (description) {
+                description.innerHTML = product.description || '<p>No description available.</p>';
+            }
+
+            // Update description tab content
+            const descriptionContent = document.getElementById('descriptionContent');
+            if (descriptionContent) {
+                descriptionContent.innerHTML = product.description || '<p>No description available.</p>';
+            }
+
+            // Update review count
+            const reviewCount = document.getElementById('reviewCount');
+            if (reviewCount) {
+                reviewCount.textContent = Math.floor(product.rating * 10) || 0;
+            }
+
+            // Update average rating
+            const averageRating = document.getElementById('averageRating');
+            const averageRatingStars = document.getElementById('averageRatingStars');
+            if (averageRating) averageRating.textContent = product.rating || 0;
+            if (averageRatingStars) {
+                averageRatingStars.innerHTML = generateStars(product.rating);
+            }
+
+            // Update total reviews
+            const totalReviews = document.getElementById('totalReviews');
+            if (totalReviews) {
+                totalReviews.textContent = Math.floor(product.rating * 10) || 0;
+            }
+
+            // Update page title
+            document.title = `${product.name} - Bigsite`;
+        }
+
+        function changeMainImage(imageUrl, element) {
+            const mainImage = document.getElementById('mainProductImage');
+            if (mainImage) {
+                mainImage.src = imageUrl;
+            }
+
+            // Update active thumbnail
+            const thumbnails = document.querySelectorAll('.product-thumbnail');
+            thumbnails.forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            element.closest('.product-thumbnail').classList.add('active');
+        }
+
+        function generateStars(rating) {
+            const ratingValue = parseFloat(rating) || 0;
+            const fullStars = Math.floor(ratingValue);
+            const hasHalfStar = ratingValue % 1 >= 0.5;
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+            let html = '';
+            for (let i = 0; i < fullStars; i++) {
+                html += '<i class="fas fa-star"></i>';
+            }
+            if (hasHalfStar) {
+                html += '<i class="fas fa-star-half-alt"></i>';
+            }
+            for (let i = 0; i < emptyStars; i++) {
+                html += '<i class="far fa-star"></i>';
+            }
+            return html;
+        }
+
+        function updateQuantity(change) {
+            const qtyInput = document.getElementById('productQty');
+            if (!qtyInput) return;
+
+            let currentValue = parseInt(qtyInput.value);
+            if (isNaN(currentValue)) currentValue = 1;
+
+            const newValue = currentValue + change;
+            if (newValue < 1) return;
+
+            qtyInput.value = newValue;
+        }
+
+        function updateQuantityInput(input) {
+            let value = parseInt(input.value);
+            if (isNaN(value) || value < 1) {
+                value = 1;
+            }
+            input.value = value;
+        }
+
+        function addToCartFromDetail() {
+            const qty = parseInt(document.getElementById('productQty')?.value) || 1;
+            
+            if (currentProduct) {
+                const product = { ...currentProduct };
+                product.quantity = qty;
+                
+                // Add to cart
+                const cart = getCart();
+                const existingItem = cart.find(item => item.id === product.id);
+
+                if (existingItem) {
+                    existingItem.quantity += qty;
+                } else {
+                    cart.push(product);
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                showNotification('Product added to cart!', 'success');
+
+                // Animate button
+                const addToCartBtn = document.querySelector('.product-actions-detail .btn-primary');
+                if (addToCartBtn) {
+                    addToCartBtn.classList.add('added');
+                    addToCartBtn.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+
+                    setTimeout(() => {
+                        addToCartBtn.classList.remove('added');
+                        addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                    }, 2000);
+                }
+            }
+        }
+
+        function buyNow() {
+            const qty = parseInt(document.getElementById('productQty')?.value) || 1;
+            
+            if (currentProduct) {
+                const product = { ...currentProduct };
+                product.quantity = qty;
+                
+                // Add to cart and redirect to checkout
+                const cart = [product];
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                
+                // Redirect to checkout
+                window.location.href = 'checkout.html';
+            }
+        }
+
+        function shareProduct() {
+            if (currentProduct) {
+                const shareText = `Check out ${currentProduct.name} on Bigsite: ${window.location.href}`;
+                if (navigator.share) {
+                    navigator.share({
+                        title: currentProduct.name,
+                        text: shareText,
+                        url: window.location.href
+                    }).catch(err => {
+                        console.log('Error sharing:', err);
+                    });
+                } else {
+                    // Fallback for browsers that don't support navigator.share
+                    alert('Web Share API not supported in your browser. You can manually copy the URL: ' + window.location.href);
+                }
+            }
+        }
+
+        function loadRelatedProducts() {
+            const relatedProductsContainer = document.getElementById('relatedProducts');
+            if (!relatedProductsContainer) return;
+
+            // Sample related products
+            const relatedProducts = [
+                {
+                    id: 'related-1',
+                    name: 'Portfolio Template',
+                    category: 'HTML',
+                    price: '$59',
+                    originalPrice: '$89',
+                    image: 'https://via.placeholder.com/300x200/6a8bff/ffffff?text=Portfolio+Template',
+                    rating: '4.8',
+                    badge: 'Sale'
+                },
+                {
+                    id: 'related-2',
+                    name: 'Admin Dashboard',
+                    category: 'Vue.js',
+                    price: '$129',
+                    originalPrice: '',
+                    image: 'https://via.placeholder.com/300x200/8aabff/ffffff?text=Admin+Dashboard',
+                    rating: '4.9',
+                    badge: 'Featured'
+                },
+                {
+                    id: 'related-3',
+                    name: 'Landing Page',
+                    category: 'React',
+                    price: '$49',
+                    originalPrice: '',
+                    image: 'https://via.placeholder.com/300x200/aacbff/ffffff?text=Landing+Page',
+                    rating: '4.7',
+                    badge: 'New'
+                },
+                {
+                    id: 'related-4',
+                    name: 'Blog Theme',
+                    category: 'WordPress',
+                    price: '$69',
+                    originalPrice: '$99',
+                    image: 'https://via.placeholder.com/300x200/ff6b9d/ffffff?text=Blog+Theme',
+                    rating: '4.6',
+                    badge: 'Featured'
+                }
+            ];
+
+            relatedProducts.forEach(product => {
+                const productCard = createProductCard(product);
+                relatedProductsContainer.appendChild(productCard);
+            });
+        }
+
+        function createProductCard(product) {
+            const div = document.createElement('div');
+            div.className = 'product-card';
+            div.dataset.productId = product.id;
+            div.dataset.category = product.category.toLowerCase();
+
+            let badgeHtml = '';
+            if (product.badge) {
+                const badgeClass = product.badge.toLowerCase();
+                badgeHtml = `<div class="product-badge ${badgeClass}">${product.badge}</div>`;
+            }
+
+            let originalPriceHtml = '';
+            if (product.originalPrice) {
+                originalPriceHtml = `<span class="original-price">${product.originalPrice}</span>`;
+            }
+
+            div.innerHTML = `
+                ${badgeHtml}
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="product-actions">
+                        <button class="action-btn wishlist" onclick="toggleWishlist(this)">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn quick-view" onclick="window.location.href='product-detail.html?id=${product.id}'">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">${product.category}</div>
+                    <h3>${product.name}</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            ${generateStars(product.rating)}
+                        </div>
+                        <span>(${product.rating})</span>
+                    </div>
+                    <div class="product-meta">
+                        <div class="product-price">
+                            <span class="current-price">${product.price}</span>
+                            ${originalPriceHtml}
+                        </div>
+                        <div class="product-sales">${Math.floor(Math.random() * 200) + 50} Sales</div>
+                    </div>
+                </div>
+                <button class="add-to-cart" onclick="addToCart(this)">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Add to Cart</span>
+                </button>
+            `;
+
+            return div;
+        }
+
+        function loadReviews() {
+            const reviewsList = document.getElementById('reviewsList');
+            if (!reviewsList) return;
+
+            // Sample reviews
+            const reviews = [
+                {
+                    id: 'review-1',
+                    name: 'John Doe',
+                    email: 'john@example.com',
+                    rating: 5,
+                    title: 'Excellent Product!',
+                    text: 'This template exceeded all my expectations. It was easy to customize and looks amazing on all devices. Highly recommended!',
+                    date: '2024-01-15'
+                },
+                {
+                    id: 'review-2',
+                    name: 'Jane Smith',
+                    email: 'jane@example.com',
+                    rating: 4.5,
+                    title: 'Great Value',
+                    text: 'For the price, this is an incredible value. The design is modern and professional, and it was easy to set up.',
+                    date: '2024-01-10'
+                },
+                {
+                    id: 'review-3',
+                    name: 'Mike Johnson',
+                    email: 'mike@example.com',
+                    rating: 5,
+                    title: 'Perfect for My Business',
+                    text: 'This template was exactly what I needed for my business website. The support team was also very helpful with any questions I had.',
+                    date: '2024-01-05'
+                }
+            ];
+
+            reviews.forEach(review => {
+                const reviewDiv = createReviewElement(review);
+                reviewsList.appendChild(reviewDiv);
+            });
+        }
+
+        function createReviewElement(review) {
+            const div = document.createElement('div');
+            div.className = 'review-item';
+            div.dataset.reviewId = review.id;
+
+            div.innerHTML = `
+                <div class="review-header">
+                    <div class="review-author">
+                        <div class="review-avatar">
+                            ${review.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div class="review-author-info">
+                            <h5>${review.name}</h5>
+                            <div class="review-rating">
+                                <div class="stars">
+                                    ${generateStars(review.rating)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-date">${formatDate(review.date)}</div>
+                </div>
+                <div class="review-content">
+                    <h5>${review.title}</h5>
+                    <p>${review.text}</p>
+                </div>
+            `;
+
+            return div;
+        }
+
+        function selectRating(rating) {
+            const stars = document.querySelectorAll('#reviewStars i');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('far', 'fas');
+                    star.classList.add('fas');
+                } else {
+                    star.classList.remove('fas', 'far');
+                    star.classList.add('far');
+                }
+            });
+        }
+
+        function submitReview() {
+            const title = document.getElementById('reviewTitle')?.value;
+            const text = document.getElementById('reviewText')?.value;
+            const name = document.getElementById('reviewName')?.value;
+            const email = document.getElementById('reviewEmail')?.value;
+            
+            // Get selected rating
+            const selectedStars = document.querySelectorAll('#reviewStars .fas.fa-star');
+            const rating = selectedStars.length;
+
+            if (!title || !text || !name || rating === 0) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // Create review object
+            const review = {
+                id: 'review-' + Date.now(),
+                name,
+                email,
+                rating,
+                title,
+                text,
+                date: new Date().toISOString().split('T')[0]
+            };
+
+            // In a real app, this would be sent to an API
+            console.log('Review submitted:', review);
+
+            // Show success message
+            showNotification('Thank you for your review! It will be published after moderation.', 'success');
+
+            // Reset form
+            document.getElementById('reviewTitle').value = '';
+            document.getElementById('reviewText').value = '';
+            document.getElementById('reviewName').value = '';
+            document.getElementById('reviewEmail').value = '';
+
+            // Reset stars
+            const stars = document.querySelectorAll('#reviewStars i');
+            stars.forEach(star => {
+                star.classList.remove('fas', 'far');
+                star.classList.add('far');
+            });
+
+            // Add review to list (for demo purposes)
+            const reviewsList = document.getElementById('reviewsList');
+            if (reviewsList) {
+                const reviewElement = createReviewElement(review);
+                reviewsList.insertBefore(reviewElement, reviewsList.firstChild);
+            }
+        }
+
+        function toggleFaq(element) {
+            const faqItem = element.closest('.faq-item');
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = element.querySelector('i');
+
+            if (answer) {
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            }
+
+            if (icon) {
+                if (answer.style.display === 'block') {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            }
+        }
+
+        function switchTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-pane');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active class from all tab buttons
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            const selectedTab = document.getElementById(tabName + 'Tab');
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+
+            // Add active class to selected button
+            const selectedBtn = document.querySelector(`.tab-btn[onclick="switchTab('${tabName}')"]`);
+            if (selectedBtn) {
+                selectedBtn.classList.add('active');
+            }
+        }
+
+        function getCart() {
+            const savedCart = localStorage.getItem('cart');
+            return savedCart ? JSON.parse(savedCart) : [];
+        }
+
+        function updateCartCount() {
+            const cart = getCart();
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = totalItems;
+                if (totalItems > 0) {
+                    element.style.display = 'flex';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+    </script>
+</body>
+</html>

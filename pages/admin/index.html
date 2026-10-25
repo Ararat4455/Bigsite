@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bigsite Admin Dashboard - Manage users, products, orders, and settings">
+    <meta name="keywords" content="admin, dashboard, management, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Admin Dashboard - Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <p>Loading Admin Dashboard...</p>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar admin-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-cog"></i></span>
+                <span class="logo-text">Bigsite Admin</span>
+            </a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                <img src="../../images/avatar.jpg" alt="Admin Avatar" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=A'">
+                <span class="user-status online"></span>
+            </div>
+            <div class="user-info">
+                <h4>Admin User</h4>
+                <p>Super Administrator</p>
+            </div>
+            <button class="user-dropdown" onclick="toggleUserMenu()">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="user-menu" id="userMenu">
+                <a href="../dashboard/profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="../dashboard/settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <div class="divider"></div>
+                <a href="../auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="analytics.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-section">
+                <h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item has-submenu">
+                        <a>
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                            <span class="badge">24</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="nav-item">
+                                <a href="users.html">
+                                    <i class="fas fa-list"></i>
+                                    <span>All Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="users.html?status=active">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Active Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="users.html?status=pending">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Pending Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="users.html?status=suspended">
+                                    <i class="fas fa-ban"></i>
+                                    <span>Suspended Users</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-submenu">
+                        <a>
+                            <i class="fas fa-box"></i>
+                            <span>Products</span>
+                            <span class="badge">128</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="nav-item">
+                                <a href="products.html">
+                                    <i class="fas fa-list"></i>
+                                    <span>All Products</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="products.html?category=templates">
+                                    <i class="fas fa-file-code"></i>
+                                    <span>Templates</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="products.html?category=themes">
+                                    <i class="fas fa-paint-brush"></i>
+                                    <span>Themes</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="products.html?category=plugins">
+                                    <i class="fas fa-puzzle-piece"></i>
+                                    <span>Plugins</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="products-add.html">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Add New Product</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-submenu">
+                        <a>
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Orders</span>
+                            <span class="badge">12</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="nav-item">
+                                <a href="orders.html">
+                                    <i class="fas fa-list"></i>
+                                    <span>All Orders</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="orders.html?status=processing">
+                                    <i class="fas fa-spinner"></i>
+                                    <span>Processing</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="orders.html?status=completed">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Completed</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="orders.html?status=failed">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <span>Failed</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="orders.html?status=refunded">
+                                    <i class="fas fa-undo"></i>
+                                    <span>Refunded</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h5>Content</h5>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../blog/index.html">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../utility/faq.html">
+                            <i class="fas fa-question-circle"></i>
+                            <span>FAQ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../utility/terms.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Terms & Conditions</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h5>System</h5>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cogs"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="backups.html">
+                            <i class="fas fa-database"></i>
+                            <span>Backups</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="logs.html">
+                            <i class="fas fa-file-code"></i>
+                            <span>System Logs</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="updates.html">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Updates</span>
+                            <span class="badge update-badge">3</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h5>Reports</h5>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="reports-sales.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Sales Report</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports-users.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>User Activity</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports-products.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Product Performance</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="help-btn">
+                <i class="fas fa-question-circle"></i>
+                <span>Help</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+    <!-- Main Content -->
+    <main class="main-content admin-main" id="mainContent">
+        <!-- Header -->
+        <header class="dashboard-header admin-header">
+            <div class="header-left">
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search..." id="headerSearch">
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-btn notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                    <div class="notification-dropdown">
+                        <div class="notification-header">
+                            <h4>Notifications</h4>
+                            <a href="#" class="mark-all-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-icon blue">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>New Order</strong> #12345 received</p>
+                                    <span class="notification-time">2 min ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon green">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>New User</strong> registered</p>
+                                    <span class="notification-time">15 min ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon orange">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>Low Stock</strong> alert for Product X</p>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon red">
+                                    <i class="fas fa-ban"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>Suspended User</strong> detected</p>
+                                    <span class="notification-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon blue">
+                                    <i class="fas fa-comment"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>New Message</strong> from John Doe</p>
+                                    <span class="notification-time">3 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </button>
+                <button class="header-btn">
+                    <i class="fas fa-envelope"></i>
+                    <span class="notification-badge">8</span>
+                </button>
+                <div class="header-user">
+                    <img src="../../images/avatar.jpg" alt="Admin Avatar" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=A'">
+                    <div class="header-user-info">
+                        <h4>Admin User</h4>
+                        <p>Super Admin</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="page-content admin-page-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-left">
+                    <h1>Admin Dashboard</h1>
+                    <p>Welcome back, Admin! Here's what's happening with your store today.</p>
+                </div>
+                <div class="page-header-right">
+                    <div class="header-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span id="currentDate"></span>
+                    </div>
+                    <button class="btn btn-primary" onclick="exportData()">
+                        <i class="fas fa-download"></i>
+                        Export Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid admin-stats">
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon blue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-card-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="totalRevenue">$24,582.30</div>
+                    <div class="stat-card-label">Total Revenue</div>
+                    <div class="stat-card-period">This Month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon green">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-card-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>8%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="totalOrders">342</div>
+                    <div class="stat-card-label">Total Orders</div>
+                    <div class="stat-card-period">This Month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon orange">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-card-trend down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>2%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="totalProducts">128</div>
+                    <div class="stat-card-label">Total Products</div>
+                    <div class="stat-card-period">Active</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon red">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-card-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>15%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="totalUsers">1,247</div>
+                    <div class="stat-card-label">Total Users</div>
+                    <div class="stat-card-period">Registered</div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-container large">
+                    <div class="chart-header">
+                        <h3>Revenue Overview</h3>
+                        <div class="chart-tabs">
+                            <button class="chart-tab active" data-chart="monthly">Monthly</button>
+                            <button class="chart-tab" data-chart="weekly">Weekly</button>
+                            <button class="chart-tab" data-chart="daily">Daily</button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper" id="revenueChart">
+                        <!-- Chart will be rendered here -->
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Order Status</h3>
+                        <div class="chart-tabs">
+                            <button class="chart-tab active" data-chart="pie">Pie</button>
+                            <button class="chart-tab" data-chart="donut">Donut</button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper" id="orderStatusChart">
+                        <!-- Chart will be rendered here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Tables Row -->
+            <div class="tables-row">
+                <div class="data-table-container">
+                    <div class="table-header">
+                        <h3>Recent Orders</h3>
+                        <div class="table-actions">
+                            <div class="table-search">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search orders..." id="orderSearch">
+                            </div>
+                            <button class="btn btn-outline btn-sm" onclick="filterOrders()">
+                                <i class="fas fa-filter"></i>
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentOrdersTable">
+                                <!-- Orders will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-pagination">
+                        <span class="pagination-info">Showing 1-5 of 42 orders</span>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" disabled>«</button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn">»</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-table-container">
+                    <div class="table-header">
+                        <h3>Top Products</h3>
+                        <div class="table-actions">
+                            <div class="table-search">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search products..." id="productSearch">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Sales</th>
+                                    <th>Revenue</th>
+                                    <th>Rating</th>
+                                    <th>Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topProductsTable">
+                                <!-- Products will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions admin-quick-actions">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions-grid">
+                    <div class="quick-action" onclick="quickAction('add-product')">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Product</span>
+                    </div>
+                    <div class="quick-action" onclick="quickAction('add-user')">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Add User</span>
+                    </div>
+                    <div class="quick-action" onclick="quickAction('create-coupon')">
+                        <i class="fas fa-ticket-alt"></i>
+                        <span>Create Coupon</span>
+                    </div>
+                    <div class="quick-action" onclick="quickAction('send-newsletter')">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send Newsletter</span>
+                    </div>
+                    <div class="quick-action" onclick="quickAction('backup')">
+                        <i class="fas fa-database"></i>
+                        <span>Create Backup</span>
+                    </div>
+                    <div class="quick-action" onclick="quickAction('clear-cache')">
+                        <i class="fas fa-trash"></i>
+                        <span>Clear Cache</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="addProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Product</h3>
+                <button class="modal-close" onclick="closeModal('addProductModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm">
+                    <div class="form-group">
+                        <label for="productName">Product Name <span class="required">*</span></label>
+                        <input type="text" id="productName" required placeholder="Enter product name">
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Description</label>
+                        <textarea id="productDescription" rows="3" placeholder="Enter product description"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productPrice">Price <span class="required">*</span></label>
+                            <input type="number" id="productPrice" required placeholder="0.00" step="0.01" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Category <span class="required">*</span></label>
+                            <select id="productCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="templates">Templates</option>
+                                <option value="themes">Themes</option>
+                                <option value="plugins">Plugins</option>
+                                <option value="scripts">Scripts</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Product Image</label>
+                        <input type="file" id="productImage" accept="image/*">
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="productFeatured">
+                        <label for="productFeatured">Featured Product</label>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="productActive" checked>
+                        <label for="productActive">Active</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('addProductModal')">
+                    Cancel
+                </button>
+                <button class="btn btn-primary" onclick="submitAddProduct()">
+                    <i class="fas fa-save"></i>
+                    Save Product
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="addUserModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New User</h3>
+                <button class="modal-close" onclick="closeModal('addUserModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addUserForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="userFirstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="userFirstName" required placeholder="Enter first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="userLastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="userLastName" required placeholder="Enter last name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email <span class="required">*</span></label>
+                        <input type="email" id="userEmail" required placeholder="Enter email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="userPassword">Password <span class="required">*</span></label>
+                        <input type="password" id="userPassword" required placeholder="Enter password">
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">Role <span class="required">*</span></label>
+                        <select id="userRole" required>
+                            <option value="">Select Role</option>
+                            <option value="admin">Administrator</option>
+                            <option value="editor">Editor</option>
+                            <option value="author">Author</option>
+                            <option value="contributor">Contributor</option>
+                            <option value="customer">Customer</option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="userActive" checked>
+                        <label for="userActive">Active</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('addUserModal')">
+                    Cancel
+                </button>
+                <button class="btn btn-primary" onclick="submitAddUser()">
+                    <i class="fas fa-save"></i>
+                    Save User
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle mobile-theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/admin.js"></script>
+</body>
+</html>

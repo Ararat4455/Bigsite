@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Bigsite Dashboard</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="loading-screen">
+        <div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <p>Loading Settings...</p>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo"><span class="logo-icon"><i class="fas fa-rocket"></i></span><span class="logo-text">Bigsite</span></a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=U'"><span class="user-status online"></span></div>
+            <div class="user-info"><h4>John Doe</h4><p>Premium Member</p></div>
+            <button class="user-dropdown" onclick="toggleUserMenu()"><i class="fas fa-chevron-down"></i></button>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                <div class="divider"></div>
+                <a href="../../pages/auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+                <li class="nav-item"><a href="projects.html"><i class="fas fa-project-diagram"></i><span>Projects</span><span class="badge">5</span></a></li>
+                <li class="nav-item"><a href="messages.html"><i class="fas fa-envelope"></i><span>Messages</span><span class="badge">12</span></a></li>
+                <li class="nav-item"><a href="calendar.html"><i class="fas fa-calendar-alt"></i><span>Calendar</span></a></li>
+            </ul>
+            <div class="nav-section"><h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="files.html"><i class="fas fa-file-alt"></i><span>Files</span></a></li>
+                    <li class="nav-item"><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span><span class="badge">3</span></a></li>
+                    <li class="nav-item"><a href="subscriptions.html"><i class="fas fa-credit-card"></i><span>Subscriptions</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Account</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="profile.html"><i class="fas fa-user-circle"></i><span>Profile</span></a></li>
+                    <li class="nav-item active"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                    <li class="nav-item"><a href="security.html"><i class="fas fa-shield-alt"></i><span>Security</span></a></li>
+                    <li class="nav-item"><a href="notifications.html"><i class="fas fa-bell"></i><span>Notifications</span><span class="badge">8</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Extras</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="help.html"><i class="fas fa-question-circle"></i><span>Help Center</span></a></li>
+                    <li class="nav-item"><a href="../../index.html"><i class="fas fa-external-link-alt"></i><span>Visit Site</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="storage-info"><div class="storage-bar"><div class="storage-progress" style="width:45%"></div></div>
+            <div class="storage-details"><span>45GB / 100GB</span><a href="upgrade.html">Upgrade</a></div></div>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a><span><i class="fas fa-chevron-right"></i></span><a href="settings.html">Settings</a>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-secondary" onclick="saveSettings()"><i class="fas fa-save"></i><span>Save Settings</span></button>
+                <button class="topbar-btn notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">8</span></button>
+                <div class="topbar-user"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=U'"><span>John Doe</span><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <section class="settings-header">
+                <div class="settings-title">
+                    <h1><i class="fas fa-cog"></i> Account Settings</h1>
+                    <p>Manage your account preferences and configuration</p>
+                </div>
+            </section>
+
+            <section class="settings-content">
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-user"></i> Profile Settings</h2>
+                    </div>
+                    <div class="settings-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" value="John" placeholder="Enter your first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" value="Doe" placeholder="Enter your last name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="displayName">Display Name</label>
+                                <input type="text" id="displayName" value="John Doe" placeholder="Enter your display name">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" value="johndoe" placeholder="Enter your username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" placeholder="Tell us about yourself...">Passionate developer and designer creating amazing web experiences.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="profileVisibility">Profile Visibility</label>
+                            <select id="profileVisibility">
+                                <option value="public" selected>Public</option>
+                                <option value="friends">Friends Only</option>
+                                <option value="private">Private</option>
+                            </select>
+                            <p class="form-hint">Choose who can see your profile information</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-envelope"></i> Contact Information</h2>
+                    </div>
+                    <div class="settings-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" value="john@bigsite.com" placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" value="+1 (555) 123-4567" placeholder="Enter your phone number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="website">Website</label>
+                            <input type="url" id="website" value="https://johndoe.dev" placeholder="https://yourwebsite.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" placeholder="Enter your address...">123 Main Street, San Francisco, CA 94105</textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" value="San Francisco" placeholder="Enter your city">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select id="country">
+                                    <option value="US" selected>United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="FR">France</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-palette"></i> Appearance</h2>
+                    </div>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Theme</label>
+                            <div class="theme-options">
+                                <label class="theme-option">
+                                    <input type="radio" name="theme" value="light" checked>
+                                    <span class="theme-preview light"></span>
+                                    <span>Light</span>
+                                </label>
+                                <label class="theme-option">
+                                    <input type="radio" name="theme" value="dark">
+                                    <span class="theme-preview dark"></span>
+                                    <span>Dark</span>
+                                </label>
+                                <label class="theme-option">
+                                    <input type="radio" name="theme" value="system">
+                                    <span class="theme-preview system"></span>
+                                    <span>System</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="primaryColor">Primary Color</label>
+                            <div class="color-picker">
+                                <input type="color" id="primaryColor" value="#4a6bff">
+                                <span id="colorValue">#4a6bff</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <select id="language">
+                                <option value="en" selected>English</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                                <option value="de">Deutsch</option>
+                                <option value="it">Italiano</option>
+                                <option value="pt">Português</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timezone">Timezone</label>
+                            <select id="timezone">
+                                <option value="UTC-8" selected>Pacific Time (UTC-8)</option>
+                                <option value="UTC-5">Eastern Time (UTC-5)</option>
+                                <option value="UTC-6">Central Time (UTC-6)</option>
+                                <option value="UTC-7">Mountain Time (UTC-7)</option>
+                                <option value="UTC">UTC (Coordinated Universal Time)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-bell"></i> Notifications</h2>
+                    </div>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Email Notifications</label>
+                            <div class="toggle-group">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="emailNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span>Receive email notifications</span>
+                            </div>
+                            <p class="form-hint">Get notifications about account activity, updates, and important announcements</p>
+                        </div>
+                        <div class="notification-types">
+                            <div class="notification-type">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    <span>New Messages</span>
+                                </label>
+                            </div>
+                            <div class="notification-type">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    <span>Project Updates</span>
+                                </label>
+                            </div>
+                            <div class="notification-type">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    <span>Payment Confirmations</span>
+                                </label>
+                            </div>
+                            <div class="notification-type">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    <span>Security Alerts</span>
+                                </label>
+                            </div>
+                            <div class="notification-type">
+                                <label>
+                                    <input type="checkbox">
+                                    <span>Marketing Emails</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Push Notifications</label>
+                            <div class="toggle-group">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="pushNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span>Receive browser push notifications</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-lock"></i> Privacy & Security</h2>
+                    </div>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Two-Factor Authentication</label>
+                            <div class="toggle-group">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorAuth" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span>Enable two-factor authentication</span>
+                            </div>
+                            <p class="form-hint">Add an extra layer of security to your account with 2FA</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Login Activity</label>
+                            <div class="toggle-group">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="loginActivity" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span>Track login activity and receive alerts</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sessionTimeout">Session Timeout</label>
+                            <select id="sessionTimeout">
+                                <option value="15">15 minutes</option>
+                                <option value="30">30 minutes</option>
+                                <option value="60" selected>1 hour</option>
+                                <option value="1440">1 day</option>
+                                <option value="never">Never</option>
+                            </select>
+                            <p class="form-hint">Automatically log out after inactivity</p>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-secondary" onclick="changePassword()"><i class="fas fa-key"></i><span>Change Password</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-share-alt"></i> Connected Accounts</h2>
+                    </div>
+                    <div class="connected-accounts">
+                        <div class="account-item">
+                            <div class="account-icon google"><i class="fab fa-google"></i></div>
+                            <div class="account-info">
+                                <h4>Google</h4>
+                                <p>john.doe@gmail.com</p>
+                            </div>
+                            <div class="account-status connected">Connected</div>
+                            <button class="btn btn-text" onclick="disconnectAccount('google')"><span>Disconnect</span></button>
+                        </div>
+                        <div class="account-item">
+                            <div class="account-icon github"><i class="fab fa-github"></i></div>
+                            <div class="account-info">
+                                <h4>GitHub</h4>
+                                <p>johndoe</p>
+                            </div>
+                            <div class="account-status connected">Connected</div>
+                            <button class="btn btn-text" onclick="disconnectAccount('github')"><span>Disconnect</span></button>
+                        </div>
+                        <div class="account-item">
+                            <div class="account-icon facebook"><i class="fab fa-facebook"></i></div>
+                            <div class="account-info">
+                                <h4>Facebook</h4>
+                                <p>Not connected</p>
+                            </div>
+                            <div class="account-status">Not connected</div>
+                            <button class="btn btn-primary" onclick="connectAccount('facebook')"><span>Connect</span></button>
+                        </div>
+                        <div class="account-item">
+                            <div class="account-icon twitter"><i class="fab fa-twitter"></i></div>
+                            <div class="account-info">
+                                <h4>Twitter</h4>
+                                <p>Not connected</p>
+                            </div>
+                            <div class="account-status">Not connected</div>
+                            <button class="btn btn-primary" onclick="connectAccount('twitter')"><span>Connect</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-exclamation-triangle"></i> Danger Zone</h2>
+                    </div>
+                    <div class="danger-zone">
+                        <div class="danger-item">
+                            <div class="danger-icon"><i class="fas fa-trash"></i></div>
+                            <div class="danger-info">
+                                <h4>Delete Account</h4>
+                                <p>Permanently delete your account and all associated data</p>
+                            </div>
+                            <button class="btn btn-danger" onclick="confirmDeleteAccount()"><i class="fas fa-trash"></i><span>Delete Account</span></button>
+                        </div>
+                        <div class="danger-item">
+                            <div class="danger-icon"><i class="fas fa-sign-out-alt"></i></div>
+                            <div class="danger-info">
+                                <h4>Deactivate Account</h4>
+                                <p>Temporarily deactivate your account. You can reactivate it later.</p>
+                            </div>
+                            <button class="btn btn-warning" onclick="confirmDeactivateAccount()"><i class="fas fa-pause"></i><span>Deactivate Account</span></button>
+                        </div>
+                        <div class="danger-item">
+                            <div class="danger-icon"><i class="fas fa-file-export"></i></div>
+                            <div class="danger-info">
+                                <h4>Export Data</h4>
+                                <p>Download all your data in a portable format</p>
+                            </div>
+                            <button class="btn btn-secondary" onclick="exportData()"><i class="fas fa-download"></i><span>Export Data</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3 id="modalTitle">Confirm Action</h3><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-danger" id="confirmBtn" onclick="confirmAction()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script>
+        let currentAction=null;
+        function saveSettings(){showNotification('Settings saved successfully!','success')}
+        function changePassword(){showNotification('Redirecting to change password page...','info')}
+        function disconnectAccount(provider){if(confirm(`Disconnect ${provider}?`))showNotification(`${provider} disconnected`,'success')}
+        function connectAccount(provider){showNotification(`Connecting to ${provider}...','info')}
+        function confirmDeleteAccount(){currentAction='delete';document.getElementById('modalTitle').textContent='Delete Account';document.getElementById('modalBody').innerHTML='<p>Are you sure you want to delete your account? This action cannot be undone. All your data will be permanently removed.</p>';document.getElementById('confirmBtn').textContent='Delete Account';document.getElementById('confirmModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function confirmDeactivateAccount(){currentAction='deactivate';document.getElementById('modalTitle').textContent='Deactivate Account';document.getElementById('modalBody').innerHTML='<p>Are you sure you want to deactivate your account? You can reactivate it later by logging in.</p>';document.getElementById('confirmBtn').textContent='Deactivate Account';document.getElementById('confirmModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function exportData(){showNotification('Exporting your data...','info')}
+        function confirmAction(){if(currentAction==='delete')showNotification('Account deleted','success');else if(currentAction==='deactivate')showNotification('Account deactivated','success');closeModal()}
+        function closeModal(){document.getElementById('confirmModal').classList.remove('active');document.getElementById('overlay').style.display='none';currentAction=null}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',hideLoadingScreen);
+        document.getElementById('primaryColor').addEventListener('input',function(){document.getElementById('colorValue').textContent=this.value});
+    </script>
+</body>
+</html>

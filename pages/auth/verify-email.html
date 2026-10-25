@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Verify your email address - Complete your Bigsite account registration">
+    <meta name="keywords" content="verify email, confirm email, account verification, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Verify Email - Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/auth.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-page verify-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Auth Header -->
+    <div class="auth-header">
+        <a href="../../index.html" class="logo">
+            <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+            <span class="logo-text">Bigsite</span>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="auth-main">
+        <div class="auth-container">
+            <div class="verify-content">
+                <!-- Verification Sent -->
+                <div class="verify-step active" id="verificationSent">
+                    <div class="verify-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <h1>Check Your Email</h1>
+                    <p>We've sent a verification link to <strong id="userEmail"></strong></p>
+                    
+                    <div class="verify-instructions">
+                        <h3>What to do next:</h3>
+                        <ol>
+                            <li><i class="fas fa-envelope-open"></i> Check your email inbox</li>
+                            <li><i class="fas fa-fingerprint"></i> Click the verification link in the email</li>
+                            <li><i class="fas fa-check-circle"></i> Your account will be activated automatically</li>
+                        </ol>
+                    </div>
+
+                    <div class="verify-actions">
+                        <button class="btn btn-secondary" onclick="resendVerificationEmail()">
+                            <i class="fas fa-redo"></i>
+                            <span>Resend Verification Email</span>
+                        </button>
+                        <button class="btn btn-outline" onclick="changeEmail()">
+                            <i class="fas fa-edit"></i>
+                            <span>Change Email Address</span>
+                        </button>
+                    </div>
+
+                    <div class="verify-timer">
+                        <i class="fas fa-clock"></i>
+                        <span>You can request a new verification email in <span id="resendTimer">00:59</span></span>
+                    </div>
+
+                    <div class="verify-checklist">
+                        <h3>Didn't receive the email?</h3>
+                        <ul>
+                            <li><i class="fas fa-inbox"></i> Check your spam/junk folder</li>
+                            <li><i class="fas fa-folder-open"></i> Look in your promotions tab (Gmail users)</li>
+                            <li><i class="fas fa-search"></i> Search for "Bigsite" or "Verify Your Email"</li>
+                            <li><i class="fas fa-shield-alt"></i> Make sure our emails aren't being blocked</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Verification Successful -->
+                <div class="verify-step" id="verificationSuccess">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h1>Email Verified Successfully!</h1>
+                    <p>Your email address has been verified. Your account is now active.</p>
+                    
+                    <div class="success-actions">
+                        <a href="login.html" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Sign In</span>
+                        </a>
+                        <a href="../../index.html" class="btn btn-secondary">
+                            <i class="fas fa-home"></i>
+                            <span>Go to Homepage</span>
+                        </a>
+                    </div>
+
+                    <div class="success-next-steps">
+                        <h3>What's next?</h3>
+                        <div class="next-steps-grid">
+                            <div class="next-step">
+                                <i class="fas fa-user-edit"></i>
+                                <h4>Complete Your Profile</h4>
+                                <p>Add your photo and personal details</p>
+                            </div>
+                            <div class="next-step">
+                                <i class="fas fa-bell"></i>
+                                <h4>Set Up Notifications</h4>
+                                <p>Choose how you want to be notified</p>
+                            </div>
+                            <div class="next-step">
+                                <i class="fas fa-star"></i>
+                                <h4>Explore Features</h4>
+                                <p>Discover all the features we offer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verification Expired -->
+                <div class="verify-step" id="verificationExpired">
+                    <div class="expired-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h1>Verification Link Expired</h1>
+                    <p>The verification link you clicked has expired. Links expire after 24 hours for security reasons.</p>
+                    
+                    <div class="expired-actions">
+                        <button class="btn btn-primary" onclick="resendVerificationEmail()">
+                            <i class="fas fa-redo"></i>
+                            <span>Resend Verification Email</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="changeEmail()">
+                            <i class="fas fa-edit"></i>
+                            <span>Use Different Email</span>
+                        </button>
+                    </div>
+
+                    <div class="expired-info">
+                        <h3>Why do verification links expire?</h3>
+                        <p>For your security, verification links are only valid for 24 hours. This prevents unauthorized access to your account if someone else gains access to your email.</p>
+                    </div>
+                </div>
+
+                <!-- Verification Failed -->
+                <div class="verify-step" id="verificationFailed">
+                    <div class="failed-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <h1>Verification Failed</h1>
+                    <p>We couldn't verify your email address. This might be because:</p>
+                    
+                    <div class="failed-reasons">
+                        <ul>
+                            <li><i class="fas fa-times"></i> The verification link has already been used</li>
+                            <li><i class="fas fa-times"></i> The link has expired (valid for 24 hours)</li>
+                            <li><i class="fas fa-times"></i> The email address doesn't match our records</li>
+                        </ul>
+                    </div>
+
+                    <div class="failed-actions">
+                        <button class="btn btn-primary" onclick="resendVerificationEmail()">
+                            <i class="fas fa-redo"></i>
+                            <span>Resend Verification Email</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="changeEmail()">
+                            <i class="fas fa-edit"></i>
+                            <span>Use Different Email</span>
+                        </button>
+                        <a href="../../contact.html" class="btn btn-outline">
+                            <i class="fas fa-headset"></i>
+                            <span>Contact Support</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Change Email Form -->
+                <div class="verify-step" id="changeEmailForm">
+                    <div class="auth-form-header">
+                        <h1>Change Email Address</h1>
+                        <p>Enter a new email address to receive a verification link</p>
+                    </div>
+
+                    <form id="changeEmailFormElement" class="auth-form" novalidate>
+                        <div class="form-group">
+                            <label for="newEmail">New Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input 
+                                    type="email" 
+                                    id="newEmail" 
+                                    name="newEmail" 
+                                    placeholder="Enter your new email address"
+                                    required
+                                    autocomplete="email"
+                                >
+                            </div>
+                            <span class="error-message"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send New Verification Email</span>
+                        </button>
+
+                        <button type="button" class="btn btn-secondary btn-block" onclick="backToVerification()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back to Verification</span>
+                        </button>
+
+                        <div class="form-message" id="changeEmailMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Auth Footer -->
+    <div class="auth-footer">
+        <p>&copy; 2024 Bigsite. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="../../terms.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+            <a href="../../contact.html">Contact Us</a>
+        </div>
+    </div>
+
+    <!-- Back to Site -->
+    <a href="../../index.html" class="back-to-site">
+        <i class="fas fa-arrow-left"></i>
+        <span>Back to Bigsite</span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/auth.js"></script>
+</body>
+</html>

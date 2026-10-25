@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Invoices - Manage your invoices and billing on Bigsite Dashboard">
+    <meta name="keywords" content="invoices, billing, payments, dashboard, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Invoices - Bigsite Dashboard</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="loading-screen">
+        <div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <p>Loading Invoices...</p>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo"><span class="logo-icon"><i class="fas fa-rocket"></i></span><span class="logo-text">Bigsite</span></a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=U'"><span class="user-status online"></span></div>
+            <div class="user-info"><h4>John Doe</h4><p>Premium Member</p></div>
+            <button class="user-dropdown" onclick="toggleUserMenu()"><i class="fas fa-chevron-down"></i></button>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                <div class="divider"></div>
+                <a href="../../pages/auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+                <li class="nav-item"><a href="projects.html"><i class="fas fa-project-diagram"></i><span>Projects</span><span class="badge">5</span></a></li>
+                <li class="nav-item"><a href="messages.html"><i class="fas fa-envelope"></i><span>Messages</span><span class="badge">12</span></a></li>
+                <li class="nav-item"><a href="calendar.html"><i class="fas fa-calendar-alt"></i><span>Calendar</span></a></li>
+            </ul>
+            <div class="nav-section"><h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="files.html"><i class="fas fa-file-alt"></i><span>Files</span></a></li>
+                    <li class="nav-item active"><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span><span class="badge">3</span></a></li>
+                    <li class="nav-item"><a href="subscriptions.html"><i class="fas fa-credit-card"></i><span>Subscriptions</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Account</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="profile.html"><i class="fas fa-user-circle"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                    <li class="nav-item"><a href="security.html"><i class="fas fa-shield-alt"></i><span>Security</span></a></li>
+                    <li class="nav-item"><a href="notifications.html"><i class="fas fa-bell"></i><span>Notifications</span><span class="badge">8</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Extras</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="help.html"><i class="fas fa-question-circle"></i><span>Help Center</span></a></li>
+                    <li class="nav-item"><a href="../../index.html"><i class="fas fa-external-link-alt"></i><span>Visit Site</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="storage-info"><div class="storage-bar"><div class="storage-progress" style="width:45%"></div></div>
+            <div class="storage-details"><span>45GB / 100GB</span><a href="upgrade.html">Upgrade</a></div></div>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a><span><i class="fas fa-chevron-right"></i></span><a href="invoices.html">Invoices</a>
+            </div>
+            <div class="topbar-actions">
+                <div class="topbar-search">
+                    <i class="fas fa-search"></i><input type="text" placeholder="Search invoices..." oninput="searchInvoices(this)">
+                    <button class="search-close" onclick="clearSearch(this)"><i class="fas fa-times"></i></button>
+                </div>
+                <button class="btn btn-primary" onclick="createInvoice()"><i class="fas fa-plus"></i><span>New Invoice</span></button>
+                <button class="topbar-btn notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">8</span></button>
+                <div class="topbar-user"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=U'"><span>John Doe</span><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <section class="invoices-header">
+                <div class="invoices-title">
+                    <h1><i class="fas fa-file-invoice"></i> Invoices</h1>
+                    <p>Manage your invoices and payments</p>
+                </div>
+                <div class="invoices-summary">
+                    <div class="summary-card">
+                        <div class="summary-icon unpaid"><i class="fas fa-exclamation-circle"></i></div>
+                        <div class="summary-info"><span class="summary-value">3</span><span class="summary-label">Unpaid</span></div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon paid"><i class="fas fa-check-circle"></i></div>
+                        <div class="summary-info"><span class="summary-value">12</span><span class="summary-label">Paid</span></div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon overdue"><i class="fas fa-clock"></i></div>
+                        <div class="summary-info"><span class="summary-value">1</span><span class="summary-label">Overdue</span></div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon total"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="summary-info"><span class="summary-value">$15,450</span><span class="summary-label">Total</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="invoices-section">
+                <div class="invoices-controls">
+                    <div class="invoices-filter">
+                        <span>Filter:</span>
+                        <select onchange="filterInvoices(this)">
+                            <option value="all">All Invoices</option>
+                            <option value="unpaid">Unpaid</option>
+                            <option value="paid">Paid</option>
+                            <option value="overdue">Overdue</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="invoices-sort">
+                        <span>Sort by:</span>
+                        <select onchange="sortInvoices(this)">
+                            <option value="date-desc">Date (Newest)</option>
+                            <option value="date-asc">Date (Oldest)</option>
+                            <option value="amount-desc">Amount (High to Low)</option>
+                            <option value="amount-asc">Amount (Low to High)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="invoices-table-container">
+                    <table class="invoices-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllInvoices" onchange="toggleSelectAllInvoices()"></th>
+                                <th>Invoice #</th>
+                                <th>Client</th>
+                                <th>Amount</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoicesList">
+                            <tr class="invoice-row unpaid">
+                                <td><input type="checkbox" class="invoice-checkbox"></td>
+                                <td><a href="#" onclick="viewInvoice('INV-001')">INV-001</a></td>
+                                <td><div class="client-info"><span class="client-avatar">AC</span><span>Acme Corp</span></div></td>
+                                <td>$2,500.00</td>
+                                <td>Dec 15, 2024</td>
+                                <td><span class="status-badge unpaid">Unpaid</span></td>
+                                <td>
+                                    <div class="invoice-actions">
+                                        <button class="action-btn" title="View" onclick="viewInvoice('INV-001')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editInvoice('INV-001')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Send Reminder" onclick="sendReminder('INV-001')"><i class="fas fa-paper-plane"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteInvoice('INV-001')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="invoice-row paid">
+                                <td><input type="checkbox" class="invoice-checkbox"></td>
+                                <td><a href="#" onclick="viewInvoice('INV-002')">INV-002</a></td>
+                                <td><div class="client-info"><span class="client-avatar">TS</span><span>Tech Solutions</span></div></td>
+                                <td>$5,200.00</td>
+                                <td>Nov 30, 2024</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td>
+                                    <div class="invoice-actions">
+                                        <button class="action-btn" title="View" onclick="viewInvoice('INV-002')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Download" onclick="downloadInvoice('INV-002')"><i class="fas fa-download"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteInvoice('INV-002')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="invoice-row overdue">
+                                <td><input type="checkbox" class="invoice-checkbox"></td>
+                                <td><a href="#" onclick="viewInvoice('INV-003')">INV-003</a></td>
+                                <td><div class="client-info"><span class="client-avatar">WD</span><span>Web Design Co</span></div></td>
+                                <td>$1,850.00</td>
+                                <td>Nov 20, 2024</td>
+                                <td><span class="status-badge overdue">Overdue</span></td>
+                                <td>
+                                    <div class="invoice-actions">
+                                        <button class="action-btn" title="View" onclick="viewInvoice('INV-003')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Send Reminder" onclick="sendReminder('INV-003')"><i class="fas fa-paper-plane"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteInvoice('INV-003')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="invoice-row paid">
+                                <td><input type="checkbox" class="invoice-checkbox"></td>
+                                <td><a href="#" onclick="viewInvoice('INV-004')">INV-004</a></td>
+                                <td><div class="client-info"><span class="client-avatar">MI</span><span>Marketing Inc</span></div></td>
+                                <td>$3,200.00</td>
+                                <td>Nov 15, 2024</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td>
+                                    <div class="invoice-actions">
+                                        <button class="action-btn" title="View" onclick="viewInvoice('INV-004')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Download" onclick="downloadInvoice('INV-004')"><i class="fas fa-download"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteInvoice('INV-004')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="invoice-row paid">
+                                <td><input type="checkbox" class="invoice-checkbox"></td>
+                                <td><a href="#" onclick="viewInvoice('INV-005')">INV-005</a></td>
+                                <td><div class="client-info"><span class="client-avatar">CS</span><span>Creative Studio</span></div></td>
+                                <td>$2,700.00</td>
+                                <td>Nov 10, 2024</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td>
+                                    <div class="invoice-actions">
+                                        <button class="action-btn" title="View" onclick="viewInvoice('INV-005')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Download" onclick="downloadInvoice('INV-005')"><i class="fas fa-download"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteInvoice('INV-005')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="invoices-pagination">
+                    <div class="pagination-info">Showing 1-5 of 15 invoices</div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" onclick="previousPage()"><i class="fas fa-chevron-left"></i></button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span>...</span>
+                        <button class="pagination-btn">15</button>
+                        <button class="pagination-btn" onclick="nextPage()"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="pagination-actions">
+                        <select onchange="changePageSize(this)">
+                            <option value="5">5 per page</option>
+                            <option value="10" selected>10 per page</option>
+                            <option value="20">20 per page</option>
+                            <option value="50">50 per page</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal" id="invoiceModal">
+        <div class="modal-content modal-xl">
+            <div class="modal-header"><h3>Invoice Details</h3><button class="modal-close" onclick="closeInvoiceModal()"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body">
+                <div class="invoice-preview" id="invoicePreview">
+                    <div class="invoice-header">
+                        <div class="invoice-logo"><span class="logo-icon"><i class="fas fa-rocket"></i></span><span class="logo-text">Bigsite</span></div>
+                        <div class="invoice-title">INVOICE</div>
+                    </div>
+                    <div class="invoice-meta">
+                        <div class="meta-row">
+                            <div class="meta-label">Invoice #:</div><div class="meta-value" id="invoiceNumber">INV-001</div>
+                        </div>
+                        <div class="meta-row">
+                            <div class="meta-label">Date:</div><div class="meta-value" id="invoiceDate">Nov 1, 2024</div>
+                        </div>
+                        <div class="meta-row">
+                            <div class="meta-label">Due Date:</div><div class="meta-value" id="invoiceDueDate">Dec 15, 2024</div>
+                        </div>
+                        <div class="meta-row">
+                            <div class="meta-label">Status:</div><div class="meta-value"><span class="status-badge unpaid" id="invoiceStatus">Unpaid</span></div>
+                        </div>
+                    </div>
+                    <div class="invoice-parties">
+                        <div class="party from">
+                            <h4>From:</h4>
+                            <p>Bigsite Company</p><p>123 Business Street</p><p>New York, NY 10001</p><p>USA</p>
+                        </div>
+                        <div class="party to">
+                            <h4>To:</h4>
+                            <p id="invoiceClient">Acme Corp</p><p>456 Client Avenue</p><p>Boston, MA 02108</p><p>USA</p>
+                        </div>
+                    </div>
+                    <div class="invoice-items">
+                        <table class="items-table">
+                            <thead><tr><th>#</th><th>Description</th><th>Quantity</th><th>Unit Price</th><th>Amount</th></tr></thead>
+                            <tbody id="invoiceItems"></tbody>
+                        </table>
+                    </div>
+                    <div class="invoice-totals">
+                        <div class="total-row">
+                            <div class="total-label">Subtotal:</div><div class="total-value" id="invoiceSubtotal">$2,500.00</div>
+                        </div>
+                        <div class="total-row">
+                            <div class="total-label">Tax (10%):</div><div class="total-value" id="invoiceTax">$250.00</div>
+                        </div>
+                        <div class="total-row grand-total">
+                            <div class="total-label">Total:</div><div class="total-value" id="invoiceTotal">$2,750.00</div>
+                        </div>
+                    </div>
+                    <div class="invoice-notes">
+                        <h4>Notes:</h4>
+                        <p id="invoiceNotes">Thank you for your business! Payment is due within 30 days.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeInvoiceModal()">Close</button>
+                <button class="btn btn-primary" onclick="downloadInvoicePDF()"><i class="fas fa-file-pdf"></i><span>Download PDF</span></button>
+                <button class="btn btn-secondary" onclick="sendInvoiceEmail()"><i class="fas fa-paper-plane"></i><span>Send Email</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="createInvoiceModal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header"><h3>Create New Invoice</h3><button class="modal-close" onclick="closeCreateInvoiceModal()"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body">
+                <form id="createInvoiceForm">
+                    <div class="form-row">
+                        <div class="form-group"><label>Invoice #</label><input type="text" id="newInvoiceNumber" placeholder="INV-006" required></div>
+                        <div class="form-group"><label>Date</label><input type="date" id="newInvoiceDate" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Due Date</label><input type="date" id="newInvoiceDueDate" required></div>
+                        <div class="form-group"><label>Client</label>
+                            <select id="newInvoiceClient" required>
+                                <option value="">Select Client</option>
+                                <option value="Acme Corp">Acme Corp</option>
+                                <option value="Tech Solutions">Tech Solutions</option>
+                                <option value="Web Design Co">Web Design Co</option>
+                                <option value="Marketing Inc">Marketing Inc</option>
+                                <option value="Creative Studio">Creative Studio</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Description</label><textarea id="newInvoiceDescription" placeholder="Invoice description..."></textarea></div>
+                    <div class="form-section"><h4>Items</h4>
+                        <div class="items-list" id="newInvoiceItems">
+                            <div class="item-row">
+                                <input type="text" class="item-input" placeholder="Item description">
+                                <input type="number" class="item-input" placeholder="Qty">
+                                <input type="number" class="item-input" placeholder="Price">
+                                <button class="item-remove" onclick="removeItem(this)"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <button class="btn btn-text" type="button" onclick="addItem()"><i class="fas fa-plus"></i> Add Item</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Tax Rate (%)</label><input type="number" id="newInvoiceTax" value="10"></div>
+                        <div class="form-group"><label>Discount (%)</label><input type="number" id="newInvoiceDiscount" value="0"></div>
+                    </div>
+                    <div class="form-group"><label>Notes</label><textarea id="newInvoiceNotes" placeholder="Additional notes..."></textarea></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeCreateInvoiceModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveNewInvoice()"><i class="fas fa-save"></i><span>Save Invoice</span></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script>
+        function createInvoice(){document.getElementById('createInvoiceModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function closeCreateInvoiceModal(){document.getElementById('createInvoiceModal').classList.remove('active');document.getElementById('overlay').style.display='none'}
+        function viewInvoice(id){document.getElementById('invoiceNumber').textContent=id;document.getElementById('invoiceModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function closeInvoiceModal(){document.getElementById('invoiceModal').classList.remove('active');document.getElementById('overlay').style.display='none'}
+        function editInvoice(id){showNotification(`Editing ${id}`,'info')}
+        function sendReminder(id){showNotification(`Reminder sent for ${id}`,'success')}
+        function downloadInvoice(id){showNotification(`Downloading ${id}`,'info')}
+        function deleteInvoice(id){if(confirm(`Delete ${id}?`))showNotification(`Deleted ${id}`,'success')}
+        function filterInvoices(select){showNotification(`Filtered: ${select.value}`,'info')}
+        function sortInvoices(select){showNotification(`Sorted by: ${select.value}`,'info')}
+        function previousPage(){showNotification('Previous page','info')}
+        function nextPage(){showNotification('Next page','info')}
+        function changePageSize(select){showNotification(`Page size: ${select.value}`,'info')}
+        function searchInvoices(input){const q=input.value.toLowerCase();if(q.length>0)showNotification(`Search: ${q}`,'info')}
+        function clearSearch(btn){btn.previousElementSibling.value='';showNotification('Search cleared','info')}
+        function toggleSelectAllInvoices(){const cbs=document.querySelectorAll('.invoice-checkbox');const all=document.getElementById('selectAllInvoices');cbs.forEach(c=>c.checked=all.checked)}
+        function addItem(){const items=document.getElementById('newInvoiceItems');const row=document.createElement('div');row.className='item-row';row.innerHTML=`<input type="text" class="item-input" placeholder="Item description"><input type="number" class="item-input" placeholder="Qty"><input type="number" class="item-input" placeholder="Price"><button class="item-remove" onclick="removeItem(this)"><i class="fas fa-times"></i></button>`;items.appendChild(row)}
+        function removeItem(btn){btn.parentElement.remove()}
+        function saveNewInvoice(){showNotification('Invoice saved!','success');closeCreateInvoiceModal()}
+        function downloadInvoicePDF(){showNotification('Downloading PDF...','info')}
+        function sendInvoiceEmail(){showNotification('Email sent!','success')}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',hideLoadingScreen);
+    </script>
+</body>
+</html>

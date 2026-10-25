@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calendar - Manage your schedule and events on Bigsite">
+    <meta name="keywords" content="calendar, schedule, events, dashboard, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Calendar - Bigsite Dashboard</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <p>Loading Calendar...</p>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                <span class="logo-text">Bigsite</span>
+            </a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                <img src="../../images/avatar.jpg" alt="User Avatar" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=U'">
+                <span class="user-status online"></span>
+            </div>
+            <div class="user-info">
+                <h4>John Doe</h4>
+                <p>Premium Member</p>
+            </div>
+            <button class="user-dropdown" onclick="toggleUserMenu()">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                <div class="divider"></div>
+                <a href="../../pages/auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="analytics.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Projects</span>
+                        <span class="badge">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="messages.html">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                        <span class="badge">12</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="calendar.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-section">
+                <h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="files.html">
+                            <i class="fas fa-folder"></i>
+                            <span>Files</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="subscriptions.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Subscriptions</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h5>Account</h5>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="security.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="notifications.html">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="help.html">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="help-btn">
+                <i class="fas fa-question-circle"></i>
+                <span>Help</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search events..." id="eventSearch">
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-btn notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                    <div class="notification-dropdown">
+                        <div class="notification-header">
+                            <h4>Notifications</h4>
+                            <a href="notifications.html" class="mark-all-read">View all</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-icon blue">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>New Event</strong> added to your calendar</p>
+                                    <span class="notification-time">2 min ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon green">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>Event Reminder</strong> for team meeting</p>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon orange">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>Deadline Approaching</strong> for project submission</p>
+                                    <span class="notification-time">2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                <button class="header-btn">
+                    <i class="fas fa-envelope"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                <div class="header-user">
+                    <img src="../../images/avatar.jpg" alt="User Avatar" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=U'">
+                    <div class="header-user-info">
+                        <h4>John Doe</h4>
+                        <p>Premium Member</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-left">
+                    <h1>Calendar</h1>
+                    <p>Manage your schedule and upcoming events</p>
+                </div>
+                <div class="page-header-right">
+                    <button class="btn btn-primary" onclick="openModal('addEventModal')">
+                        <i class="fas fa-plus"></i>
+                        Add Event
+                    </button>
+                </div>
+            </div>
+
+            <!-- Calendar View -->
+            <div class="calendar-view">
+                <!-- Calendar Header -->
+                <div class="calendar-header">
+                    <div class="calendar-nav">
+                        <button class="calendar-nav-btn" onclick="changeMonth(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="calendar-nav-btn" onclick="changeMonth(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="calendar-nav-btn today" onclick="goToToday()">
+                            Today
+                        </button>
+                    </div>
+                    <div class="calendar-title" id="calendarTitle">
+                        January 2024
+                    </div>
+                    <div class="calendar-view-toggle">
+                        <button class="view-toggle-btn active" onclick="changeView('month')">Month</button>
+                        <button class="view-toggle-btn" onclick="changeView('week')">Week</button>
+                        <button class="view-toggle-btn" onclick="changeView('day')">Day</button>
+                    </div>
+                </div>
+
+                <!-- Calendar -->
+                <div class="calendar" id="calendar">
+                    <!-- Calendar will be generated here -->
+                </div>
+            </div>
+
+            <!-- Events List -->
+            <div class="events-list-container">
+                <div class="events-list-header">
+                    <h3>Upcoming Events</h3>
+                    <button class="btn btn-outline btn-sm" onclick="loadAllEvents()">
+                        View All
+                    </button>
+                </div>
+                <div class="events-list" id="eventsList">
+                    <!-- Events will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Event Modal -->
+    <div class="modal" id="addEventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Event</h3>
+                <button class="modal-close" onclick="closeModal('addEventModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addEventForm">
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title <span class="required">*</span></label>
+                        <input type="text" id="eventTitle" required placeholder="Enter event title">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDescription">Description</label>
+                        <textarea id="eventDescription" rows="3" placeholder="Enter event description"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventStart">Start Date & Time <span class="required">*</span></label>
+                            <input type="datetime-local" id="eventStart" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventEnd">End Date & Time</label>
+                            <input type="datetime-local" id="eventEnd">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventLocation">Location</label>
+                        <input type="text" id="eventLocation" placeholder="Enter event location">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventCategory">Category</label>
+                        <select id="eventCategory">
+                            <option value="">Select Category</option>
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="meeting">Meeting</option>
+                            <option value="deadline">Deadline</option>
+                            <option value="reminder">Reminder</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventColor">Color</label>
+                        <div class="color-picker" id="eventColor">
+                            <div class="color-option" style="background: #4a6bff;" onclick="selectColor('#4a6bff')"></div>
+                            <div class="color-option" style="background: #ff6b9d;" onclick="selectColor('#ff6b9d')"></div>
+                            <div class="color-option" style="background: #28a745;" onclick="selectColor('#28a745')"></div>
+                            <div class="color-option" style="background: #ffc107;" onclick="selectColor('#ffc107')"></div>
+                            <div class="color-option" style="background: #6c757d;" onclick="selectColor('#6c757d')"></div>
+                        </div>
+                        <input type="hidden" id="eventColorValue" value="#4a6bff">
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="eventAllDay">
+                        <label for="eventAllDay">All Day Event</label>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="eventReminder">
+                        <label for="eventReminder">Set Reminder</label>
+                    </div>
+                    <div class="form-group" id="reminderGroup" style="display: none;">
+                        <label for="eventReminderTime">Reminder Time</label>
+                        <select id="eventReminderTime">
+                            <option value="5">5 minutes before</option>
+                            <option value="15">15 minutes before</option>
+                            <option value="30">30 minutes before</option>
+                            <option value="60">1 hour before</option>
+                            <option value="1440">1 day before</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('addEventModal')">
+                    Cancel
+                </button>
+                <button class="btn btn-primary" onclick="submitAddEvent()">
+                    <i class="fas fa-save"></i>
+                    Save Event
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Detail Modal -->
+    <div class="modal" id="eventDetailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="eventDetailTitle">Event Title</h3>
+                <button class="modal-close" onclick="closeModal('eventDetailModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="event-detail-content" id="eventDetailContent">
+                    <!-- Event details will be loaded here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('eventDetailModal')">
+                    Close
+                </button>
+                <button class="btn btn-primary" onclick="editEvent()">
+                    <i class="fas fa-edit"></i>
+                    Edit Event
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle mobile-theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script>
+        // ============================================
+        // Calendar Page Specific Functions
+        // ============================================
+
+        // Current date and view
+        let currentDate = new Date();
+        let currentView = 'month';
+        let selectedEvent = null;
+
+        // Sample events data
+        let events = [
+            {
+                id: 'event-1',
+                title: 'Team Meeting',
+                description: 'Weekly team meeting to discuss project updates',
+                start: '2024-01-16T10:00:00',
+                end: '2024-01-16T11:00:00',
+                location: 'Conference Room A',
+                category: 'meeting',
+                color: '#4a6bff',
+                allDay: false,
+                reminder: true,
+                reminderTime: 15
+            },
+            {
+                id: 'event-2',
+                title: 'Project Deadline',
+                description: 'Deadline for Website Redesign project',
+                start: '2024-01-20T00:00:00',
+                end: '2024-01-20T23:59:59',
+                location: '',
+                category: 'deadline',
+                color: '#ff6b9d',
+                allDay: true,
+                reminder: true,
+                reminderTime: 1440
+            },
+            {
+                id: 'event-3',
+                title: 'Client Call',
+                description: 'Call with client to discuss requirements',
+                start: '2024-01-18T14:00:00',
+                end: '2024-01-18T15:00:00',
+                location: 'Phone',
+                category: 'work',
+                color: '#28a745',
+                allDay: false,
+                reminder: true,
+                reminderTime: 30
+            },
+            {
+                id: 'event-4',
+                title: 'Birthday Party',
+                description: 'Celebrate team member birthday',
+                start: '2024-01-25T18:00:00',
+                end: '2024-01-25T22:00:00',
+                location: 'Restaurant Downtown',
+                category: 'personal',
+                color: '#ffc107',
+                allDay: false,
+                reminder: false,
+                reminderTime: 0
+            },
+            {
+                id: 'event-5',
+                title: 'Product Launch',
+                description: 'Launch of new product line',
+                start: '2024-01-30T09:00:00',
+                end: '2024-01-30T17:00:00',
+                location: 'Office',
+                category: 'work',
+                color: '#6c757d',
+                allDay: false,
+                reminder: true,
+                reminderTime: 60
+            },
+            {
+                id: 'event-6',
+                title: 'Doctor Appointment',
+                description: 'Annual health checkup',
+                start: '2024-01-17T15:00:00',
+                end: '2024-01-17T16:00:00',
+                location: 'City Hospital',
+                category: 'personal',
+                color: '#28a745',
+                allDay: false,
+                reminder: true,
+                reminderTime: 1440
+            }
+        ];
+
+        // Load calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCalendar();
+            loadEventsList();
+            initializeReminderToggle();
+        });
+
+        // ============================================
+        // Calendar Functions
+        // ============================================
+
+        function loadCalendar() {
+            const calendar = document.getElementById('calendar');
+            if (!calendar) return;
+
+            switch (currentView) {
+                case 'month':
+                    renderMonthView(calendar);
+                    break;
+                case 'week':
+                    renderWeekView(calendar);
+                    break;
+                case 'day':
+                    renderDayView(calendar);
+                    break;
+                default:
+                    renderMonthView(calendar);
+            }
+        }
+
+        function renderMonthView(calendar) {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            // Update calendar title
+            const title = document.getElementById('calendarTitle');
+            if (title) {
+                title.textContent = new Date(year, month).toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    year: 'numeric' 
+                });
+            }
+
+            // Get first day of month and total days
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+            // Create calendar grid
+            let html = '<div class="calendar-weekdays">';
+            const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            weekdays.forEach(day => {
+                html += `<div class="weekday">${day}</div>`;
+            });
+            html += '</div><div class="calendar-days">';
+
+            // Previous month days
+            for (let i = 0; i < firstDay; i++) {
+                const day = daysInPrevMonth - firstDay + i + 1;
+                html += `<div class="day prev-month">${day}</div>`;
+            }
+
+            // Current month days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const dateStr = date.toISOString().split('T')[0];
+                const today = new Date();
+                const isToday = date.toDateString() === today.toDateString();
+                const isPast = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+                // Find events for this day
+                const dayEvents = events.filter(e => {
+                    const eventDate = new Date(e.start);
+                    return eventDate.toDateString() === date.toDateString();
+                });
+
+                const dayClass = isToday ? 'today' : isPast ? 'past' : '';
+                const hasEvents = dayEvents.length > 0;
+
+                html += `
+                    <div class="day ${dayClass} ${hasEvents ? 'has-events' : ''}" onclick="selectDate(${year}, ${month}, ${day})">
+                        <span class="day-number">${day}</span>
+                        ${hasEvents ? `<div class="day-events"></div>` : ''}
+                    </div>
+                `;
+            }
+
+            // Next month days
+            const totalCells = firstDay + daysInMonth;
+            const remainingCells = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+            for (let i = 1; i <= remainingCells; i++) {
+                html += `<div class="day next-month">${i}</div>`;
+            }
+
+            html += '</div>';
+            calendar.innerHTML = html;
+
+            // Add event indicators
+            addEventIndicators(calendar, year, month);
+        }
+
+        function renderWeekView(calendar) {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const date = currentDate.getDate();
+
+            // Get the start of the week (Sunday)
+            const startOfWeek = new Date(year, month, date);
+            startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+
+            // Update calendar title
+            const endOfWeek = new Date(startOfWeek);
+            endOfWeek.setDate(endOfWeek.getDate() + 6);
+            
+            const title = document.getElementById('calendarTitle');
+            if (title) {
+                const startStr = startOfWeek.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                const endStr = endOfWeek.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                title.textContent = `${startStr} - ${endStr}`;
+            }
+
+            // Create week view
+            let html = '<div class="week-view">';
+
+            // Time slots
+            html += '<div class="week-view-times">';
+            for (let hour = 0; hour < 24; hour++) {
+                html += `<div class="time-slot">${hour}:00</div>`;
+            }
+            html += '</div>';
+
+            // Days
+            html += '<div class="week-view-days">';
+            for (let day = 0; day < 7; day++) {
+                const currentDay = new Date(startOfWeek);
+                currentDay.setDate(currentDay.getDate() + day);
+                
+                const dayName = currentDay.toLocaleDateString('en-US', { weekday: 'short' });
+                const dayDate = currentDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                const isToday = currentDay.toDateString() === new Date().toDateString();
+                
+                html += `
+                    <div class="week-view-day">
+                        <div class="week-day-header ${isToday ? 'today' : ''}">
+                            <span class="week-day-name">${dayName}</span>
+                            <span class="week-day-date">${dayDate}</span>
+                        </div>
+                        <div class="week-day-events" id="week-day-${day}">
+                            <!-- Events will be added here -->
+                        </div>
+                    </div>
+                `;
+            }
+            html += '</div></div>';
+            calendar.innerHTML = html;
+
+            // Add events to week view
+            addWeekViewEvents(calendar, startOfWeek);
+        }
+
+        function renderDayView(calendar) {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const date = currentDate.getDate();
+
+            // Update calendar title
+            const title = document.getElementById('calendarTitle');
+            if (title) {
+                title.textContent = currentDate.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+            }
+
+            // Create day view
+            let html = '<div class="day-view">';
+
+            // Time slots
+            html += '<div class="day-view-times">';
+            for (let hour = 0; hour < 24; hour++) {
+                html += `<div class="time-slot">${hour}:00</div>`;
+            }
+            html += '</div>';
+
+            // Events column
+            html += '<div class="day-view-events" id="day-view-events">';
+            html += '</div></div>';
+            calendar.innerHTML = html;
+
+            // Add events to day view
+            addDayViewEvents(calendar);
+        }
+
+        function addEventIndicators(calendar, year, month) {
+            const days = calendar.querySelectorAll('.day:not(.prev-month):not(.next-month)');
+            
+            days.forEach((day, index) => {
+                const dayNumber = index + 1;
+                const date = new Date(year, month, dayNumber);
+                const dateStr = date.toISOString().split('T')[0];
+
+                const dayEvents = events.filter(e => {
+                    const eventDate = new Date(e.start);
+                    return eventDate.toDateString() === date.toDateString();
+                });
+
+                if (dayEvents.length > 0) {
+                    const dayEventsContainer = day.querySelector('.day-events');
+                    if (dayEventsContainer) {
+                        dayEventsContainer.innerHTML = '';
+                        dayEvents.forEach(event => {
+                            const eventIndicator = document.createElement('div');
+                            eventIndicator.className = 'day-event-indicator';
+                            eventIndicator.style.background = event.color;
+                            eventIndicator.title = event.title;
+                            dayEventsContainer.appendChild(eventIndicator);
+                        });
+                    }
+                }
+            });
+        }
+
+        function addWeekViewEvents(calendar, startOfWeek) {
+            for (let day = 0; day < 7; day++) {
+                const currentDay = new Date(startOfWeek);
+                currentDay.setDate(currentDay.getDate() + day);
+                
+                const dayEventsContainer = calendar.querySelector(`#week-day-${day}`);
+                if (!dayEventsContainer) continue;
+
+                const dayEvents = events.filter(e => {
+                    const eventStart = new Date(e.start);
+                    const eventEnd = e.end ? new Date(e.end) : eventStart;
+                    
+                    return eventStart.toDateString() === currentDay.toDateString() ||
+                           (eventStart < currentDay && eventEnd > currentDay);
+                });
+
+                dayEvents.forEach(event => {
+                    const eventElement = createWeekViewEvent(event, currentDay);
+                    dayEventsContainer.appendChild(eventElement);
+                });
+            }
+        }
+
+        function createWeekViewEvent(event, day) {
+            const div = document.createElement('div');
+            div.className = 'week-view-event';
+            div.style.background = event.color;
+            div.onclick = () => viewEvent(event.id);
+
+            // Calculate position and height
+            const startHour = new Date(event.start).getHours();
+            const startMinutes = new Date(event.start).getMinutes();
+            const endHour = event.end ? new Date(event.end).getHours() : startHour + 1;
+            const endMinutes = event.end ? new Date(event.end).getMinutes() : startMinutes;
+
+            const top = (startHour + startMinutes / 60) * 40;
+            const height = ((endHour - startHour) + (endMinutes - startMinutes) / 60) * 40;
+
+            div.style.top = `${top}px`;
+            div.style.height = `${height}px`;
+
+            const startTime = new Date(event.start).toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            const endTime = event.end ? new Date(event.end).toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            }) : '';
+
+            div.innerHTML = `
+                <div class="week-event-time">${startTime}${endTime ? ` - ${endTime}` : ''}</div>
+                <div class="week-event-title">${event.title}</div>
+            `;
+
+            return div;
+        }
+
+        function addDayViewEvents(calendar) {
+            const eventsContainer = calendar.querySelector('#day-view-events');
+            if (!eventsContainer) return;
+
+            const dayEvents = events.filter(e => {
+                const eventStart = new Date(e.start);
+                const eventEnd = e.end ? new Date(e.end) : eventStart;
+                
+                return eventStart.toDateString() === currentDate.toDateString() ||
+                       (eventStart < currentDate && eventEnd > currentDate);
+            });
+
+            dayEvents.forEach(event => {
+                const eventElement = createDayViewEvent(event);
+                eventsContainer.appendChild(eventElement);
+            });
+        }
+
+        function createDayViewEvent(event) {
+            const div = document.createElement('div');
+            div.className = 'day-view-event';
+            div.style.background = event.color;
+            div.onclick = () => viewEvent(event.id);
+
+            // Calculate position and height
+            const startHour = new Date(event.start).getHours();
+            const startMinutes = new Date(event.start).getMinutes();
+            const endHour = event.end ? new Date(event.end).getHours() : startHour + 1;
+            const endMinutes = event.end ? new Date(event.end).getMinutes() : startMinutes;
+
+            const top = (startHour + startMinutes / 60) * 40;
+            const height = ((endHour - startHour) + (endMinutes - startMinutes) / 60) * 40;
+
+            div.style.top = `${top}px`;
+            div.style.height = `${height}px`;
+
+            const startTime = new Date(event.start).toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            const endTime = event.end ? new Date(event.end).toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            }) : '';
+
+            div.innerHTML = `
+                <div class="day-event-time">${startTime}${endTime ? ` - ${endTime}` : ''}</div>
+                <div class="day-event-title">${event.title}</div>
+                ${event.location ? `<div class="day-event-location"><i class="fas fa-map-marker-alt"></i> ${event.location}</div>` : ''}
+            `;
+
+            return div;
+        }
+
+        // ============================================
+        // Calendar Actions
+        // ============================================
+
+        function changeMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            loadCalendar();
+            loadEventsList();
+        }
+
+        function goToToday() {
+            currentDate = new Date();
+            loadCalendar();
+            loadEventsList();
+        }
+
+        function changeView(view) {
+            currentView = view;
+            
+            const viewBtns = document.querySelectorAll('.view-toggle-btn');
+            viewBtns.forEach(btn => btn.classList.remove('active'));
+            
+            const activeBtn = document.querySelector(`.view-toggle-btn[onclick="changeView('${view}')"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            loadCalendar();
+        }
+
+        function selectDate(year, month, day) {
+            currentDate = new Date(year, month, day);
+            
+            if (currentView === 'month') {
+                changeView('day');
+            } else {
+                loadCalendar();
+            }
+            
+            loadEventsList();
+        }
+
+        // ============================================
+        // Events List
+        // ============================================
+
+        function loadEventsList() {
+            const eventsList = document.getElementById('eventsList');
+            if (!eventsList) return;
+
+            // Get events for the current month
+            const currentYear = currentDate.getFullYear();
+            const currentMonth = currentDate.getMonth();
+            
+            const monthEvents = events.filter(e => {
+                const eventDate = new Date(e.start);
+                return eventDate.getFullYear() === currentYear && 
+                       eventDate.getMonth() === currentMonth;
+            });
+
+            // Sort by start date
+            monthEvents.sort((a, b) => new Date(a.start) - new Date(b.start));
+
+            eventsList.innerHTML = '';
+
+            if (monthEvents.length === 0) {
+                eventsList.innerHTML = `
+                    <div class="events-empty">
+                        <i class="fas fa-calendar"></i>
+                        <h4>No events found</h4>
+                        <p>There are no events scheduled for this month.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            monthEvents.forEach(event => {
+                const eventItem = createEventItem(event);
+                eventsList.appendChild(eventItem);
+            });
+        }
+
+        function createEventItem(event) {
+            const div = document.createElement('div');
+            div.className = 'event-item';
+            div.onclick = () => viewEvent(event.id);
+
+            const startDate = new Date(event.start);
+            const endDate = event.end ? new Date(event.end) : startDate;
+
+            const startStr = startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const endStr = endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const timeStr = startDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+            div.innerHTML = `
+                <div class="event-date">
+                    <div class="event-date-day">${startDate.getDate()}</div>
+                    <div class="event-date-month">${startDate.toLocaleDateString('en-US', { month: 'short' })}</div>
+                </div>
+                <div class="event-info">
+                    <h4>${event.title}</h4>
+                    <p>${event.description}</p>
+                    <div class="event-meta">
+                        <span class="event-time">
+                            <i class="fas fa-clock"></i>
+                            ${timeStr}
+                        </span>
+                        ${event.location ? `
+                        <span class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${event.location}
+                        </span>
+                        ` : ''}
+                    </div>
+                </div>
+                <div class="event-category" style="background: ${event.color};"></div>
+            `;
+
+            return div;
+        }
+
+        function loadAllEvents() {
+            // In a real app, this would load all events
+            showNotification('View all events functionality coming soon!', 'info');
+        }
+
+        // ============================================
+        // Event Actions
+        // ============================================
+
+        function viewEvent(eventId) {
+            const event = events.find(e => e.id === eventId);
+            if (!event) return;
+
+            selectedEvent = event;
+
+            const modal = document.getElementById('eventDetailModal');
+            const title = document.getElementById('eventDetailTitle');
+            const content = document.getElementById('eventDetailContent');
+
+            if (title) title.textContent = event.title;
+            if (content) {
+                const startDate = new Date(event.start);
+                const endDate = event.end ? new Date(event.end) : startDate;
+
+                content.innerHTML = `
+                    <div class="event-detail-section">
+                        <h4>Description</h4>
+                        <p>${event.description || 'No description provided.'}</p>
+                    </div>
+                    <div class="event-detail-grid">
+                        <div class="event-detail-item">
+                            <div class="event-detail-label">Start Date</div>
+                            <div class="event-detail-value">${formatDateTime(startDate)}</div>
+                        </div>
+                        <div class="event-detail-item">
+                            <div class="event-detail-label">End Date</div>
+                            <div class="event-detail-value">${formatDateTime(endDate)}</div>
+                        </div>
+                        ${event.location ? `
+                        <div class="event-detail-item">
+                            <div class="event-detail-label">Location</div>
+                            <div class="event-detail-value">${event.location}</div>
+                        </div>
+                        ` : ''}
+                        <div class="event-detail-item">
+                            <div class="event-detail-label">Category</div>
+                            <div class="event-detail-value">
+                                <span class="category-badge" style="background: ${event.color};">${event.category}</span>
+                            </div>
+                        </div>
+                        <div class="event-detail-item">
+                            <div class="event-detail-label">All Day</div>
+                            <div class="event-detail-value">${event.allDay ? 'Yes' : 'No'}</div>
+                        </div>
+                        ${event.reminder ? `
+                        <div class="event-detail-item">
+                            <div class="event-detail-label">Reminder</div>
+                            <div class="event-detail-value">${event.reminderTime} minutes before</div>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+
+            if (modal) {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function editEvent() {
+            if (!selectedEvent) return;
+
+            // In a real app, this would open the edit modal with pre-filled data
+            showNotification(`Edit event "${selectedEvent.title}" functionality coming soon!`, 'info');
+        }
+
+        // ============================================
+        // Add/Edit Event
+        // ============================================
+
+        function initializeReminderToggle() {
+            const reminderCheckbox = document.getElementById('eventReminder');
+            const reminderGroup = document.getElementById('reminderGroup');
+
+            if (reminderCheckbox && reminderGroup) {
+                reminderCheckbox.addEventListener('change', function() {
+                    reminderGroup.style.display = this.checked ? 'block' : 'none';
+                });
+            }
+        }
+
+        function selectColor(color) {
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(opt => opt.classList.remove('selected'));
+            
+            const selectedOption = document.querySelector(`.color-option[style*="background: ${color}"]`);
+            if (selectedOption) selectedOption.classList.add('selected');
+
+            const colorValue = document.getElementById('eventColorValue');
+            if (colorValue) colorValue.value = color;
+        }
+
+        function submitAddEvent() {
+            const form = document.getElementById('addEventForm');
+            if (!form) return;
+
+            const title = form.querySelector('#eventTitle')?.value;
+            const description = form.querySelector('#eventDescription')?.value;
+            const start = form.querySelector('#eventStart')?.value;
+            const end = form.querySelector('#eventEnd')?.value;
+            const location = form.querySelector('#eventLocation')?.value;
+            const category = form.querySelector('#eventCategory')?.value;
+            const color = form.querySelector('#eventColorValue')?.value || '#4a6bff';
+            const allDay = form.querySelector('#eventAllDay')?.checked;
+            const reminder = form.querySelector('#eventReminder')?.checked;
+            const reminderTime = form.querySelector('#eventReminderTime')?.value;
+
+            if (!title || !start) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // Create new event
+            const newEvent = {
+                id: 'event-' + Date.now(),
+                title,
+                description,
+                start: allDay ? start + 'T00:00:00' : start,
+                end: allDay ? end + 'T23:59:59' : end,
+                location,
+                category: category || 'work',
+                color,
+                allDay,
+                reminder,
+                reminderTime: reminder ? parseInt(reminderTime) || 15 : 0
+            };
+
+            events.push(newEvent);
+            closeModal('addEventModal');
+            showNotification('Event added successfully!', 'success');
+            form.reset();
+
+            // Reload calendar
+            loadCalendar();
+            loadEventsList();
+        }
+
+        // ============================================
+        // Utility Functions
+        // ============================================
+
+        function formatDate(date) {
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        function formatDateTime(date) {
+            return date.toLocaleString('en-US', { 
+                month: 'short', 
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+    </script>
+</body>
+</html>

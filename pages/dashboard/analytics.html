@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Analytics Dashboard - View detailed statistics and insights for your Bigsite account">
+    <meta name="keywords" content="analytics, statistics, dashboard, insights, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Analytics - Bigsite Dashboard</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <p>Loading Analytics...</p>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                <span class="logo-text">Bigsite</span>
+            </a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                <img src="../../images/avatar.jpg" alt="User Avatar" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=U'">
+                <span class="user-status online"></span>
+            </div>
+            <div class="user-info">
+                <h4>John Doe</h4>
+                <p>Premium Member</p>
+            </div>
+            <button class="user-dropdown" onclick="toggleUserMenu()">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                <div class="divider"></div>
+                <a href="../../pages/auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="analytics.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Projects</span>
+                        <span class="badge">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="messages.html">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                        <span class="badge">12</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="calendar.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-section">
+                <h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="files.html">
+                            <i class="fas fa-folder"></i>
+                            <span>Files</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="subscriptions.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Subscriptions</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h5>Account</h5>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="security.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="notifications.html">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="help.html">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="help-btn">
+                <i class="fas fa-question-circle"></i>
+                <span>Help</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-btn notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                    <div class="notification-dropdown">
+                        <div class="notification-header">
+                            <h4>Notifications</h4>
+                            <a href="notifications.html" class="mark-all-read">View all</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-icon blue">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>Analytics Report</strong> is ready</p>
+                                    <span class="notification-time">2 min ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon green">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>Project Completed</strong> successfully</p>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon orange">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>Payment Received</strong> for invoice #12345</p>
+                                    <span class="notification-time">2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                <button class="header-btn">
+                    <i class="fas fa-envelope"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                <div class="header-user">
+                    <img src="../../images/avatar.jpg" alt="User Avatar" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=U'">
+                    <div class="header-user-info">
+                        <h4>John Doe</h4>
+                        <p>Premium Member</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Analytics Dashboard</h1>
+                <p>Detailed statistics and insights about your account activity</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Dashboard</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Analytics</span>
+                </div>
+            </div>
+
+            <!-- Date Range Selector -->
+            <div class="analytics-date-range">
+                <div class="date-range-selector">
+                    <button class="date-range-btn active" onclick="changeDateRange('today')">Today</button>
+                    <button class="date-range-btn" onclick="changeDateRange('yesterday')">Yesterday</button>
+                    <button class="date-range-btn" onclick="changeDateRange('last-7')">Last 7 Days</button>
+                    <button class="date-range-btn" onclick="changeDateRange('last-30')">Last 30 Days</button>
+                    <button class="date-range-btn" onclick="changeDateRange('this-month')">This Month</button>
+                    <button class="date-range-btn" onclick="changeDateRange('last-month')">Last Month</button>
+                    <button class="date-range-btn" onclick="changeDateRange('custom')">Custom Range</button>
+                </div>
+                <div class="date-range-display" id="dateRangeDisplay">
+                    <span>Jan 15, 2024 - Jan 15, 2024</span>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-card-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>18%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="totalVisitors">2,458</div>
+                    <div class="stat-card-label">Total Visitors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon green">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-card-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>22%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="pageViews">8,942</div>
+                    <div class="stat-card-label">Page Views</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon orange">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-card-trend down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>5%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="avgSession">4m 32s</div>
+                    <div class="stat-card-label">Avg. Session Duration</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon red">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-card-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="bounceRate">42.5%</div>
+                    <div class="stat-card-label">Bounce Rate</div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-container large">
+                    <div class="chart-header">
+                        <h3>Traffic Overview</h3>
+                        <div class="chart-actions">
+                            <button class="chart-action-btn" onclick="refreshChart('traffic')">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <button class="chart-action-btn" onclick="exportChart('traffic')">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper" id="trafficChart">
+                        <!-- Chart will be rendered here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Traffic Sources</h3>
+                        <div class="chart-actions">
+                            <button class="chart-action-btn" onclick="refreshChart('sources')">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper" id="trafficSourcesChart">
+                        <!-- Chart will be rendered here -->
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Device Distribution</h3>
+                        <div class="chart-actions">
+                            <button class="chart-action-btn" onclick="refreshChart('devices')">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper" id="deviceChart">
+                        <!-- Chart will be rendered here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Stats -->
+            <div class="details-row">
+                <div class="details-card">
+                    <div class="details-header">
+                        <h3>Most Visited Pages</h3>
+                        <button class="btn btn-outline btn-sm" onclick="viewAllPages()">
+                            View All
+                        </button>
+                    </div>
+                    <div class="details-list">
+                        <div class="detail-item">
+                            <div class="detail-item-info">
+                                <a href="#" class="detail-item-link">Home Page</a>
+                                <span class="detail-item-url">/index.html</span>
+                            </div>
+                            <div class="detail-item-stats">
+                                <span class="detail-item-value">3,452</span>
+                                <span class="detail-item-label">Views</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item-info">
+                                <a href="#" class="detail-item-link">Shop</a>
+                                <span class="detail-item-url">/pages/shop/index.html</span>
+                            </div>
+                            <div class="detail-item-stats">
+                                <span class="detail-item-value">2,341</span>
+                                <span class="detail-item-label">Views</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item-info">
+                                <a href="#" class="detail-item-link">About Us</a>
+                                <span class="detail-item-url">/about.html</span>
+                            </div>
+                            <div class="detail-item-stats">
+                                <span class="detail-item-value">1,567</span>
+                                <span class="detail-item-label">Views</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item-info">
+                                <a href="#" class="detail-item-link">Services</a>
+                                <span class="detail-item-url">/services.html</span>
+                            </div>
+                            <div class="detail-item-stats">
+                                <span class="detail-item-value">1,234</span>
+                                <span class="detail-item-label">Views</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item-info">
+                                <a href="#" class="detail-item-link">Blog</a>
+                                <span class="detail-item-url">/blog.html</span>
+                            </div>
+                            <div class="detail-item-stats">
+                                <span class="detail-item-value">987</span>
+                                <span class="detail-item-label">Views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="details-card">
+                    <div class="details-header">
+                        <h3>Referral Sources</h3>
+                        <button class="btn btn-outline btn-sm" onclick="viewAllReferrals()">
+                            View All
+                        </button>
+                    </div>
+                    <div class="details-list">
+                        <div class="detail-item">
+                            <div class="detail-item-info">
+                                <a href="#" class="detail-item-link">Google</a>
+                                <span class="detail-item-url">google.com</span>
+                            </div>
+                            <div class="detail-item-stats">
+                                <span class="detail-item-value">1,234</span>
+                                <span class="detail-item-label">Visitors</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item-info">
+                                <a href="#" class="detail-item-link">Facebook</a>
+                                <span class="detail-item-url">facebook.com</span>
+                            </div>
+                            <div class="detail-item-stats">
+                                <span class="detail-item-value">876</span>
+                                <span class="detail-item-label">Visitors</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item-info">
+                                <a href="#" class="detail-item-link">Twitter</a>
+                                <span class="detail-item-url">twitter.com</span>
+                            </div>
+                            <div class="detail-item-stats">
+                                <span class="detail-item-value">543</span>
+                                <span class="detail-item-label">Visitors</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item-info">
+                                <a href="#" class="detail-item-link">Direct</a>
+                                <span class="detail-item-url">(direct)</span>
+                            </div>
+                            <div class="detail-item-stats">
+                                <span class="detail-item-value">432</span>
+                                <span class="detail-item-label">Visitors</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-item-info">
+                                <a href="#" class="detail-item-link">LinkedIn</a>
+                                <span class="detail-item-url">linkedin.com</span>
+                            </div>
+                            <div class="detail-item-stats">
+                                <span class="detail-item-value">321</span>
+                                <span class="detail-item-label">Visitors</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Stats -->
+            <div class="realtime-row">
+                <div class="realtime-card">
+                    <div class="realtime-header">
+                        <h3>Real-time Visitors</h3>
+                        <div class="realtime-counter" id="realtimeCounter">24</div>
+                    </div>
+                    <div class="realtime-map" id="realtimeMap">
+                        <div class="map-placeholder">
+                            <i class="fas fa-globe"></i>
+                            <p>World Map Visualization</p>
+                            <p class="map-subtitle">Visitors from around the world</p>
+                        </div>
+                    </div>
+                    <div class="realtime-countries">
+                        <div class="country-item">
+                            <span class="country-flag">🇺🇸</span>
+                            <span class="country-name">United States</span>
+                            <div class="country-stats">
+                                <span class="country-visitors">12</span>
+                                <span class="country-percent">50%</span>
+                            </div>
+                        </div>
+                        <div class="country-item">
+                            <span class="country-flag">🇬🇧</span>
+                            <span class="country-name">United Kingdom</span>
+                            <div class="country-stats">
+                                <span class="country-visitors">5</span>
+                                <span class="country-percent">21%</span>
+                            </div>
+                        </div>
+                        <div class="country-item">
+                            <span class="country-flag">🇨🇦</span>
+                            <span class="country-name">Canada</span>
+                            <div class="country-stats">
+                                <span class="country-visitors">3</span>
+                                <span class="country-percent">12%</span>
+                            </div>
+                        </div>
+                        <div class="country-item">
+                            <span class="country-flag">🇦🇺</span>
+                            <span class="country-name">Australia</span>
+                            <div class="country-stats">
+                                <span class="country-visitors">2</span>
+                                <span class="country-percent">8%</span>
+                            </div>
+                        </div>
+                        <div class="country-item">
+                            <span class="country-flag">🇩🇪</span>
+                            <span class="country-name">Germany</span>
+                            <div class="country-stats">
+                                <span class="country-visitors">2</span>
+                                <span class="country-percent">8%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="realtime-card">
+                    <div class="realtime-header">
+                        <h3>Current Activity</h3>
+                        <div class="realtime-status">
+                            <span class="status-dot online"></span>
+                            <span>Live</span>
+                        </div>
+                    </div>
+                    <div class="activity-list" id="activityList">
+                        <div class="activity-item">
+                            <div class="activity-icon green">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>John D.</strong> visited the homepage</p>
+                                <span class="activity-time">Just now</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon blue">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>Sarah M.</strong> added a product to cart</p>
+                                <span class="activity-time">2 min ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon orange">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>Mike R.</strong> viewed product details</p>
+                                <span class="activity-time">5 min ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon purple">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>Emma L.</strong> added a product to wishlist</p>
+                                <span class="activity-time">10 min ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon green">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>David B.</strong> completed a purchase</p>
+                                <span class="activity-time">15 min ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle mobile-theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script>
+        // ============================================
+        // Analytics Page Specific Functions
+        // ============================================
+
+        // Initialize analytics page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAnalytics();
+        });
+
+        function initializeAnalytics() {
+            initializeCharts();
+            initializeRealTimeUpdates();
+            initializeDateRange();
+        }
+
+        // ============================================
+        // Date Range
+        // ============================================
+
+        function initializeDateRange() {
+            const dateRangeBtns = document.querySelectorAll('.date-range-btn');
+            
+            dateRangeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    dateRangeBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Update date range display
+                    updateDateRangeDisplay(this.dataset.range || this.textContent.toLowerCase());
+                    
+                    // Refresh charts with new date range
+                    refreshAllCharts();
+                });
+            });
+        }
+
+        function changeDateRange(range) {
+            const dateRangeBtns = document.querySelectorAll('.date-range-btn');
+            
+            // Find the button with matching range
+            let targetBtn = null;
+            dateRangeBtns.forEach(btn => {
+                if (btn.dataset.range === range || btn.textContent.toLowerCase() === range) {
+                    targetBtn = btn;
+                }
+            });
+            
+            if (targetBtn) {
+                dateRangeBtns.forEach(b => b.classList.remove('active'));
+                targetBtn.classList.add('active');
+                updateDateRangeDisplay(range);
+                refreshAllCharts();
+            }
+        }
+
+        function updateDateRangeDisplay(range) {
+            const display = document.getElementById('dateRangeDisplay');
+            if (!display) return;
+
+            const today = new Date();
+            let startDate, endDate;
+
+            switch (range) {
+                case 'today':
+                    startDate = new Date(today);
+                    endDate = new Date(today);
+                    break;
+                case 'yesterday':
+                    startDate = new Date(today);
+                    startDate.setDate(startDate.getDate() - 1);
+                    endDate = new Date(startDate);
+                    break;
+                case 'last-7':
+                    startDate = new Date(today);
+                    startDate.setDate(startDate.getDate() - 6);
+                    endDate = new Date(today);
+                    break;
+                case 'last-30':
+                    startDate = new Date(today);
+                    startDate.setDate(startDate.getDate() - 29);
+                    endDate = new Date(today);
+                    break;
+                case 'this-month':
+                    startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+                    endDate = new Date(today);
+                    break;
+                case 'last-month':
+                    startDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                    endDate = new Date(today.getFullYear(), today.getMonth(), 0);
+                    break;
+                case 'custom':
+                    // For custom range, we would show a date picker
+                    showNotification('Custom date range functionality coming soon!', 'info');
+                    return;
+                default:
+                    startDate = new Date(today);
+                    endDate = new Date(today);
+            }
+
+            // Format dates
+            const options = { month: 'short', day: 'numeric', year: 'numeric' };
+            const startStr = startDate.toLocaleDateString('en-US', options);
+            const endStr = endDate.toLocaleDateString('en-US', options);
+
+            display.innerHTML = `<span>${startStr} - ${endStr}</span>`;
+        }
+
+        // ============================================
+        // Charts
+        // ============================================
+
+        function initializeCharts() {
+            // Traffic chart
+            const trafficChart = document.getElementById('trafficChart');
+            if (trafficChart) {
+                createTrafficChart(trafficChart);
+            }
+
+            // Traffic sources chart
+            const trafficSourcesChart = document.getElementById('trafficSourcesChart');
+            if (trafficSourcesChart) {
+                createTrafficSourcesChart(trafficSourcesChart);
+            }
+
+            // Device chart
+            const deviceChart = document.getElementById('deviceChart');
+            if (deviceChart) {
+                createDeviceChart(deviceChart);
+            }
+        }
+
+        function createTrafficChart(container) {
+            // Simple SVG line chart for traffic
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.setAttribute('viewBox', '0 0 800 300');
+            svg.setAttribute('preserveAspectRatio', 'none');
+
+            // Background
+            const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            bg.setAttribute('width', '100%');
+            bg.setAttribute('height', '100%');
+            bg.setAttribute('fill', 'transparent');
+            svg.appendChild(bg);
+
+            // Grid lines
+            for (let i = 0; i <= 5; i++) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', '0');
+                line.setAttribute('y1', (i * 60).toString());
+                line.setAttribute('x2', '800');
+                line.setAttribute('y2', (i * 60).toString());
+                line.setAttribute('stroke', '#e9ecef');
+                line.setAttribute('stroke-width', '1');
+                svg.appendChild(line);
+            }
+
+            // Line path
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', 'M 50 250 L 120 200 L 190 220 L 260 180 L 330 150 L 400 120 L 470 100 L 540 80 L 610 110 L 680 90 L 750 60');
+            path.setAttribute('stroke', '#4a6bff');
+            path.setAttribute('stroke-width', '3');
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-linejoin', 'round');
+            svg.appendChild(path);
+
+            // Fill under line
+            const fill = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            fill.setAttribute('d', 'M 50 250 L 120 200 L 190 220 L 260 180 L 330 150 L 400 120 L 470 100 L 540 80 L 610 110 L 680 90 L 750 60 L 750 300 L 50 300 Z');
+            fill.setAttribute('fill', 'rgba(74, 107, 255, 0.1)');
+            svg.appendChild(fill);
+
+            container.appendChild(svg);
+        }
+
+        function createTrafficSourcesChart(container) {
+            // Simple SVG bar chart for traffic sources
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.setAttribute('viewBox', '0 0 300 200');
+            svg.setAttribute('preserveAspectRatio', 'none');
+
+            // Background
+            const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            bg.setAttribute('width', '100%');
+            bg.setAttribute('height', '100%');
+            bg.setAttribute('fill', 'transparent');
+            svg.appendChild(bg);
+
+            // Bars
+            const bars = [
+                { x: 50, height: 150, color: '#4a6bff', label: 'Organic' },
+                { x: 120, height: 100, color: '#6a8bff', label: 'Direct' },
+                { x: 190, height: 80, color: '#8aabff', label: 'Social' },
+                { x: 260, height: 50, color: '#aacbff', label: 'Referral' }
+            ];
+
+            bars.forEach(bar => {
+                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                rect.setAttribute('x', (bar.x - 25).toString());
+                rect.setAttribute('y', (200 - bar.height).toString());
+                rect.setAttribute('width', '50');
+                rect.setAttribute('height', bar.height.toString());
+                rect.setAttribute('fill', bar.color);
+                rect.setAttribute('rx', '4');
+                rect.setAttribute('ry', '4');
+                svg.appendChild(rect);
+            });
+
+            // Legend
+            const legend = document.createElement('div');
+            legend.className = 'chart-legend';
+            legend.style.cssText = 'display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem;';
+
+            bars.forEach(bar => {
+                const legendItem = document.createElement('div');
+                legendItem.style.cssText = 'display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;';
+                
+                const colorBox = document.createElement('div');
+                colorBox.style.cssText = `width: 12px; height: 12px; background: ${bar.color}; border-radius: 2px;`;
+                
+                const label = document.createElement('span');
+                label.textContent = bar.label;
+                label.style.color = '#6c757d';
+                
+                legendItem.appendChild(colorBox);
+                legendItem.appendChild(label);
+                legend.appendChild(legendItem);
+            });
+
+            container.appendChild(svg);
+            container.appendChild(legend);
+        }
+
+        function createDeviceChart(container) {
+            // Simple SVG pie chart for device distribution
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.setAttribute('viewBox', '0 0 200 200');
+            svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+            // Center
+            const cx = 100;
+            const cy = 100;
+            const radius = 80;
+
+            // Data
+            const data = [
+                { value: 55, color: '#4a6bff', label: 'Desktop' },
+                { value: 30, color: '#6a8bff', label: 'Mobile' },
+                { value: 15, color: '#8aabff', label: 'Tablet' }
+            ];
+
+            const total = data.reduce((sum, item) => sum + item.value, 0);
+            let startAngle = -90; // Start from top
+
+            data.forEach(item => {
+                const endAngle = startAngle + (item.value / total) * 360;
+                
+                const largeArcFlag = (endAngle - startAngle) <= 180 ? 0 : 1;
+                
+                const x1 = cx + radius * Math.cos(startAngle * Math.PI / 180);
+                const y1 = cy + radius * Math.sin(startAngle * Math.PI / 180);
+                const x2 = cx + radius * Math.cos(endAngle * Math.PI / 180);
+                const y2 = cy + radius * Math.sin(endAngle * Math.PI / 180);
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', `M ${cx} ${cy} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`);
+                path.setAttribute('fill', item.color);
+                path.setAttribute('stroke', '#ffffff');
+                path.setAttribute('stroke-width', '2');
+                svg.appendChild(path);
+
+                startAngle = endAngle;
+            });
+
+            // Center circle
+            const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            centerCircle.setAttribute('cx', cx.toString());
+            centerCircle.setAttribute('cy', cy.toString());
+            centerCircle.setAttribute('r', '40');
+            centerCircle.setAttribute('fill', '#ffffff');
+            svg.appendChild(centerCircle);
+
+            // Legend
+            const legend = document.createElement('div');
+            legend.className = 'chart-legend';
+            legend.style.cssText = 'display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem;';
+
+            data.forEach(item => {
+                const legendItem = document.createElement('div');
+                legendItem.style.cssText = 'display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;';
+                
+                const colorBox = document.createElement('div');
+                colorBox.style.cssText = `width: 12px; height: 12px; background: ${item.color}; border-radius: 2px;`;
+                
+                const label = document.createElement('span');
+                label.textContent = `${item.label} (${item.value}%)`;
+                label.style.color = '#6c757d';
+                
+                legendItem.appendChild(colorBox);
+                legendItem.appendChild(label);
+                legend.appendChild(legendItem);
+            });
+
+            container.appendChild(svg);
+            container.appendChild(legend);
+        }
+
+        function refreshChart(chartName) {
+            showNotification(`Refreshing ${chartName} chart...`, 'info');
+            
+            // In a real app, this would fetch new data from an API
+            setTimeout(() => {
+                showNotification(`${chartName.charAt(0).toUpperCase() + chartName.slice(1)} chart refreshed!`, 'success');
+            }, 500);
+        }
+
+        function exportChart(chartName) {
+            showNotification(`Exporting ${chartName} chart...`, 'info');
+            
+            // In a real app, this would export the chart as an image or PDF
+            setTimeout(() => {
+                showNotification(`${chartName.charAt(0).toUpperCase() + chartName.slice(1)} chart exported!`, 'success');
+            }, 500);
+        }
+
+        function refreshAllCharts() {
+            const charts = ['traffic', 'sources', 'devices'];
+            charts.forEach(chart => refreshChart(chart));
+        }
+
+        // ============================================
+        // Real-time Updates
+        // ============================================
+
+        function initializeRealTimeUpdates() {
+            // Update real-time counter
+            setInterval(updateRealTimeCounter, 5000);
+            
+            // Update activity list
+            setInterval(updateActivityList, 10000);
+        }
+
+        function updateRealTimeCounter() {
+            const counter = document.getElementById('realtimeCounter');
+            if (counter) {
+                const current = parseInt(counter.textContent) || 0;
+                const newCount = current + Math.floor(Math.random() * 3) - 1;
+                counter.textContent = Math.max(0, newCount);
+            }
+        }
+
+        function updateActivityList() {
+            const activityList = document.getElementById('activityList');
+            if (!activityList) return;
+
+            // Add new activity item
+            const activities = [
+                { icon: 'user', color: 'green', action: 'visited the homepage', user: getRandomName() },
+                { icon: 'shopping-cart', color: 'blue', action: 'added a product to cart', user: getRandomName() },
+                { icon: 'eye', color: 'orange', action: 'viewed product details', user: getRandomName() },
+                { icon: 'heart', color: 'purple', action: 'added a product to wishlist', user: getRandomName() },
+                { icon: 'check', color: 'green', action: 'completed a purchase', user: getRandomName() }
+            ];
+
+            const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+            
+            const activityItem = document.createElement('div');
+            activityItem.className = 'activity-item';
+            activityItem.innerHTML = `
+                <div class="activity-icon ${randomActivity.color}">
+                    <i class="fas fa-${randomActivity.icon}"></i>
+                </div>
+                <div class="activity-content">
+                    <p><strong>${randomActivity.user}</strong> ${randomActivity.action}</p>
+                    <span class="activity-time">Just now</span>
+                </div>
+            `;
+
+            // Insert at the top
+            if (activityList.firstChild) {
+                activityList.insertBefore(activityItem, activityList.firstChild);
+            } else {
+                activityList.appendChild(activityItem);
+            }
+
+            // Remove oldest item if more than 5
+            if (activityList.children.length > 5) {
+                activityList.removeChild(activityList.lastChild);
+            }
+        }
+
+        function getRandomName() {
+            const firstNames = ['John', 'Jane', 'Mike', 'Sarah', 'David', 'Emma', 'Michael', 'Jennifer', 'Robert', 'Lisa'];
+            const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Miller', 'Davis', 'Garcia', 'Rodriguez', 'Wilson'];
+            
+            const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+            const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+            
+            return `${firstName} ${lastName.charAt(0)}.`;
+        }
+
+        // ============================================
+        // View All Functions
+        // ============================================
+
+        function viewAllPages() {
+            showNotification('View all pages functionality coming soon!', 'info');
+        }
+
+        function viewAllReferrals() {
+            showNotification('View all referrals functionality coming soon!', 'info');
+        }
+    </script>
+</body>
+</html>

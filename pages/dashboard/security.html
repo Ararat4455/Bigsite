@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security - Bigsite Dashboard</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="loading-screen">
+        <div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <p>Loading Security...</p>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo"><span class="logo-icon"><i class="fas fa-rocket"></i></span><span class="logo-text">Bigsite</span></a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=U'"><span class="user-status online"></span></div>
+            <div class="user-info"><h4>John Doe</h4><p>Premium Member</p></div>
+            <button class="user-dropdown" onclick="toggleUserMenu()"><i class="fas fa-chevron-down"></i></button>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                <div class="divider"></div>
+                <a href="../../pages/auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+                <li class="nav-item"><a href="projects.html"><i class="fas fa-project-diagram"></i><span>Projects</span><span class="badge">5</span></a></li>
+                <li class="nav-item"><a href="messages.html"><i class="fas fa-envelope"></i><span>Messages</span><span class="badge">12</span></a></li>
+                <li class="nav-item"><a href="calendar.html"><i class="fas fa-calendar-alt"></i><span>Calendar</span></a></li>
+            </ul>
+            <div class="nav-section"><h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="files.html"><i class="fas fa-file-alt"></i><span>Files</span></a></li>
+                    <li class="nav-item"><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span><span class="badge">3</span></a></li>
+                    <li class="nav-item"><a href="subscriptions.html"><i class="fas fa-credit-card"></i><span>Subscriptions</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Account</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="profile.html"><i class="fas fa-user-circle"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                    <li class="nav-item active"><a href="security.html"><i class="fas fa-shield-alt"></i><span>Security</span></a></li>
+                    <li class="nav-item"><a href="notifications.html"><i class="fas fa-bell"></i><span>Notifications</span><span class="badge">8</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Extras</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="help.html"><i class="fas fa-question-circle"></i><span>Help Center</span></a></li>
+                    <li class="nav-item"><a href="../../index.html"><i class="fas fa-external-link-alt"></i><span>Visit Site</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="storage-info"><div class="storage-bar"><div class="storage-progress" style="width:45%"></div></div>
+            <div class="storage-details"><span>45GB / 100GB</span><a href="upgrade.html">Upgrade</a></div></div>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a><span><i class="fas fa-chevron-right"></i></span><a href="security.html">Security</a>
+            </div>
+            <div class="topbar-actions">
+                <button class="topbar-btn notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">8</span></button>
+                <div class="topbar-user"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=U'"><span>John Doe</span><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <section class="security-header">
+                <div class="security-title">
+                    <h1><i class="fas fa-shield-alt"></i> Security Center</h1>
+                    <p>Manage your account security and privacy settings</p>
+                </div>
+            </section>
+
+            <section class="security-content">
+                <div class="security-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-user-shield"></i> Account Security</h2>
+                    </div>
+                    <div class="security-status">
+                        <div class="status-card">
+                            <div class="status-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="status-info">
+                                <span class="status-value">Excellent</span>
+                                <span class="status-label">Overall Security</span>
+                            </div>
+                            <div class="status-bar"><div class="status-progress" style="width:95%"></div></div>
+                        </div>
+                        <div class="security-recommendations">
+                            <div class="recommendation-item">
+                                <div class="rec-icon good"><i class="fas fa-check-circle"></i></div>
+                                <div class="rec-info">
+                                    <h4>Two-Factor Authentication</h4>
+                                    <p>Enabled and working correctly</p>
+                                </div>
+                            </div>
+                            <div class="recommendation-item">
+                                <div class="rec-icon good"><i class="fas fa-check-circle"></i></div>
+                                <div class="rec-info">
+                                    <h4>Strong Password</h4>
+                                    <p>Your password is strong and secure</p>
+                                </div>
+                            </div>
+                            <div class="recommendation-item">
+                                <div class="rec-icon warning"><i class="fas fa-exclamation-circle"></i></div>
+                                <div class="rec-info">
+                                    <h4>Backup Codes</h4>
+                                    <p>Generate backup codes for account recovery</p>
+                                </div>
+                                <button class="btn btn-text" onclick="generateBackupCodes()">Generate</button>
+                            </div>
+                            <div class="recommendation-item">
+                                <div class="rec-icon warning"><i class="fas fa-exclamation-circle"></i></div>
+                                <div class="rec-info">
+                                    <h4>Session Review</h4>
+                                    <p>Review your active sessions</p>
+                                </div>
+                                <button class="btn btn-text" onclick="reviewSessions()">Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-lock"></i> Login & Password</h2>
+                    </div>
+                    <div class="security-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <div class="password-input">
+                                    <input type="password" id="currentPassword" placeholder="Enter current password">
+                                    <button class="toggle-password" onclick="togglePassword('currentPassword')"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <div class="password-input">
+                                    <input type="password" id="newPassword" placeholder="Enter new password">
+                                    <button class="toggle-password" onclick="togglePassword('newPassword')"><i class="fas fa-eye"></i></button>
+                                </div>
+                                <div class="password-strength" id="passwordStrength">
+                                    <div class="strength-bar"><div class="strength-progress" id="strengthProgress"></div></div>
+                                    <span class="strength-text" id="strengthText">Password strength</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <div class="password-input">
+                                    <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                                    <button class="toggle-password" onclick="togglePassword('confirmPassword')"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="changePassword()"><i class="fas fa-key"></i><span>Change Password</span></button>
+                    </div>
+                </div>
+
+                <div class="security-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-mobile-alt"></i> Two-Factor Authentication</h2>
+                    </div>
+                    <div class="two-factor-content">
+                        <div class="two-factor-methods">
+                            <div class="method-item active">
+                                <div class="method-icon"><i class="fas fa-mobile-alt"></i></div>
+                                <div class="method-info">
+                                    <h4>Authenticator App</h4>
+                                    <p>Google Authenticator, Authy, etc.</p>
+                                </div>
+                                <div class="method-status">Enabled</div>
+                                <button class="btn btn-text" onclick="manageAuthenticator()">Manage</button>
+                            </div>
+                            <div class="method-item">
+                                <div class="method-icon"><i class="fas fa-sms"></i></div>
+                                <div class="method-info">
+                                    <h4>SMS Authentication</h4>
+                                    <p>Receive codes via text message</p>
+                                </div>
+                                <div class="method-status">Not enabled</div>
+                                <button class="btn btn-primary" onclick="enableSMS()">Enable</button>
+                            </div>
+                            <div class="method-item">
+                                <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                                <div class="method-info">
+                                    <h4>Email Authentication</h4>
+                                    <p>Receive codes via email</p>
+                                </div>
+                                <div class="method-status">Not enabled</div>
+                                <button class="btn btn-primary" onclick="enableEmail()">Enable</button>
+                            </div>
+                        </div>
+                        <div class="backup-codes">
+                            <h3><i class="fas fa-key"></i> Backup Codes</h3>
+                            <p>Use these codes to access your account if you lose your two-factor authentication device.</p>
+                            <div class="backup-codes-list" id="backupCodesList">
+                                <div class="backup-code">123456</div>
+                                <div class="backup-code">789012</div>
+                                <div class="backup-code">345678</div>
+                                <div class="backup-code">901234</div>
+                                <div class="backup-code">567890</div>
+                            </div>
+                            <div class="backup-codes-actions">
+                                <button class="btn btn-secondary" onclick="copyBackupCodes()"><i class="fas fa-copy"></i><span>Copy All</span></button>
+                                <button class="btn btn-secondary" onclick="downloadBackupCodes()"><i class="fas fa-download"></i><span>Download</span></button>
+                                <button class="btn btn-warning" onclick="regenerateBackupCodes()"><i class="fas fa-sync"></i><span>Regenerate</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-list"></i> Active Sessions</h2>
+                    </div>
+                    <div class="sessions-content">
+                        <div class="sessions-list">
+                            <div class="session-item current">
+                                <div class="session-device">
+                                    <div class="device-icon"><i class="fas fa-desktop"></i></div>
+                                    <div class="device-info">
+                                        <h4>MacBook Pro</h4>
+                                        <p>San Francisco, CA</p>
+                                    </div>
+                                </div>
+                                <div class="session-status">Active now</div>
+                                <div class="session-actions">
+                                    <span class="session-badge current">Current</span>
+                                </div>
+                            </div>
+                            <div class="session-item">
+                                <div class="session-device">
+                                    <div class="device-icon"><i class="fas fa-mobile-alt"></i></div>
+                                    <div class="device-info">
+                                        <h4>iPhone 13</h4>
+                                        <p>New York, NY</p>
+                                    </div>
+                                </div>
+                                <div class="session-status">Active 2 hours ago</div>
+                                <div class="session-actions">
+                                    <button class="btn btn-text" onclick="revokeSession('iphone')">Revoke</button>
+                                </div>
+                            </div>
+                            <div class="session-item">
+                                <div class="session-device">
+                                    <div class="device-icon"><i class="fas fa-tablet-alt"></i></div>
+                                    <div class="device-info">
+                                        <h4>iPad Air</h4>
+                                        <p>Los Angeles, CA</p>
+                                    </div>
+                                </div>
+                                <div class="session-status">Active yesterday</div>
+                                <div class="session-actions">
+                                    <button class="btn btn-text" onclick="revokeSession('ipad')">Revoke</button>
+                                </div>
+                            </div>
+                            <div class="session-item">
+                                <div class="session-device">
+                                    <div class="device-icon"><i class="fas fa-desktop"></i></div>
+                                    <div class="device-info">
+                                        <h4>Windows PC</h4>
+                                        <p>Chicago, IL</p>
+                                    </div>
+                                </div>
+                                <div class="session-status">Active 3 days ago</div>
+                                <div class="session-actions">
+                                    <button class="btn btn-text" onclick="revokeSession('windows')">Revoke</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sessions-actions">
+                            <button class="btn btn-danger" onclick="revokeAllSessions()"><i class="fas fa-ban"></i><span>Revoke All Other Sessions</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-bell"></i> Security Alerts</h2>
+                    </div>
+                    <div class="alerts-content">
+                        <div class="alerts-filter">
+                            <button class="alert-filter active" onclick="filterAlerts('all')">All</button>
+                            <button class="alert-filter" onclick="filterAlerts('unread')">Unread</button>
+                            <button class="alert-filter" onclick="filterAlerts('resolved')">Resolved</button>
+                        </div>
+                        <div class="alerts-list">
+                            <div class="alert-item unread">
+                                <div class="alert-icon"><i class="fas fa-exclamation-circle"></i></div>
+                                <div class="alert-info">
+                                    <h4>New Login from Unknown Device</h4>
+                                    <p>A new login was detected from a device we don't recognize.</p>
+                                    <span class="alert-time">2 hours ago</span>
+                                </div>
+                                <div class="alert-actions">
+                                    <button class="btn btn-text" onclick="markAsRead(this)">Mark as Read</button>
+                                    <button class="btn btn-text" onclick="viewAlertDetails(this)">Details</button>
+                                </div>
+                            </div>
+                            <div class="alert-item unread">
+                                <div class="alert-icon"><i class="fas fa-key"></i></div>
+                                <div class="alert-info">
+                                    <h4>Password Changed</h4>
+                                    <p>Your password was changed from a new device.</p>
+                                    <span class="alert-time">1 day ago</span>
+                                </div>
+                                <div class="alert-actions">
+                                    <button class="btn btn-text" onclick="markAsRead(this)">Mark as Read</button>
+                                    <button class="btn btn-text" onclick="viewAlertDetails(this)">Details</button>
+                                </div>
+                            </div>
+                            <div class="alert-item resolved">
+                                <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
+                                <div class="alert-info">
+                                    <h4>Two-Factor Authentication Enabled</h4>
+                                    <p>You have successfully enabled two-factor authentication.</p>
+                                    <span class="alert-time">3 days ago</span>
+                                </div>
+                                <div class="alert-actions">
+                                    <span class="resolved-badge">Resolved</span>
+                                </div>
+                            </div>
+                            <div class="alert-item resolved">
+                                <div class="alert-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div class="alert-info">
+                                    <h4>Security Checkup Completed</h4>
+                                    <p>You have completed the security checkup for your account.</p>
+                                    <span class="alert-time">1 week ago</span>
+                                </div>
+                                <div class="alert-actions">
+                                    <span class="resolved-badge">Resolved</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-history"></i> Login History</h2>
+                    </div>
+                    <div class="history-content">
+                        <div class="history-filters">
+                            <div class="history-filter">
+                                <label>Date Range:</label>
+                                <select onchange="filterHistory()">
+                                    <option value="all">All Time</option>
+                                    <option value="week">Last 7 Days</option>
+                                    <option value="month" selected>Last 30 Days</option>
+                                    <option value="year">Last Year</option>
+                                    <option value="custom">Custom Range</option>
+                                </select>
+                            </div>
+                            <div class="history-filter">
+                                <label>Device Type:</label>
+                                <select onchange="filterHistory()">
+                                    <option value="all">All Devices</option>
+                                    <option value="desktop">Desktop</option>
+                                    <option value="mobile">Mobile</option>
+                                    <option value="tablet">Tablet</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="history-table-container">
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Device</th>
+                                        <th>Location</th>
+                                        <th>IP Address</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nov 15, 2024, 10:30 AM</td>
+                                        <td><i class="fas fa-desktop"></i> MacBook Pro</td>
+                                        <td>San Francisco, CA</td>
+                                        <td>192.168.1.100</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nov 14, 2024, 8:15 PM</td>
+                                        <td><i class="fas fa-mobile-alt"></i> iPhone 13</td>
+                                        <td>New York, NY</td>
+                                        <td>192.168.1.101</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nov 13, 2024, 3:45 PM</td>
+                                        <td><i class="fas fa-tablet-alt"></i> iPad Air</td>
+                                        <td>Los Angeles, CA</td>
+                                        <td>192.168.1.102</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nov 12, 2024, 11:20 AM</td>
+                                        <td><i class="fas fa-desktop"></i> Windows PC</td>
+                                        <td>Chicago, IL</td>
+                                        <td>192.168.1.103</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nov 10, 2024, 2:30 PM</td>
+                                        <td><i class="fas fa-mobile-alt"></i> Samsung Galaxy</td>
+                                        <td>Miami, FL</td>
+                                        <td>192.168.1.104</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nov 5, 2024, 9:15 AM</td>
+                                        <td><i class="fas fa-desktop"></i> MacBook Air</td>
+                                        <td>Seattle, WA</td>
+                                        <td>192.168.1.105</td>
+                                        <td><span class="status-badge failed">Failed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nov 1, 2024, 4:45 PM</td>
+                                        <td><i class="fas fa-mobile-alt"></i> Pixel 6</td>
+                                        <td>Boston, MA</td>
+                                        <td>192.168.1.106</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="history-actions">
+                            <button class="btn btn-secondary" onclick="exportHistory()"><i class="fas fa-file-export"></i><span>Export History</span></button>
+                            <button class="btn btn-text" onclick="clearHistory()"><span>Clear History</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script>
+        function togglePassword(inputId){const input=document.getElementById(inputId);const btn=event.target;input.type=input.type==='password'?'text':'password';btn.innerHTML=input.type==='password'?'<i class="fas fa-eye"></i>':'<i class="fas fa-eye-slash"></i>'}
+        function changePassword(){const current=document.getElementById('currentPassword').value;const newPass=document.getElementById('newPassword').value;const confirm=document.getElementById('confirmPassword').value;if(!current||!newPass||!confirm){showNotification('Please fill all fields','error');return}if(newPass!==confirm){showNotification('Passwords do not match','error');return}showNotification('Password changed successfully!','success')}
+        function manageAuthenticator(){showNotification('Manage authenticator app','info')}
+        function enableSMS(){showNotification('Enable SMS authentication','info')}
+        function enableEmail(){showNotification('Enable email authentication','info')}
+        function generateBackupCodes(){showNotification('Backup codes generated','success')}
+        function copyBackupCodes(){showNotification('Backup codes copied to clipboard','success')}
+        function downloadBackupCodes(){showNotification('Backup codes downloaded','success')}
+        function regenerateBackupCodes(){if(confirm('Regenerate backup codes? Old codes will be invalidated.'))showNotification('Backup codes regenerated','success')}
+        function reviewSessions(){showNotification('Review sessions','info')}
+        function revokeSession(device){if(confirm(`Revoke session from ${device}?`))showNotification(`Session from ${device} revoked`,'success')}
+        function revokeAllSessions(){if(confirm('Revoke all other sessions?'))showNotification('All other sessions revoked','success')}
+        function filterAlerts(type){showNotification(`Filtering alerts: ${type}`,'info')}
+        function markAsRead(btn){btn.closest('.alert-item').classList.remove('unread');showNotification('Marked as read','success')}
+        function viewAlertDetails(btn){showNotification('Viewing alert details','info')}
+        function filterHistory(){showNotification('Filtering history','info')}
+        function exportHistory(){showNotification('Exporting login history...','info')}
+        function clearHistory(){if(confirm('Clear login history?'))showNotification('Login history cleared','success')}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',hideLoadingScreen);
+        document.getElementById('newPassword').addEventListener('input',function(){const password=this.value;const strength=calculatePasswordStrength(password);const progress=document.getElementById('strengthProgress');const text=document.getElementById('strengthText');progress.style.width=strength.percent+'%';progress.className='strength-progress '+strength.class;text.textContent=strength.label;text.className='strength-text '+strength.class});
+        function calculatePasswordStrength(password){let strength=0;if(password.length>=8)strength+=20;if(password.match(/[a-z]/)&&password.match(/[A-Z]/))strength+=20;if(password.match(/[0-9]/))strength+=20;if(password.match(/[^a-zA-Z0-9]/))strength+=20;if(password.length>=12)strength+=20;let label='Very Weak';let cls='weak';if(strength>=80){label='Strong';cls='strong'}else if(strength>=60){label='Good';cls='good'}else if(strength>=40){label='Weak';cls='weak'}else if(strength>=20){label='Very Weak';cls='weak'}return{percent:strength,label:label,class:cls}};
+    </script>
+</body>
+</html>

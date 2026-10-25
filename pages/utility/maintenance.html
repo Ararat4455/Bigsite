@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Mode | Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="error-page maintenance-page">
+    <header class="error-header">
+        <a href="../../index.html" class="logo">
+            <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+            <span class="logo-text">Bigsite</span>
+        </a>
+    </header>
+
+    <main class="error-main">
+        <div class="error-content">
+            <div class="error-icon large">
+                <i class="fas fa-tools"></i>
+            </div>
+            <h1>Maintenance Mode</h1>
+            <p>Our website is currently undergoing scheduled maintenance. We'll be back online shortly.</p>
+            <div class="maintenance-info">
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Estimated Time: 30 minutes</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Scheduled: Nov 15, 2024</span>
+                </div>
+            </div>
+            <div class="error-actions">
+                <button class="btn btn-secondary" onclick="tryAgain()">
+                    <i class="fas fa-sync"></i>
+                    <span>Try Again</span>
+                </button>
+                <button class="btn btn-text" onclick="contactUs()">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Us</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="error-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Bigsite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function tryAgain(){window.location.reload()}
+        function contactUs(){window.location.href='../../contact.html'}
+    </script>
+</body>
+</html>

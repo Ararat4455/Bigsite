@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Library | Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .component-library {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+        .library-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .library-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .library-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .library-subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .component-category {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .component-category:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+        .category-icon {
+            font-size: 2.5rem;
+            color: #4a6bff;
+            margin-bottom: 15px;
+        }
+        .category-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .category-description {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .category-count {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 12px;
+            background: #4a6bff;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .category-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        .featured-section {
+            background: linear-gradient(135deg, #4a6bff 0%, #6a5acd 100%);
+            border-radius: 15px;
+            padding: 40px;
+            color: white;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .featured-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        .featured-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+        .featured-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: white;
+            color: #4a6bff;
+        }
+        .btn-primary:hover {
+            background: #f0f0f0;
+        }
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: #4a6bff;
+        }
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        .btn-lg {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+        @media (max-width: 768px) {
+            .library-main {
+                padding: 20px 15px;
+            }
+            .library-title {
+                font-size: 2rem;
+            }
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="component-library">
+    <header class="legal-header">
+        <a href="../../index.html" class="logo">
+            <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+            <span class="logo-text">Bigsite</span>
+        </a>
+        <nav class="legal-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../../pages/dashboard/index.html">Dashboard</a>
+            <a href="../../contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main class="library-main">
+        <div class="library-header">
+            <h1 class="library-title"><i class="fas fa-puzzle-piece"></i> Component Library</h1>
+            <p class="library-subtitle">Reusable UI components for building beautiful interfaces</p>
+        </div>
+
+        <div class="featured-section">
+            <h2 class="featured-title">Build Amazing Interfaces</h2>
+            <p class="featured-description">Our component library provides everything you need to create stunning user interfaces quickly and efficiently.</p>
+            <div class="featured-buttons">
+                <a href="#components" class="btn btn-primary">
+                    <i class="fas fa-th"></i>
+                    Browse Components
+                </a>
+                <a href="../../pages/dashboard/index.html" class="btn btn-outline">
+                    <i class="fas fa-tachometer-alt"></i>
+                    View Dashboard
+                </a>
+            </div>
+        </div>
+
+        <div id="components" class="components-grid">
+            <a href="buttons.html" class="component-category category-link">
+                <div class="category-icon">
+                    <i class="fas fa-hand-pointer"></i>
+                </div>
+                <h3 class="category-title">Buttons</h3>
+                <p class="category-description">Various button styles, sizes, and states for all your CTA needs.</p>
+                <span class="category-count">10+ Variants</span>
+            </a>
+
+            <a href="cards.html" class="component-category category-link">
+                <div class="category-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3 class="category-title">Cards</h3>
+                <p class="category-description">Flexible card components for displaying content in various layouts.</p>
+                <span class="category-count">12+ Variants</span>
+            </a>
+
+            <a href="modals.html" class="component-category category-link">
+                <div class="category-icon">
+                    <i class="fas fa-window-maximize"></i>
+                </div>
+                <h3 class="category-title">Modals</h3>
+                <p class="category-description">Modal dialogs for displaying content, forms, and confirmations.</p>
+                <span class="category-count">8+ Variants</span>
+            </a>
+
+            <a href="forms.html" class="component-category category-link">
+                <div class="category-icon">
+                    <i class="fas fa-wpforms"></i>
+                </div>
+                <h3 class="category-title">Forms</h3>
+                <p class="category-description">Complete form components with various input types and layouts.</p>
+                <span class="category-count">15+ Components</span>
+            </a>
+        </div>
+
+        <div class="component-section" style="background: white; border-radius: 15px; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <h2 style="font-size: 1.8rem; color: #2c3e50; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #e0e0e0;">Component Features</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 2rem; color: #4a6bff; margin-bottom: 15px;">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h4 style="color: #2c3e50; margin-bottom: 10px;">Customizable</h4>
+                    <p style="color: #7f8c8d; font-size: 0.95rem; margin: 0;">Easily customize colors, sizes, and styles</p>
+                </div>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 2rem; color: #4a6bff; margin-bottom: 15px;">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4 style="color: #2c3e50; margin-bottom: 10px;">Responsive</h4>
+                    <p style="color: #7f8c8d; font-size: 0.95rem; margin: 0;">Works perfectly on all device sizes</p>
+                </div>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 2rem; color: #4a6bff; margin-bottom: 15px;">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4 style="color: #2c3e50; margin-bottom: 10px;">Fast</h4>
+                    <p style="color: #7f8c8d; font-size: 0.95rem; margin: 0;">Optimized for performance and speed</p>
+                </div>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 2rem; color: #4a6bff; margin-bottom: 15px;">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4 style="color: #2c3e50; margin-bottom: 10px;">Flexible</h4>
+                    <p style="color: #7f8c8d; font-size: 0.95rem; margin: 0;">Adaptable to any use case</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="legal-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Bigsite. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../../index.html">Home</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

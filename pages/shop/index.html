@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bigsite Shop - Browse and purchase our premium products and services">
+    <meta name="keywords" content="shop, store, products, purchase, e-commerce, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Shop - Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/shop.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="shop-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <p>Loading Shop...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar shop-navbar">
+        <div class="container">
+            <a href="../../index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                <span class="logo-text">Bigsite</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="../dashboard/index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="index.html" class="active"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+                <li><a href="../../blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                <li><a href="../../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="shop-actions">
+                <button class="shop-action-btn search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="shop-action-btn wishlist-btn">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge">3</span>
+                </button>
+                <button class="shop-action-btn cart-btn" onclick="toggleCartSidebar()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+                <div class="auth-buttons">
+                    <a href="../auth/login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
+                    <a href="../auth/register.html" class="btn-register"><i class="fas fa-user-plus"></i> Register</a>
+                </div>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <span class="logo">Bigsite</span>
+            <span class="close-btn"><i class="fas fa-times"></i></span>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="../../index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="../dashboard/index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="index.html" class="active"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+            <li><a href="../../blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="../../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="mobile-auth">
+            <a href="../auth/login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            <a href="../auth/register.html" class="btn-register"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header shop-header">
+        <div class="container">
+            <h1>Our Shop</h1>
+            <p>Discover our premium products and services</p>
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <span>Shop</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Hero -->
+    <section class="shop-hero">
+        <div class="container">
+            <div class="shop-hero-content">
+                <div class="shop-hero-text">
+                    <span class="section-tag">Premium Products</span>
+                    <h2>Find Everything You Need</h2>
+                    <p>Browse our collection of high-quality products designed to help you succeed in your digital journey.</p>
+                    <div class="shop-hero-cta">
+                        <a href="#products" class="btn btn-primary">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Browse Products</span>
+                        </a>
+                        <a href="#categories" class="btn btn-secondary">
+                            <i class="fas fa-tags"></i>
+                            <span>Browse Categories</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="shop-hero-image">
+                    <img src="../../images/shop-hero.svg" alt="Shop Hero" onerror="this.src='https://via.placeholder.com/600x500/4a6bff/ffffff?text=Shop+Hero'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Browse</span>
+                <h2>Product Categories</h2>
+                <p>Explore our diverse range of product categories</p>
+            </div>
+            <div class="categories-grid">
+                <a href="#" class="category-card" onclick="filterProducts('web-templates')">
+                    <div class="category-image">
+                        <img src="../../images/category-web.svg" alt="Web Templates" onerror="this.src='https://via.placeholder.com/200x150/4a6bff/ffffff?text=Web+Templates'">
+                    </div>
+                    <div class="category-info">
+                        <h3>Web Templates</h3>
+                        <p>24 Products</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" onclick="filterProducts('plugins')">
+                    <div class="category-image">
+                        <img src="../../images/category-plugins.svg" alt="Plugins & Extensions" onerror="this.src='https://via.placeholder.com/200x150/4a6bff/ffffff?text=Plugins'">
+                    </div>
+                    <div class="category-info">
+                        <h3>Plugins & Extensions</h3>
+                        <p>18 Products</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" onclick="filterProducts('themes')">
+                    <div class="category-image">
+                        <img src="../../images/category-themes.svg" alt="Themes" onerror="this.src='https://via.placeholder.com/200x150/4a6bff/ffffff?text=Themes'">
+                    </div>
+                    <div class="category-info">
+                        <h3>Themes</h3>
+                        <p>35 Products</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" onclick="filterProducts('graphics')">
+                    <div class="category-image">
+                        <img src="../../images/category-graphics.svg" alt="Graphics" onerror="this.src='https://via.placeholder.com/200x150/4a6bff/ffffff?text=Graphics'">
+                    </div>
+                    <div class="category-info">
+                        <h3>Graphics & Design</h3>
+                        <p>42 Products</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" onclick="filterProducts('scripts')">
+                    <div class="category-image">
+                        <img src="../../images/category-scripts.svg" alt="Scripts" onerror="this.src='https://via.placeholder.com/200x150/4a6bff/ffffff?text=Scripts'">
+                    </div>
+                    <div class="category-info">
+                        <h3>Scripts & Code</h3>
+                        <p>15 Products</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" onclick="filterProducts('hosting')">
+                    <div class="category-image">
+                        <img src="../../images/category-hosting.svg" alt="Hosting" onerror="this.src='https://via.placeholder.com/200x150/4a6bff/ffffff?text=Hosting'">
+                    </div>
+                    <div class="category-info">
+                        <h3>Hosting Services</h3>
+                        <p>8 Products</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Products</span>
+                <h2>Featured Products</h2>
+                <p>Discover our most popular and highly-rated products</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="products-filters">
+                <div class="filter-group">
+                    <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+                    <button class="filter-btn" onclick="filterProducts('featured')">Featured</button>
+                    <button class="filter-btn" onclick="filterProducts('new')">New Arrivals</button>
+                    <button class="filter-btn" onclick="filterProducts('sale')">On Sale</button>
+                    <button class="filter-btn" onclick="filterProducts('top-rated')">Top Rated</button>
+                </div>
+                <div class="filter-group">
+                    <select class="filter-select" onchange="sortProducts(this.value)">
+                        <option value="default">Sort by: Default</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Rating: High to Low</option>
+                        <option value="newest">Newest First</option>
+                        <option value="popular">Most Popular</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <div class="view-toggle">
+                        <button class="view-btn active" onclick="toggleView('grid')" title="Grid View">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" onclick="toggleView('list')" title="List View">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="web-templates featured" data-price="99" data-rating="4.9">
+                    <div class="product-badge">Featured</div>
+                    <div class="product-image">
+                        <img src="../../images/product-1.jpg" alt="Premium Web Template" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Product+1'">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist" onclick="addToWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="action-btn quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Web Templates</div>
+                        <h3>Premium Business Template</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>(4.9)</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-price">
+                                <span class="current-price">$99</span>
+                                <span class="original-price">$149</span>
+                            </div>
+                            <div class="product-sales">124 Sales</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-category="themes new" data-price="79" data-rating="4.7">
+                    <div class="product-badge new">New</div>
+                    <div class="product-image">
+                        <img src="../../images/product-2.jpg" alt="Modern Theme" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Product+2'">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist" onclick="addToWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="action-btn quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Themes</div>
+                        <h3>Modern Minimalist Theme</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span>(4.7)</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-price">
+                                <span class="current-price">$79</span>
+                            </div>
+                            <div class="product-sales">89 Sales</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-category="plugins sale" data-price="49" data-rating="4.8">
+                    <div class="product-badge sale">-30% OFF</div>
+                    <div class="product-image">
+                        <img src="../../images/product-3.jpg" alt="SEO Plugin" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Product+3'">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist" onclick="addToWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="action-btn quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Plugins</div>
+                        <h3>Advanced SEO Plugin</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>(4.8)</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-price">
+                                <span class="current-price">$49</span>
+                                <span class="original-price">$69</span>
+                            </div>
+                            <div class="product-sales">215 Sales</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-category="graphics top-rated" data-price="39" data-rating="4.9">
+                    <div class="product-badge top-rated">Top Rated</div>
+                    <div class="product-image">
+                        <img src="../../images/product-4.jpg" alt="UI Kit" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Product+4'">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist" onclick="addToWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="action-btn quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Graphics</div>
+                        <h3>Professional UI Kit</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>(4.9)</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-price">
+                                <span class="current-price">$39</span>
+                            </div>
+                            <div class="product-sales">342 Sales</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card" data-category="scripts" data-price="29" data-rating="4.6">
+                    <div class="product-image">
+                        <img src="../../images/product-5.jpg" alt="JavaScript Library" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Product+5'">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist" onclick="addToWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="action-btn quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Scripts</div>
+                        <h3>JavaScript Animation Library</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span>(4.6)</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-price">
+                                <span class="current-price">$29</span>
+                            </div>
+                            <div class="product-sales">156 Sales</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card" data-category="hosting" data-price="199" data-rating="4.8">
+                    <div class="product-badge">Popular</div>
+                    <div class="product-image">
+                        <img src="../../images/product-6.jpg" alt="Cloud Hosting" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Product+6'">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist" onclick="addToWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="action-btn quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Hosting</div>
+                        <h3>Cloud Hosting Pro</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>(4.8)</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-price">
+                                <span class="current-price">$199</span>
+                                <span class="price-period">/year</span>
+                            </div>
+                            <div class="product-sales">428 Sales</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card" data-category="web-templates" data-price="129" data-rating="4.9">
+                    <div class="product-image">
+                        <img src="../../images/product-7.jpg" alt="E-commerce Template" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Product+7'">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist" onclick="addToWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="action-btn quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Web Templates</div>
+                        <h3>E-commerce Superstore</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>(4.9)</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-price">
+                                <span class="current-price">$129</span>
+                            </div>
+                            <div class="product-sales">187 Sales</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card" data-category="themes new" data-price="89" data-rating="4.7">
+                    <div class="product-badge new">New</div>
+                    <div class="product-image">
+                        <img src="../../images/product-8.jpg" alt="Portfolio Theme" onerror="this.src='https://via.placeholder.com/300x200/4a6bff/ffffff?text=Product+8'">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist" onclick="addToWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="action-btn quick-view" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Themes</div>
+                        <h3>Creative Portfolio Theme</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span>(4.7)</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-price">
+                                <span class="current-price">$89</span>
+                            </div>
+                            <div class="product-sales">65 Sales</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(this)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="page-btn active">1</a>
+                <a href="#" class="page-btn">2</a>
+                <a href="#" class="page-btn">3</a>
+                <span class="page-dots">...</span>
+                <a href="#" class="page-btn">10</a>
+                <a href="#" class="page-btn next"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="shop-features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Free Shipping</h3>
+                        <p>On all orders over $100</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>30-Day Returns</h3>
+                        <p>Money back guarantee</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Secure Payment</h3>
+                        <p>100% secure transactions</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>24/7 Support</h3>
+                        <p>Dedicated support team</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <span class="section-tag">Subscribe</span>
+                    <h2>Get Exclusive Offers</h2>
+                    <p>Subscribe to our newsletter to receive special discounts and updates on new products.</p>
+                </div>
+                <form class="newsletter-form">
+                    <div class="form-group">
+                        <input type="email" placeholder="Enter your email address" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Subscribe</span>
+                        </button>
+                    </div>
+                    <p class="form-privacy">We respect your privacy. Unsubscribe at any time.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" onclick="toggleCartSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-content" id="cartContent">
+            <div class="cart-empty">
+                <div class="empty-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h4>Your cart is empty</h4>
+                <p>Add some products to get started</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-amount" id="cartTotal">$0.00</span>
+            </div>
+            <a href="cart.html" class="btn btn-primary btn-block">
+                <i class="fas fa-shopping-cart"></i>
+                <span>View Cart</span>
+            </a>
+            <a href="checkout.html" class="btn btn-secondary btn-block">
+                <i class="fas fa-credit-card"></i>
+                <span>Checkout</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content product-modal">
+            <div class="modal-header">
+                <h3 id="productTitle">Product Name</h3>
+                <button class="modal-close" onclick="closeQuickView()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="product-modal-content">
+                    <div class="product-modal-image">
+                        <img id="productImage" src="" alt="Product Image">
+                    </div>
+                    <div class="product-modal-info">
+                        <div class="product-modal-category" id="productCategory"></div>
+                        <div class="product-modal-rating" id="productRating"></div>
+                        <div class="product-modal-price" id="productPrice"></div>
+                        <div class="product-modal-description" id="productDescription"></div>
+                        <div class="product-modal-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-check"></i>
+                                <span>In Stock</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span id="productSales"></span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-tag"></i>
+                                <span>Free Shipping</span>
+                            </div>
+                        </div>
+                        <div class="product-modal-options">
+                            <div class="option-group">
+                                <label>Quantity</label>
+                                <div class="quantity-selector">
+                                    <button onclick="decreaseQuantity()">-</button>
+                                    <input type="number" id="quantityInput" value="1" min="1">
+                                    <button onclick="increaseQuantity()">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-modal-actions">
+                            <button class="btn btn-primary btn-lg" onclick="addToCartFromModal()">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                            </button>
+                            <button class="btn btn-secondary btn-lg" onclick="addToWishlistFromModal()">
+                                <i class="fas fa-heart"></i>
+                                <span>Add to Wishlist</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-waves">
+            <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#ffffff" fill-opacity="1" d="M0,192L48,176C96,160,192,128,288,133.3C384,139,480,181,576,186.7C672,192,768,160,864,149.3C960,139,1056,149,1152,160C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-about">
+                        <a href="../../index.html" class="logo">
+                            <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                            <span class="logo-text">Bigsite</span>
+                        </a>
+                        <p>Your one-stop shop for premium digital products and services.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Shop</h3>
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> All Products</a></li>
+                            <li><a href="categories.html"><i class="fas fa-chevron-right"></i> Categories</a></li>
+                            <li><a href="featured.html"><i class="fas fa-chevron-right"></i> Featured</a></li>
+                            <li><a href="new.html"><i class="fas fa-chevron-right"></i> New Arrivals</a></li>
+                            <li><a href="sale.html"><i class="fas fa-chevron-right"></i> On Sale</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                            <li><a href="returns.html"><i class="fas fa-chevron-right"></i> Returns</a></li>
+                            <li><a href="shipping.html"><i class="fas fa-chevron-right"></i> Shipping</a></li>
+                            <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Terms</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Silicon Valley, CA 94000</li>
+                            <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                            <li><i class="fas fa-envelope"></i> support@bigsite.com</li>
+                            <li><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 6:00 PM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 Bigsite. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="../../terms.html">Terms of Service</a>
+                    <a href="../../privacy.html">Privacy Policy</a>
+                    <a href="../../cookie.html">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/shop.js"></script>
+</body>
+</html>

@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Checkout - Complete your purchase on Bigsite">
+    <meta name="keywords" content="checkout, payment, purchase, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Checkout - Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/shop.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="shop-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <p>Processing Checkout...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="shop-header">
+        <div class="container">
+            <div class="shop-header-content">
+                <h1>Checkout</h1>
+                <p>Complete your purchase in just a few steps</p>
+            </div>
+            <div class="shop-header-actions">
+                <a href="index.html" class="btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Continue Shopping
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="shop-breadcrumb">
+        <div class="container">
+            <a href="../../index.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="index.html">Shop</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="cart.html">Cart</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Checkout</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <!-- Checkout Steps -->
+            <div class="checkout-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <span class="step-label">Shopping Cart</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step active" data-step="2">
+                    <div class="step-number">2</div>
+                    <span class="step-label">Checkout</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <span class="step-label">Confirmation</span>
+                </div>
+            </div>
+
+            <!-- Checkout Form -->
+            <form class="checkout-form" id="checkoutForm" onsubmit="processCheckout(event)">
+                <div class="checkout-grid">
+                    <!-- Billing Details -->
+                    <div class="checkout-section">
+                        <h3>Billing Details</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name <span class="required">*</span></label>
+                                <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name <span class="required">*</span></label>
+                                <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Company Name (Optional)</label>
+                            <input type="text" id="company" name="company" placeholder="Enter your company name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">Country <span class="required">*</span></label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country</option>
+                                <option value="US" selected>United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                                <option value="AU">Australia</option>
+                                <option value="DE">Germany</option>
+                                <option value="FR">France</option>
+                                <option value="JP">Japan</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Street Address <span class="required">*</span></label>
+                            <input type="text" id="address" name="address" required placeholder="House number and street name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apartment">Apartment, suite, etc. (Optional)</label>
+                            <input type="text" id="apartment" name="apartment" placeholder="Apartment, suite, unit, etc.">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City <span class="required">*</span></label>
+                                <input type="text" id="city" name="city" required placeholder="Enter your city">
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State/Province <span class="required">*</span></label>
+                                <input type="text" id="state" name="state" required placeholder="Enter your state">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="zip">ZIP/Postal Code <span class="required">*</span></label>
+                                <input type="text" id="zip" name="zip" required placeholder="Enter your ZIP code">
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">Postal Code</label>
+                                <input type="text" id="postalCode" name="postalCode" placeholder="Enter your postal code">
+                            </div>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="createAccount" name="createAccount">
+                            <label for="createAccount">Create an account?</label>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="shipToDifferent" name="shipToDifferent" onchange="toggleShippingAddress()">
+                            <label for="shipToDifferent">Ship to a different address?</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Order Notes (Optional)</label>
+                            <textarea id="notes" name="notes" rows="4" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="checkout-section order-summary">
+                        <h3>Your Order</h3>
+                        
+                        <div class="order-summary-content">
+                            <div class="order-items">
+                                <div class="order-items-header">
+                                    <span>Product</span>
+                                    <span>Subtotal</span>
+                                </div>
+                                <div class="order-items-list" id="orderItemsList">
+                                    <!-- Order items will be inserted here -->
+                                </div>
+                            </div>
+
+                            <div class="order-totals">
+                                <div class="order-total-item">
+                                    <span>Subtotal</span>
+                                    <span id="orderSubtotal">$0.00</span>
+                                </div>
+                                <div class="order-total-item">
+                                    <span>Shipping</span>
+                                    <span id="orderShipping">Free</span>
+                                </div>
+                                <div class="order-total-item">
+                                    <span>Tax</span>
+                                    <span id="orderTax">$0.00</span>
+                                </div>
+                                <div class="order-total-item discount" id="orderDiscount" style="display: none;">
+                                    <span>Discount</span>
+                                    <span id="orderDiscountAmount">-$0.00</span>
+                                </div>
+                                <div class="order-total-item total">
+                                    <span>Total</span>
+                                    <span id="orderTotal">$0.00</span>
+                                </div>
+                            </div>
+
+                            <div class="payment-methods">
+                                <h4>Payment Method</h4>
+                                <div class="payment-options">
+                                    <label class="payment-option">
+                                        <input type="radio" name="paymentMethod" value="credit-card" checked onchange="updatePaymentMethod()">
+                                        <span class="payment-card">
+                                            <i class="fas fa-credit-card"></i>
+                                            <span>Credit Card</span>
+                                        </span>
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="paymentMethod" value="paypal" onchange="updatePaymentMethod()">
+                                        <span class="payment-card">
+                                            <i class="fab fa-paypal"></i>
+                                            <span>PayPal</span>
+                                        </span>
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="paymentMethod" value="bank-transfer" onchange="updatePaymentMethod()">
+                                        <span class="payment-card">
+                                            <i class="fas fa-university"></i>
+                                            <span>Bank Transfer</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="credit-card-form" id="creditCardForm">
+                                <div class="form-group">
+                                    <label for="cardNumber">Card Number <span class="required">*</span></label>
+                                    <input type="text" id="cardNumber" name="cardNumber" required placeholder="1234 5678 9012 3456" maxlength="19">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="expiryDate">Expiry Date <span class="required">*</span></label>
+                                        <input type="text" id="expiryDate" name="expiryDate" required placeholder="MM/YY" maxlength="5">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cvv">CVV <span class="required">*</span></label>
+                                        <input type="text" id="cvv" name="cvv" required placeholder="123" maxlength="4">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardName">Name on Card <span class="required">*</span></label>
+                                    <input type="text" id="cardName" name="cardName" required placeholder="Enter cardholder name">
+                                </div>
+                            </div>
+
+                            <div class="paypal-form" id="paypalForm" style="display: none;">
+                                <p>You will be redirected to PayPal to complete your payment securely.</p>
+                            </div>
+
+                            <div class="bank-transfer-form" id="bankTransferForm" style="display: none;">
+                                <p>Please transfer the total amount to our bank account:</p>
+                                <div class="bank-details">
+                                    <p><strong>Bank Name:</strong> Bigsite Bank</p>
+                                    <p><strong>Account Number:</strong> 1234567890</p>
+                                    <p><strong>Routing Number:</strong> 021000021</p>
+                                    <p><strong>Account Name:</strong> Bigsite LLC</p>
+                                </div>
+                                <p style="margin-top: 1rem; color: var(--gray-600); font-size: 0.9rem;">
+                                    Your order will be processed once we receive your payment.
+                                </p>
+                            </div>
+
+                            <div class="terms-agreement">
+                                <label class="checkbox-group">
+                                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                                    <span>I have read and agree to the <a href="../utility/terms.html">Terms and Conditions</a> and <a href="../utility/privacy.html">Privacy Policy</a>.</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                <i class="fas fa-credit-card"></i>
+                                Place Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2>Secure Checkout</h2>
+            <p>Your security is our priority. All transactions are protected with SSL encryption.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h4>Secure Payment</h4>
+                    <p>256-bit SSL encryption for all transactions</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Buyer Protection</h4>
+                    <p>Full refund if you don't receive your order</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h4>Multiple Payment Options</h4>
+                    <p>Credit card, PayPal, and bank transfer</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>24/7 Support</h4>
+                    <p>Dedicated support for all payment issues</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="../../index.html" class="logo">
+                        <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                        <span class="logo-text">Bigsite</span>
+                    </a>
+                    <p>Bigsite is your ultimate destination for premium digital products and services.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../about.html">About Us</a></li>
+                        <li><a href="../../services.html">Services</a></li>
+                        <li><a href="index.html">Shop</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="index.html">All Products</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="featured.html">Featured</a></li>
+                        <li><a href="new.html">New Arrivals</a></li>
+                        <li><a href="sale.html">On Sale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../../contact.html">Contact Us</a></li>
+                        <li><a href="../utility/faq.html">FAQ</a></li>
+                        <li><a href="../utility/returns.html">Returns</a></li>
+                        <li><a href="../utility/shipping.html">Shipping</a></li>
+                        <li><a href="../utility/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bigsite. All rights reserved.</p>
+                <div class="footer-payment">
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-discover"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Order Placed Successfully!</h3>
+                <button class="modal-close" onclick="closeSuccessModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <p>Thank you for your purchase! Your order has been placed successfully.</p>
+                <p>You will receive a confirmation email shortly with your order details.</p>
+                <div class="order-summary-modal" id="orderSummaryModal">
+                    <!-- Order summary will be inserted here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="viewOrderDetails()">
+                    View Order Details
+                </button>
+                <button class="btn btn-outline" onclick="continueShopping()">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/shop.js"></script>
+    <script>
+        // ============================================
+        // Checkout Page Specific Functions
+        // ============================================
+
+        // Load checkout page on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCheckoutPage();
+            initializeFormValidation();
+            initializeCardNumberFormatting();
+            initializeExpiryDateFormatting();
+        });
+
+        function loadCheckoutPage() {
+            const cart = getCart();
+            const orderItemsList = document.getElementById('orderItemsList');
+
+            if (!orderItemsList) return;
+
+            // Clear list
+            orderItemsList.innerHTML = '';
+
+            if (cart.length === 0) {
+                // Redirect to cart if empty
+                window.location.href = 'cart.html';
+                return;
+            }
+
+            // Add order items
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'order-item';
+                itemDiv.innerHTML = `
+                    <div class="order-item-info">
+                        <span class="order-item-name">${item.name} x ${item.quantity}</span>
+                    </div>
+                    <span class="order-item-price">${calculateSubtotal(item)}</span>
+                `;
+                orderItemsList.appendChild(itemDiv);
+            });
+
+            // Update totals
+            updateOrderTotals();
+        }
+
+        function calculateSubtotal(item) {
+            const price = parseFloat(item.price.replace(/[^\d.]/g, ''));
+            const subtotal = price * item.quantity;
+            return formatCurrency(subtotal);
+        }
+
+        function updateOrderTotals() {
+            const cart = getCart();
+            const subtotalEl = document.getElementById('orderSubtotal');
+            const taxEl = document.getElementById('orderTax');
+            const totalEl = document.getElementById('orderTotal');
+            const shippingEl = document.getElementById('orderShipping');
+            const discountEl = document.getElementById('orderDiscount');
+            const discountAmountEl = document.getElementById('orderDiscountAmount');
+
+            if (cart.length === 0) return;
+
+            // Calculate subtotal
+            const subtotal = cart.reduce((sum, item) => {
+                const price = parseFloat(item.price.replace(/[^\d.]/g, ''));
+                return sum + (price * item.quantity);
+            }, 0);
+
+            // Calculate tax (8%)
+            const tax = subtotal * 0.08;
+
+            // Calculate shipping (free over $50)
+            let shipping = 0;
+            let shippingText = 'Free';
+            if (subtotal < 50) {
+                shipping = 5;
+                shippingText = formatCurrency(shipping);
+            }
+
+            // Calculate discount
+            const coupon = localStorage.getItem('coupon');
+            let discount = 0;
+            if (coupon) {
+                try {
+                    const couponData = JSON.parse(coupon);
+                    if (couponData.type === 'percentage') {
+                        discount = subtotal * (couponData.value / 100);
+                    } else if (couponData.type === 'fixed') {
+                        discount = couponData.value;
+                    }
+                } catch (e) {
+                    console.error('Invalid coupon data:', e);
+                }
+            }
+
+            // Calculate total
+            const total = subtotal + tax + shipping - discount;
+
+            // Update UI
+            if (subtotalEl) subtotalEl.textContent = formatCurrency(subtotal);
+            if (taxEl) taxEl.textContent = formatCurrency(tax);
+            if (totalEl) totalEl.textContent = formatCurrency(total);
+            if (shippingEl) shippingEl.textContent = shippingText;
+
+            if (discount > 0) {
+                if (discountEl) discountEl.style.display = 'flex';
+                if (discountAmountEl) discountAmountEl.textContent = '-' + formatCurrency(discount);
+            } else {
+                if (discountEl) discountEl.style.display = 'none';
+            }
+        }
+
+        function updatePaymentMethod() {
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+            const creditCardForm = document.getElementById('creditCardForm');
+            const paypalForm = document.getElementById('paypalForm');
+            const bankTransferForm = document.getElementById('bankTransferForm');
+
+            if (creditCardForm) creditCardForm.style.display = paymentMethod === 'credit-card' ? 'block' : 'none';
+            if (paypalForm) paypalForm.style.display = paymentMethod === 'paypal' ? 'block' : 'none';
+            if (bankTransferForm) bankTransferForm.style.display = paymentMethod === 'bank-transfer' ? 'block' : 'none';
+        }
+
+        function toggleShippingAddress() {
+            const checked = document.getElementById('shipToDifferent')?.checked;
+            const shippingSection = document.getElementById('shippingSection');
+            
+            // This would show/hide a shipping address section
+            // For simplicity, we're not implementing the full shipping address form
+            console.log('Shipping to different address:', checked);
+        }
+
+        function processCheckout(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const agreeTerms = form.querySelector('#agreeTerms')?.checked;
+
+            if (!agreeTerms) {
+                showNotification('You must agree to the terms and conditions.', 'error');
+                return;
+            }
+
+            // Validate form
+            if (!validateForm(form)) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // Process payment based on selected method
+            const paymentMethod = form.querySelector('input[name="paymentMethod"]:checked')?.value;
+
+            if (paymentMethod === 'credit-card' && !validateCreditCard()) {
+                showNotification('Please enter valid credit card details.', 'error');
+                return;
+            }
+
+            // Simulate processing
+            showProcessing();
+
+            setTimeout(() => {
+                // Generate order number
+                const orderNumber = 'BS-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+                
+                // Save order to localStorage
+                saveOrder(orderNumber);
+
+                // Clear cart
+                localStorage.removeItem('cart');
+                localStorage.removeItem('coupon');
+
+                // Show success modal
+                showSuccessModal(orderNumber);
+
+                // Update checkout steps
+                updateCheckoutSteps(3);
+            }, 2000);
+        }
+
+        function showProcessing() {
+            const submitBtn = document.querySelector('.checkout-form button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            }
+        }
+
+        function saveOrder(orderNumber) {
+            const cart = getCart();
+            const form = document.getElementById('checkoutForm');
+            
+            const order = {
+                orderNumber,
+                date: new Date().toISOString(),
+                items: cart,
+                billing: {
+                    firstName: form.querySelector('#firstName')?.value || '',
+                    lastName: form.querySelector('#lastName')?.value || '',
+                    email: form.querySelector('#email')?.value || '',
+                    phone: form.querySelector('#phone')?.value || '',
+                    company: form.querySelector('#company')?.value || '',
+                    country: form.querySelector('#country')?.value || '',
+                    address: form.querySelector('#address')?.value || '',
+                    apartment: form.querySelector('#apartment')?.value || '',
+                    city: form.querySelector('#city')?.value || '',
+                    state: form.querySelector('#state')?.value || '',
+                    zip: form.querySelector('#zip')?.value || '',
+                    notes: form.querySelector('#notes')?.value || ''
+                },
+                paymentMethod: form.querySelector('input[name="paymentMethod"]:checked')?.value || '',
+                subtotal: document.getElementById('orderSubtotal')?.textContent || '$0.00',
+                tax: document.getElementById('orderTax')?.textContent || '$0.00',
+                shipping: document.getElementById('orderShipping')?.textContent || 'Free',
+                discount: document.getElementById('orderDiscountAmount')?.textContent || '$0.00',
+                total: document.getElementById('orderTotal')?.textContent || '$0.00'
+            };
+
+            // Save to localStorage
+            localStorage.setItem('lastOrder', JSON.stringify(order));
+
+            // Add to orders history
+            const orders = getOrders();
+            orders.push(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+        }
+
+        function getOrders() {
+            const savedOrders = localStorage.getItem('orders');
+            return savedOrders ? JSON.parse(savedOrders) : [];
+        }
+
+        function showSuccessModal(orderNumber) {
+            const modal = document.getElementById('successModal');
+            if (modal) {
+                // Update modal content
+                const orderSummary = document.getElementById('orderSummaryModal');
+                if (orderSummary) {
+                    orderSummary.innerHTML = `
+                        <div class="order-summary-modal-item">
+                            <span>Order Number:</span>
+                            <strong>${orderNumber}</strong>
+                        </div>
+                        <div class="order-summary-modal-item">
+                            <span>Date:</span>
+                            <strong>${new Date().toLocaleDateString()}</strong>
+                        </div>
+                        <div class="order-summary-modal-item">
+                            <span>Total:</span>
+                            <strong>${document.getElementById('orderTotal')?.textContent || '$0.00'}</strong>
+                        </div>
+                    `;
+                }
+
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('successModal');
+            if (modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function viewOrderDetails() {
+            window.location.href = '../dashboard/orders.html';
+        }
+
+        function continueShopping() {
+            closeSuccessModal();
+            window.location.href = 'index.html';
+        }
+
+        function updateCheckoutSteps(step) {
+            const steps = document.querySelectorAll('.checkout-steps .step');
+            steps.forEach((s, index) => {
+                if (index + 1 <= step) {
+                    s.classList.add('completed');
+                    s.classList.remove('active');
+                } else if (index + 1 === step + 1) {
+                    s.classList.add('active');
+                    s.classList.remove('completed');
+                } else {
+                    s.classList.remove('active', 'completed');
+                }
+            });
+        }
+
+        function initializeFormValidation() {
+            const form = document.getElementById('checkoutForm');
+            if (!form) return;
+
+            // Validate on input change
+            const requiredInputs = form.querySelectorAll('input[required], select[required]');
+            requiredInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.classList.add('error');
+                    } else {
+                        this.classList.remove('error');
+                    }
+                });
+
+                input.addEventListener('input', function() {
+                    if (this.value) {
+                        this.classList.remove('error');
+                    }
+                });
+            });
+        }
+
+        function validateForm(form) {
+            const requiredInputs = form.querySelectorAll('input[required]:not(:checked), select[required]:not([value=""])');
+            let isValid = true;
+
+            requiredInputs.forEach(input => {
+                if (!input.value) {
+                    input.classList.add('error');
+                    isValid = false;
+                } else {
+                    input.classList.remove('error');
+                }
+            });
+
+            return isValid;
+        }
+
+        function validateCreditCard() {
+            const cardNumber = document.getElementById('cardNumber')?.value;
+            const expiryDate = document.getElementById('expiryDate')?.value;
+            const cvv = document.getElementById('cvv')?.value;
+            const cardName = document.getElementById('cardName')?.value;
+
+            if (!cardNumber || !expiryDate || !cvv || !cardName) {
+                return false;
+            }
+
+            // Simple validation
+            if (cardNumber.length < 16) return false;
+            if (expiryDate.length < 5) return false; // MM/YY
+            if (cvv.length < 3) return false;
+
+            return true;
+        }
+
+        function initializeCardNumberFormatting() {
+            const cardNumberInput = document.getElementById('cardNumber');
+            if (!cardNumberInput) return;
+
+            cardNumberInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+                e.target.value = value;
+            });
+        }
+
+        function initializeExpiryDateFormatting() {
+            const expiryDateInput = document.getElementById('expiryDate');
+            if (!expiryDateInput) return;
+
+            expiryDateInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                e.target.value = value;
+            });
+        }
+
+        function getCart() {
+            const savedCart = localStorage.getItem('cart');
+            return savedCart ? JSON.parse(savedCart) : [];
+        }
+
+        function formatCurrency(amount) {
+            if (typeof amount === 'string') {
+                amount = parseFloat(amount.replace(/[^\d.]/g, ''));
+            }
+            return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - Bigsite Admin</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <div class="loading-screen">
+        <div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <p>Loading Users...</p>
+    </div>
+
+    <aside class="sidebar admin-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo"><span class="logo-icon"><i class="fas fa-cog"></i></span><span class="logo-text">Bigsite Admin</span></a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar"><img src="../../images/avatar.jpg" alt="Admin" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=A'"><span class="user-status online"></span></div>
+            <div class="user-info"><h4>Admin User</h4><p>Super Administrator</p></div>
+            <button class="user-dropdown" onclick="toggleUserMenu()"><i class="fas fa-chevron-down"></i></button>
+            <div class="user-menu" id="userMenu">
+                <a href="../dashboard/profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="../dashboard/settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <div class="divider"></div>
+                <a href="../auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+            </ul>
+            <div class="nav-section"><h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item active has-submenu">
+                        <a><i class="fas fa-users"></i><span>Users</span><span class="badge">24</span></a>
+                        <ul class="submenu">
+                            <li class="nav-item active"><a href="users.html"><i class="fas fa-list"></i><span>All Users</span></a></li>
+                            <li class="nav-item"><a href="users.html?status=active"><i class="fas fa-check-circle"></i><span>Active Users</span></a></li>
+                            <li class="nav-item"><a href="users.html?status=pending"><i class="fas fa-clock"></i><span>Pending Users</span></a></li>
+                            <li class="nav-item"><a href="users.html?status=suspended"><i class="fas fa-ban"></i><span>Suspended Users</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-submenu">
+                        <a><i class="fas fa-box"></i><span>Products</span><span class="badge">128</span></a>
+                        <ul class="submenu">
+                            <li class="nav-item"><a href="products.html"><i class="fas fa-list"></i><span>All Products</span></a></li>
+                            <li class="nav-item"><a href="products.html?status=active"><i class="fas fa-check-circle"></i><span>Active Products</span></a></li>
+                            <li class="nav-item"><a href="products.html?status=outofstock"><i class="fas fa-exclamation-triangle"></i><span>Out of Stock</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="orders.html"><i class="fas fa-shopping-bag"></i><span>Orders</span><span class="badge">15</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>System</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cogs"></i><span>Settings</span></a></li>
+                    <li class="nav-item"><a href="../utility/maintenance.html"><i class="fas fa-tools"></i><span>Maintenance</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a><span><i class="fas fa-chevron-right"></i></span><a href="users.html">Users</a>
+            </div>
+            <div class="topbar-actions">
+                <div class="topbar-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search users..." oninput="searchUsers(this)">
+                    <button class="search-close" onclick="clearSearch(this)"><i class="fas fa-times"></i></button>
+                </div>
+                <button class="btn btn-primary" onclick="addUser()"><i class="fas fa-plus"></i><span>Add User</span></button>
+                <button class="topbar-btn notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">5</span></button>
+                <div class="topbar-user"><img src="../../images/avatar.jpg" alt="Admin" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=A'"><span>Admin</span><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <section class="users-header">
+                <div class="users-title">
+                    <h1><i class="fas fa-users"></i> Users Management</h1>
+                    <p>Manage all user accounts and permissions</p>
+                </div>
+                <div class="users-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">24</span>
+                            <span class="stat-label">Total Users</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">18</span>
+                            <span class="stat-label">Active</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">3</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-ban"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">3</span>
+                            <span class="stat-label">Suspended</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="users-section">
+                <div class="users-controls">
+                    <div class="users-filter">
+                        <span>Filter:</span>
+                        <select onchange="filterUsers(this)">
+                            <option value="all">All Users</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Pending</option>
+                            <option value="suspended">Suspended</option>
+                            <option value="admin">Administrators</option>
+                        </select>
+                    </div>
+                    <div class="users-sort">
+                        <span>Sort by:</span>
+                        <select onchange="sortUsers(this)">
+                            <option value="name">Name</option>
+                            <option value="date">Date Joined</option>
+                            <option value="status">Status</option>
+                            <option value="role">Role</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="users-table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllUsers" onchange="toggleSelectAllUsers()"></th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersList">
+                            <tr class="user-row">
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar small">
+                                            <img src="https://via.placeholder.com/35x35/4a6bff/ffffff?text=JD" alt="User">
+                                        </div>
+                                        <div class="user-name">
+                                            <h4>John Doe</h4>
+                                            <p>@johndoe</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>john@bigsite.com</td>
+                                <td><span class="role-badge admin">Administrator</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>May 1, 2024</td>
+                                <td>
+                                    <div class="user-actions">
+                                        <button class="action-btn" title="View" onclick="viewUser('johndoe')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editUser('johndoe')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Suspend" onclick="suspendUser('johndoe')"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteUser('johndoe')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="user-row">
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar small">
+                                            <img src="https://via.placeholder.com/35x35/ff6b9d/ffffff?text=JS" alt="User">
+                                        </div>
+                                        <div class="user-name">
+                                            <h4>Jane Smith</h4>
+                                            <p>@janesmith</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>jane@bigsite.com</td>
+                                <td><span class="role-badge premium">Premium</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>May 5, 2024</td>
+                                <td>
+                                    <div class="user-actions">
+                                        <button class="action-btn" title="View" onclick="viewUser('janesmith')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editUser('janesmith')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Suspend" onclick="suspendUser('janesmith')"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteUser('janesmith')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="user-row">
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar small">
+                                            <img src="https://via.placeholder.com/35x35/4ecdc4/ffffff?text=MD" alt="User">
+                                        </div>
+                                        <div class="user-name">
+                                            <h4>Mike Davis</h4>
+                                            <p>@mikedavis</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>mike@bigsite.com</td>
+                                <td><span class="role-badge free">Free</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>May 10, 2024</td>
+                                <td>
+                                    <div class="user-actions">
+                                        <button class="action-btn" title="View" onclick="viewUser('mikedavis')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editUser('mikedavis')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Suspend" onclick="suspendUser('mikedavis')"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteUser('mikedavis')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="user-row">
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar small">
+                                            <img src="https://via.placeholder.com/35x35/f39c12/ffffff?text=SW" alt="User">
+                                        </div>
+                                        <div class="user-name">
+                                            <h4>Sarah Wilson</h4>
+                                            <p>@sarahwilson</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>sarah@bigsite.com</td>
+                                <td><span class="role-badge premium">Premium</span></td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td>May 12, 2024</td>
+                                <td>
+                                    <div class="user-actions">
+                                        <button class="action-btn" title="View" onclick="viewUser('sarahwilson')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editUser('sarahwilson')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Activate" onclick="activateUser('sarahwilson')"><i class="fas fa-check"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteUser('sarahwilson')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="user-row">
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar small">
+                                            <img src="https://via.placeholder.com/35x35/9b59b6/ffffff?text=RJ" alt="User">
+                                        </div>
+                                        <div class="user-name">
+                                            <h4>Robert Johnson</h4>
+                                            <p>@robertjohnson</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>robert@bigsite.com</td>
+                                <td><span class="role-badge free">Free</span></td>
+                                <td><span class="status-badge suspended">Suspended</span></td>
+                                <td>May 8, 2024</td>
+                                <td>
+                                    <div class="user-actions">
+                                        <button class="action-btn" title="View" onclick="viewUser('robertjohnson')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editUser('robertjohnson')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Reactivate" onclick="reactivateUser('robertjohnson')"><i class="fas fa-undo"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteUser('robertjohnson')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="user-row">
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar small">
+                                            <img src="https://via.placeholder.com/35x35/3498db/ffffff?text=EB" alt="User">
+                                        </div>
+                                        <div class="user-name">
+                                            <h4>Emily Brown</h4>
+                                            <p>@emilybrown</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>emily@bigsite.com</td>
+                                <td><span class="role-badge premium">Premium</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>May 15, 2024</td>
+                                <td>
+                                    <div class="user-actions">
+                                        <button class="action-btn" title="View" onclick="viewUser('emilybrown')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editUser('emilybrown')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Suspend" onclick="suspendUser('emilybrown')"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteUser('emilybrown')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="user-row">
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar small">
+                                            <img src="https://via.placeholder.com/35x35/e67e22/ffffff?text=DG" alt="User">
+                                        </div>
+                                        <div class="user-name">
+                                            <h4>David Green</h4>
+                                            <p>@davidgreen</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>david@bigsite.com</td>
+                                <td><span class="role-badge free">Free</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>May 18, 2024</td>
+                                <td>
+                                    <div class="user-actions">
+                                        <button class="action-btn" title="View" onclick="viewUser('davidgreen')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editUser('davidgreen')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Suspend" onclick="suspendUser('davidgreen')"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteUser('davidgreen')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="user-row">
+                                <td><input type="checkbox" class="user-checkbox"></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar small">
+                                            <img src="https://via.placeholder.com/35x35/2ecc71/ffffff?text=LW" alt="User">
+                                        </div>
+                                        <div class="user-name">
+                                            <h4>Lisa White</h4>
+                                            <p>@lisawhite</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>lisa@bigsite.com</td>
+                                <td><span class="role-badge premium">Premium</span></td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td>May 20, 2024</td>
+                                <td>
+                                    <div class="user-actions">
+                                        <button class="action-btn" title="View" onclick="viewUser('lisawhite')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editUser('lisawhite')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Activate" onclick="activateUser('lisawhite')"><i class="fas fa-check"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteUser('lisawhite')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="users-pagination">
+                    <div class="pagination-info">Showing 1-8 of 24 users</div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" onclick="previousPage()"><i class="fas fa-chevron-left"></i></button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <button class="pagination-btn" onclick="nextPage()"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="pagination-actions">
+                        <select onchange="changePageSize(this)">
+                            <option value="5">5 per page</option>
+                            <option value="10" selected>10 per page</option>
+                            <option value="20">20 per page</option>
+                            <option value="50">50 per page</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3 id="modalTitle">User Details</h3><button class="modal-close" onclick="closeUserModal()"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeUserModal()">Close</button>
+                <button class="btn btn-primary" id="saveUserBtn" onclick="saveUser()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="addUserModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3>Add New User</h3><button class="modal-close" onclick="closeAddUserModal()"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body">
+                <form id="addUserForm">
+                    <div class="form-row">
+                        <div class="form-group"><label>First Name</label><input type="text" id="newFirstName" placeholder="Enter first name" required></div>
+                        <div class="form-group"><label>Last Name</label><input type="text" id="newLastName" placeholder="Enter last name" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Email</label><input type="email" id="newEmail" placeholder="Enter email" required></div>
+                        <div class="form-group"><label>Username</label><input type="text" id="newUsername" placeholder="Enter username" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Password</label><input type="password" id="newPassword" placeholder="Enter password" required></div>
+                        <div class="form-group"><label>Confirm Password</label><input type="password" id="newConfirmPassword" placeholder="Confirm password" required></div>
+                    </div>
+                    <div class="form-group"><label>Role</label>
+                        <select id="newRole">
+                            <option value="free">Free User</option>
+                            <option value="premium">Premium User</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeAddUserModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="createUser()">Create User</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/admin.js"></script>
+    <script>
+        function addUser(){document.getElementById('addUserModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function closeAddUserModal(){document.getElementById('addUserModal').classList.remove('active');document.getElementById('overlay').style.display='none'}
+        function createUser(){const firstName=document.getElementById('newFirstName').value;const lastName=document.getElementById('newLastName').value;const email=document.getElementById('newEmail').value;if(!firstName||!lastName||!email){showNotification('Please fill all required fields','error');return}showNotification('User created successfully!','success');closeAddUserModal()}
+        function viewUser(username){document.getElementById('modalTitle').textContent=`User: ${username}`;document.getElementById('modalBody').innerHTML=`<div class="user-details-modal"><div class="user-avatar-large"><img src="https://via.placeholder.com/80x80/4a6bff/ffffff?text=${username.substring(0,2)}" alt="User"></div><h4>${username}</h4><p>User details will be displayed here</p></div>`;document.getElementById('userModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function editUser(username){document.getElementById('modalTitle').textContent=`Edit User: ${username}`;document.getElementById('modalBody').innerHTML=`<form id="editUserForm"><div class="form-group"><label>Username</label><input type="text" value="${username}" readonly></div><div class="form-group"><label>Email</label><input type="email" value="${username}@bigsite.com"></div><div class="form-group"><label>Role</label><select><option value="free">Free</option><option value="premium" selected>Premium</option><option value="admin">Admin</option></select></div><div class="form-group"><label>Status</label><select><option value="active" selected>Active</option><option value="pending">Pending</option><option value="suspended">Suspended</option></select></div></form>`;document.getElementById('userModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function closeUserModal(){document.getElementById('userModal').classList.remove('active');document.getElementById('overlay').style.display='none'}
+        function saveUser(){showNotification('User saved successfully!','success');closeUserModal()}
+        function suspendUser(username){if(confirm(`Suspend ${username}?`))showNotification(`${username} suspended`,'success')}
+        function activateUser(username){if(confirm(`Activate ${username}?`))showNotification(`${username} activated`,'success')}
+        function reactivateUser(username){if(confirm(`Reactivate ${username}?`))showNotification(`${username} reactivated`,'success')}
+        function deleteUser(username){if(confirm(`Delete ${username}? This cannot be undone.`))showNotification(`${username} deleted`,'success')}
+        function filterUsers(select){showNotification(`Filtered by: ${select.value}`,'info')}
+        function sortUsers(select){showNotification(`Sorted by: ${select.value}`,'info')}
+        function searchUsers(input){const q=input.value.toLowerCase();if(q.length>0)showNotification(`Searching: ${q}`,'info')}
+        function clearSearch(btn){btn.previousElementSibling.value='';showNotification('Search cleared','info')}
+        function toggleSelectAllUsers(){const cbs=document.querySelectorAll('.user-checkbox');const all=document.getElementById('selectAllUsers');cbs.forEach(c=>c.checked=all.checked)}
+        function previousPage(){showNotification('Previous page','info')}
+        function nextPage(){showNotification('Next page','info')}
+        function changePageSize(select){showNotification(`Page size: ${select.value}`,'info')}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',hideLoadingScreen);
+    </script>
+</body>
+</html>

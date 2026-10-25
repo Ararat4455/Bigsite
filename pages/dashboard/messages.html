@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Messages - Communicate with your team and contacts on Bigsite">
+    <meta name="keywords" content="messages, chat, communication, dashboard, Bigsite">
+    <meta name="author" content="Ararat4455">
+    <title>Messages - Bigsite Dashboard</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <p>Loading Messages...</p>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                <span class="logo-text">Bigsite</span>
+            </a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                <img src="../../images/avatar.jpg" alt="User Avatar" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=U'">
+                <span class="user-status online"></span>
+            </div>
+            <div class="user-info">
+                <h4>John Doe</h4>
+                <p>Premium Member</p>
+            </div>
+            <button class="user-dropdown" onclick="toggleUserMenu()">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                <div class="divider"></div>
+                <a href="../../pages/auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="analytics.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Projects</span>
+                        <span class="badge">5</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="messages.html">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                        <span class="badge">12</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="calendar.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-section">
+                <h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="files.html">
+                            <i class="fas fa-folder"></i>
+                            <span>Files</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="subscriptions.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Subscriptions</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h5>Account</h5>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="security.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="notifications.html">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="help.html">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="help-btn">
+                <i class="fas fa-question-circle"></i>
+                <span>Help</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search messages..." id="messageSearch">
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-btn notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                    <div class="notification-dropdown">
+                        <div class="notification-header">
+                            <h4>Notifications</h4>
+                            <a href="notifications.html" class="mark-all-read">View all</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-icon blue">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>New Message</strong> from Sarah Johnson</p>
+                                    <span class="notification-time">2 min ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon green">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>Message Read</strong> by team member</p>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon orange">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p><strong>Urgent Message</strong> received</p>
+                                    <span class="notification-time">2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                <button class="header-btn">
+                    <i class="fas fa-envelope"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                <div class="header-user">
+                    <img src="../../images/avatar.jpg" alt="User Avatar" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=U'">
+                    <div class="header-user-info">
+                        <h4>John Doe</h4>
+                        <p>Premium Member</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-left">
+                    <h1>Messages</h1>
+                    <p>Communicate with your team and contacts</p>
+                </div>
+                <div class="page-header-right">
+                    <button class="btn btn-primary" onclick="composeMessage()">
+                        <i class="fas fa-pen"></i>
+                        Compose
+                    </button>
+                </div>
+            </div>
+
+            <!-- Messages Layout -->
+            <div class="messages-layout">
+                <!-- Messages Sidebar -->
+                <aside class="messages-sidebar">
+                    <div class="messages-sidebar-header">
+                        <h3>Folders</h3>
+                    </div>
+                    <nav class="messages-nav">
+                        <a href="#" class="messages-nav-item active" onclick="loadFolder('inbox')">
+                            <i class="fas fa-inbox"></i>
+                            <span>Inbox</span>
+                            <span class="badge">12</span>
+                        </a>
+                        <a href="#" class="messages-nav-item" onclick="loadFolder('sent')">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Sent</span>
+                            <span class="badge">8</span>
+                        </a>
+                        <a href="#" class="messages-nav-item" onclick="loadFolder('drafts')">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Drafts</span>
+                            <span class="badge">2</span>
+                        </a>
+                        <a href="#" class="messages-nav-item" onclick="loadFolder('archive')">
+                            <i class="fas fa-archive"></i>
+                            <span>Archive</span>
+                        </a>
+                        <a href="#" class="messages-nav-item" onclick="loadFolder('trash')">
+                            <i class="fas fa-trash"></i>
+                            <span>Trash</span>
+                        </a>
+                    </nav>
+
+                    <div class="messages-sidebar-section">
+                        <h3>Labels</h3>
+                        <div class="messages-labels">
+                            <span class="label-item" style="background: #4a6bff; color: white;">Work</span>
+                            <span class="label-item" style="background: #ff6b9d; color: white;">Personal</span>
+                            <span class="label-item" style="background: #28a745; color: white;">Important</span>
+                            <span class="label-item" style="background: #ffc107; color: black;">Urgent</span>
+                        </div>
+                    </div>
+
+                    <div class="messages-sidebar-section">
+                        <h3>Contacts</h3>
+                        <div class="messages-contacts" id="messagesContacts">
+                            <!-- Contacts will be loaded here -->
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Messages Main -->
+                <main class="messages-main">
+                    <!-- Messages List -->
+                    <div class="messages-list" id="messagesList">
+                        <!-- Messages will be loaded here -->
+                    </div>
+
+                    <!-- Message View -->
+                    <div class="message-view" id="messageView" style="display: none;">
+                        <div class="message-view-header">
+                            <div class="message-view-subject" id="messageSubject"></div>
+                            <div class="message-view-actions">
+                                <button class="message-action-btn" onclick="replyMessage()">
+                                    <i class="fas fa-reply"></i>
+                                    Reply
+                                </button>
+                                <button class="message-action-btn" onclick="forwardMessage()">
+                                    <i class="fas fa-share"></i>
+                                    Forward
+                                </button>
+                                <button class="message-action-btn" onclick="archiveMessage()">
+                                    <i class="fas fa-archive"></i>
+                                    Archive
+                                </button>
+                                <button class="message-action-btn delete" onclick="deleteMessage()">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </button>
+                                <button class="message-action-btn" onclick="closeMessageView()">
+                                    <i class="fas fa-times"></i>
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                        <div class="message-view-body" id="messageBody">
+                            <!-- Message content will be loaded here -->
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Message Info (for wide screens) -->
+                <aside class="message-info" id="messageInfo" style="display: none;">
+                    <div class="message-info-header">
+                        <h3>Details</h3>
+                    </div>
+                    <div class="message-info-content" id="messageInfoContent">
+                        <!-- Message details will be loaded here -->
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Compose Message Modal -->
+    <div class="modal" id="composeModal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3>Compose Message</h3>
+                <button class="modal-close" onclick="closeModal('composeModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="composeForm">
+                    <div class="form-group">
+                        <label for="messageTo">To</label>
+                        <select id="messageTo" multiple>
+                            <option value="sarah">Sarah Johnson</option>
+                            <option value="mike">Mike Johnson</option>
+                            <option value="jane">Jane Smith</option>
+                            <option value="team">Team (All Members)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="messageCc">Cc</label>
+                        <select id="messageCc" multiple>
+                            <option value="sarah">Sarah Johnson</option>
+                            <option value="mike">Mike Johnson</option>
+                            <option value="jane">Jane Smith</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="messageBcc">Bcc</label>
+                        <select id="messageBcc" multiple>
+                            <option value="sarah">Sarah Johnson</option>
+                            <option value="mike">Mike Johnson</option>
+                            <option value="jane">Jane Smith</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="messageSubject">Subject <span class="required">*</span></label>
+                        <input type="text" id="messageSubject" required placeholder="Enter message subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="messageBody">Message <span class="required">*</span></label>
+                        <textarea id="messageBody" rows="8" required placeholder="Write your message here..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="messageAttachment">Attachment</label>
+                        <input type="file" id="messageAttachment" multiple>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="messageImportant">
+                        <label for="messageImportant">Mark as Important</label>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="messageUrgent">
+                        <label for="messageUrgent">Mark as Urgent</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="saveDraft()">
+                    <i class="fas fa-save"></i>
+                    Save Draft
+                </button>
+                <button class="btn btn-primary" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Message
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle mobile-theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script>
+        // ============================================
+        // Messages Page Specific Functions
+        // ============================================
+
+        // Sample messages data
+        let messages = [
+            {
+                id: 'msg-1',
+                from: 'Sarah Johnson',
+                to: 'John Doe',
+                subject: 'Project Update - Website Redesign',
+                body: '<p>Hi John,</p><p>I wanted to give you an update on the website redesign project. We have completed the wireframes and are ready to move to the design phase.</p><p>Could you please review the attached wireframes and let me know your thoughts?</p><p>Best regards,<br>Sarah</p>',
+                date: '2024-01-15T10:30:00',
+                folder: 'inbox',
+                read: false,
+                important: true,
+                labels: ['Work', 'Important'],
+                attachments: ['wireframes.pdf']
+            },
+            {
+                id: 'msg-2',
+                from: 'Mike Johnson',
+                to: 'John Doe',
+                subject: 'Meeting Tomorrow',
+                body: '<p>Hi John,</p><p>Just a quick reminder about our meeting tomorrow at 10 AM to discuss the new project requirements.</p><p>Please make sure to review the project brief before the meeting.</p><p>Thanks,<br>Mike</p>',
+                date: '2024-01-15T09:15:00',
+                folder: 'inbox',
+                read: false,
+                important: false,
+                labels: ['Work'],
+                attachments: []
+            },
+            {
+                id: 'msg-3',
+                from: 'Jane Smith',
+                to: 'John Doe',
+                subject: 'Re: Marketing Campaign',
+                body: '<p>Hi John,</p><p>Following up on our discussion about the marketing campaign. I have attached the revised strategy document for your review.</p><p>Let me know if you have any questions or need further clarification.</p><p>Best,<br>Jane</p>',
+                date: '2024-01-14T16:45:00',
+                folder: 'inbox',
+                read: true,
+                important: false,
+                labels: ['Work'],
+                attachments: ['marketing-strategy.docx']
+            },
+            {
+                id: 'msg-4',
+                from: 'John Doe',
+                to: 'Team',
+                subject: 'Weekly Team Update',
+                body: '<p>Team,</p><p>Here is the weekly update on our current projects and priorities for the coming week.</p><p>Please review and let me know if you have any questions.</p><p>Best,<br>John</p>',
+                date: '2024-01-14T14:20:00',
+                folder: 'sent',
+                read: true,
+                important: false,
+                labels: ['Work'],
+                attachments: []
+            },
+            {
+                id: 'msg-5',
+                from: 'Client Support',
+                to: 'John Doe',
+                subject: 'Urgent: Support Request',
+                body: '<p>Dear John,</p><p>We have received an urgent support request from one of your clients. Please review the attached details and respond as soon as possible.</p><p>Thank you for your prompt attention to this matter.</p><p>Best regards,<br>Support Team</p>',
+                date: '2024-01-14T11:10:00',
+                folder: 'inbox',
+                read: false,
+                important: true,
+                labels: ['Work', 'Urgent'],
+                attachments: ['support-request.pdf']
+            },
+            {
+                id: 'msg-6',
+                from: 'David Brown',
+                to: 'John Doe',
+                subject: 'Partnership Opportunity',
+                body: '<p>Hi John,</p><p>I hope this email finds you well. I am reaching out to discuss a potential partnership opportunity between our companies.</p><p>I believe there could be significant synergies that we could explore together.</p><p>Looking forward to hearing from you.</p><p>Best regards,<br>David</p>',
+                date: '2024-01-13T15:30:00',
+                folder: 'inbox',
+                read: true,
+                important: false,
+                labels: ['Personal'],
+                attachments: []
+            }
+        ];
+
+        // Sample contacts
+        let contacts = [
+            { id: 'sarah', name: 'Sarah Johnson', avatar: 'S', status: 'online', unread: 2 },
+            { id: 'mike', name: 'Mike Johnson', avatar: 'M', status: 'away', unread: 1 },
+            { id: 'jane', name: 'Jane Smith', avatar: 'J', status: 'online', unread: 0 },
+            { id: 'david', name: 'David Brown', avatar: 'D', status: 'offline', unread: 0 },
+            { id: 'support', name: 'Client Support', avatar: 'C', status: 'online', unread: 1 }
+        ];
+
+        // Current folder and selected message
+        let currentFolder = 'inbox';
+        let currentMessage = null;
+
+        // Load messages on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadContacts();
+            loadFolder('inbox');
+            initializeSearch();
+        });
+
+        // ============================================
+        // Load Functions
+        // ============================================
+
+        function loadContacts() {
+            const contactsContainer = document.getElementById('messagesContacts');
+            if (!contactsContainer) return;
+
+            contactsContainer.innerHTML = '';
+            
+            contacts.forEach(contact => {
+                const contactItem = document.createElement('div');
+                contactItem.className = 'contact-item';
+                contactItem.onclick = () => filterMessagesByContact(contact.id);
+
+                const statusClass = contact.status === 'online' ? 'online' : contact.status === 'away' ? 'away' : 'offline';
+                const unreadBadge = contact.unread > 0 ? `<span class="contact-unread">${contact.unread}</span>` : '';
+
+                contactItem.innerHTML = `
+                    <div class="contact-avatar">
+                        <img src="https://via.placeholder.com/35x35/4a6bff/ffffff?text=${contact.avatar}" alt="${contact.name}">
+                        <span class="contact-status ${statusClass}"></span>
+                    </div>
+                    <div class="contact-info">
+                        <h5>${contact.name}</h5>
+                    </div>
+                    ${unreadBadge}
+                `;
+
+                contactsContainer.appendChild(contactItem);
+            });
+        }
+
+        function loadFolder(folder) {
+            currentFolder = folder;
+            
+            // Update active folder
+            const navItems = document.querySelectorAll('.messages-nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            const activeItem = document.querySelector(`.messages-nav-item[onclick="loadFolder('${folder}')"]`);
+            if (activeItem) activeItem.classList.add('active');
+
+            // Filter messages by folder
+            const folderMessages = messages.filter(msg => msg.folder === folder);
+
+            // Update unread count in sidebar
+            const inboxCount = messages.filter(msg => msg.folder === 'inbox' && !msg.read).length;
+            const inboxBadge = document.querySelector('.messages-nav-item[onclick="loadFolder(\'inbox\')"] .badge');
+            if (inboxBadge) inboxBadge.textContent = inboxCount;
+
+            // Load messages
+            loadMessages(folderMessages);
+
+            // Hide message view
+            closeMessageView();
+        }
+
+        function loadMessages(messagesToLoad) {
+            const messagesList = document.getElementById('messagesList');
+            if (!messagesList) return;
+
+            messagesList.innerHTML = '';
+
+            if (messagesToLoad.length === 0) {
+                messagesList.innerHTML = `
+                    <div class="messages-empty">
+                        <i class="fas fa-inbox"></i>
+                        <h4>No messages found</h4>
+                        <p>There are no messages in this folder.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort by date (newest first)
+            messagesToLoad.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            messagesToLoad.forEach(message => {
+                const messageItem = createMessageItem(message);
+                messagesList.appendChild(messageItem);
+            });
+        }
+
+        function createMessageItem(message) {
+            const div = document.createElement('div');
+            div.className = `message-item ${message.read ? 'read' : 'unread'}`;
+            div.onclick = () => viewMessage(message.id);
+
+            const importantClass = message.important ? 'important' : '';
+            const unreadClass = message.read ? '' : 'unread';
+
+            div.innerHTML = `
+                <div class="message-checkbox">
+                    <input type="checkbox" onchange="toggleMessageSelection('${message.id}', this.checked)">
+                </div>
+                <div class="message-sender">
+                    <div class="sender-avatar">
+                        <img src="https://via.placeholder.com/40x40/4a6bff/ffffff?text=${getAvatarInitial(message.from)}" alt="${message.from}">
+                    </div>
+                    <div class="sender-info">
+                        <h5>${message.from}</h5>
+                    </div>
+                </div>
+                <div class="message-preview">
+                    <div class="message-subject ${importantClass}">${message.subject}</div>
+                    <div class="message-excerpt">${stripHtml(message.body).substring(0, 100)}${stripHtml(message.body).length > 100 ? '...' : ''}</div>
+                </div>
+                <div class="message-meta">
+                    <span class="message-date">${formatDate(message.date)}</span>
+                    ${message.attachments.length > 0 ? '<i class="fas fa-paperclip attachment-icon"></i>' : ''}
+                    ${message.important ? '<i class="fas fa-exclamation-circle important-icon"></i>' : ''}
+                </div>
+            `;
+
+            return div;
+        }
+
+        // ============================================
+        // Message Actions
+        // ============================================
+
+        function viewMessage(messageId) {
+            const message = messages.find(msg => msg.id === messageId);
+            if (!message) return;
+
+            currentMessage = message;
+
+            // Mark as read
+            message.read = true;
+
+            // Update unread count
+            const inboxCount = messages.filter(msg => msg.folder === 'inbox' && !msg.read).length;
+            const inboxBadge = document.querySelector('.messages-nav-item[onclick="loadFolder(\'inbox\')"] .badge');
+            if (inboxBadge) inboxBadge.textContent = inboxCount;
+
+            // Update message item
+            const messageItem = document.querySelector(`.message-item[data-id="${messageId}"]`);
+            if (messageItem) {
+                messageItem.classList.remove('unread');
+                messageItem.classList.add('read');
+            }
+
+            // Show message view
+            showMessageView(message);
+        }
+
+        function showMessageView(message) {
+            const messagesList = document.getElementById('messagesList');
+            const messageView = document.getElementById('messageView');
+            const messageInfo = document.getElementById('messageInfo');
+
+            if (messagesList) messagesList.style.display = 'none';
+            if (messageView) messageView.style.display = 'block';
+            if (messageInfo) messageInfo.style.display = 'block';
+
+            // Set message content
+            const subject = document.getElementById('messageSubject');
+            const body = document.getElementById('messageBody');
+            const infoContent = document.getElementById('messageInfoContent');
+
+            if (subject) subject.textContent = message.subject;
+            if (body) body.innerHTML = message.body;
+            if (infoContent) {
+                infoContent.innerHTML = `
+                    <div class="message-info-section">
+                        <h4>From</h4>
+                        <p>${message.from}</p>
+                    </div>
+                    <div class="message-info-section">
+                        <h4>To</h4>
+                        <p>${message.to}</p>
+                    </div>
+                    <div class="message-info-section">
+                        <h4>Date</h4>
+                        <p>${formatDateTime(message.date)}</p>
+                    </div>
+                    <div class="message-info-section">
+                        <h4>Labels</h4>
+                        <div class="message-labels">
+                            ${message.labels.map(label => {
+                                const labelColor = getLabelColor(label);
+                                return `<span class="label-item" style="background: ${labelColor.color}; color: ${labelColor.text};">${label}</span>`;
+                            }).join('')}
+                        </div>
+                    </div>
+                    ${message.attachments.length > 0 ? `
+                    <div class="message-info-section">
+                        <h4>Attachments</h4>
+                        <div class="message-attachments">
+                            ${message.attachments.map(attachment => `
+                                <div class="attachment-item">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>${attachment}</span>
+                                    <button class="attachment-download" onclick="downloadAttachment('${attachment}')">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
+                `;
+            }
+        }
+
+        function closeMessageView() {
+            const messagesList = document.getElementById('messagesList');
+            const messageView = document.getElementById('messageView');
+            const messageInfo = document.getElementById('messageInfo');
+
+            if (messagesList) messagesList.style.display = 'block';
+            if (messageView) messageView.style.display = 'none';
+            if (messageInfo) messageInfo.style.display = 'none';
+
+            currentMessage = null;
+        }
+
+        function replyMessage() {
+            if (!currentMessage) return;
+
+            const form = document.getElementById('composeForm');
+            if (!form) return;
+
+            // Set up reply
+            form.querySelector('#messageTo').value = currentMessage.from;
+            form.querySelector('#messageSubject').value = `Re: ${currentMessage.subject}`;
+            form.querySelector('#messageBody').value = `
+
+
+> On ${formatDateTime(currentMessage.date)}, ${currentMessage.from} wrote:
+> ${currentMessage.subject}
+>
+> ${currentMessage.body}
+
+`;
+
+            openModal('composeModal');
+        }
+
+        function forwardMessage() {
+            if (!currentMessage) return;
+
+            const form = document.getElementById('composeForm');
+            if (!form) return;
+
+            // Set up forward
+            form.querySelector('#messageSubject').value = `Fwd: ${currentMessage.subject}`;
+            form.querySelector('#messageBody').value = `
+Forwarded message:
+
+From: ${currentMessage.from}
+To: ${currentMessage.to}
+Date: ${formatDateTime(currentMessage.date)}
+Subject: ${currentMessage.subject}
+
+${currentMessage.body}
+`;
+
+            openModal('composeModal');
+        }
+
+        function archiveMessage() {
+            if (!currentMessage) return;
+
+            if (confirm(`Are you sure you want to archive this message?`)) {
+                currentMessage.folder = 'archive';
+                loadFolder(currentFolder);
+                closeMessageView();
+                showNotification('Message archived!', 'success');
+            }
+        }
+
+        function deleteMessage() {
+            if (!currentMessage) return;
+
+            if (confirm(`Are you sure you want to delete this message?`)) {
+                messages = messages.filter(msg => msg.id !== currentMessage.id);
+                loadFolder(currentFolder);
+                closeMessageView();
+                showNotification('Message deleted!', 'success');
+            }
+        }
+
+        function filterMessagesByContact(contactId) {
+            const contact = contacts.find(c => c.id === contactId);
+            if (!contact) return;
+
+            const filteredMessages = messages.filter(msg => 
+                msg.from.toLowerCase().includes(contact.name.toLowerCase()) ||
+                msg.to.toLowerCase().includes(contact.name.toLowerCase())
+            );
+
+            loadMessages(filteredMessages);
+        }
+
+        function toggleMessageSelection(messageId, selected) {
+            console.log(`Message ${messageId} ${selected ? 'selected' : 'deselected'}`);
+            // In a real app, this would track selected messages for bulk actions
+        }
+
+        // ============================================
+        // Compose Functions
+        // ============================================
+
+        function composeMessage() {
+            const form = document.getElementById('composeForm');
+            if (form) {
+                form.reset();
+            }
+            openModal('composeModal');
+        }
+
+        function sendMessage() {
+            const form = document.getElementById('composeForm');
+            if (!form) return;
+
+            const to = Array.from(form.querySelector('#messageTo')?.selectedOptions || []).map(opt => opt.text).join(', ');
+            const cc = Array.from(form.querySelector('#messageCc')?.selectedOptions || []).map(opt => opt.text).join(', ');
+            const bcc = Array.from(form.querySelector('#messageBcc')?.selectedOptions || []).map(opt => opt.text).join(', ');
+            const subject = form.querySelector('#messageSubject')?.value;
+            const body = form.querySelector('#messageBody')?.value;
+            const important = form.querySelector('#messageImportant')?.checked;
+            const urgent = form.querySelector('#messageUrgent')?.checked;
+
+            if (!to || !subject || !body) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // Create new message
+            const newMessage = {
+                id: 'msg-' + Date.now(),
+                from: 'John Doe',
+                to,
+                cc,
+                bcc,
+                subject,
+                body,
+                date: new Date().toISOString(),
+                folder: 'sent',
+                read: true,
+                important: important || urgent,
+                labels: urgent ? ['Work', 'Urgent'] : important ? ['Work', 'Important'] : ['Work'],
+                attachments: []
+            };
+
+            messages.push(newMessage);
+            closeModal('composeModal');
+            showNotification('Message sent successfully!', 'success');
+            form.reset();
+
+            // Reload sent folder
+            loadFolder('sent');
+        }
+
+        function saveDraft() {
+            const form = document.getElementById('composeForm');
+            if (!form) return;
+
+            const to = Array.from(form.querySelector('#messageTo')?.selectedOptions || []).map(opt => opt.text).join(', ');
+            const subject = form.querySelector('#messageSubject')?.value;
+            const body = form.querySelector('#messageBody')?.value;
+
+            if (!to || !subject) {
+                showNotification('Please fill in at least To and Subject fields to save as draft.', 'error');
+                return;
+            }
+
+            // Create draft
+            const draft = {
+                id: 'draft-' + Date.now(),
+                from: 'John Doe',
+                to,
+                subject,
+                body,
+                date: new Date().toISOString(),
+                folder: 'drafts',
+                read: true,
+                important: false,
+                labels: ['Work'],
+                attachments: []
+            };
+
+            messages.push(draft);
+            closeModal('composeModal');
+            showNotification('Draft saved successfully!', 'success');
+            form.reset();
+
+            // Reload drafts folder
+            loadFolder('drafts');
+        }
+
+        // ============================================
+        // Search
+        // ============================================
+
+        function initializeSearch() {
+            const searchInput = document.getElementById('messageSearch');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    
+                    const filteredMessages = messages.filter(msg => 
+                        msg.from.toLowerCase().includes(searchTerm) ||
+                        msg.to.toLowerCase().includes(searchTerm) ||
+                        msg.subject.toLowerCase().includes(searchTerm) ||
+                        stripHtml(msg.body).toLowerCase().includes(searchTerm)
+                    );
+
+                    loadMessages(filteredMessages);
+                });
+            }
+        }
+
+        // ============================================
+        // Utility Functions
+        // ============================================
+
+        function getAvatarInitial(name) {
+            return name.charAt(0).toUpperCase();
+        }
+
+        function stripHtml(html) {
+            const tmp = document.createElement('DIV');
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || '';
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        function formatDateTime(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('en-US', { 
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function getLabelColor(label) {
+            const colors = {
+                'Work': { color: '#4a6bff', text: 'white' },
+                'Personal': { color: '#ff6b9d', text: 'white' },
+                'Important': { color: '#28a745', text: 'white' },
+                'Urgent': { color: '#ffc107', text: 'black' }
+            };
+            return colors[label] || { color: '#6c757d', text: 'white' };
+        }
+
+        function downloadAttachment(attachment) {
+            showNotification(`Downloading ${attachment}...`, 'info');
+            // In a real app, this would trigger a download
+        }
+    </script>
+</body>
+</html>

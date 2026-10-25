@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Components | Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .component-page {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+        .component-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+        .component-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .component-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+        }
+        .component-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .component-card .description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .component-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        .btn-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #4a6bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #3a5bef;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: white;
+            color: #4a6bff;
+            border: 2px solid #4a6bff;
+        }
+        .btn-secondary:hover {
+            background: #4a6bff;
+            color: white;
+        }
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        .btn-success:hover {
+            background: #218838;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+        .btn-info:hover {
+            background: #138496;
+        }
+        .btn-light {
+            background: #f8f9fa;
+            color: #212529;
+            border: 2px solid #e0e0e0;
+        }
+        .btn-light:hover {
+            background: #e0e0e0;
+        }
+        .btn-dark {
+            background: #343a40;
+            color: white;
+        }
+        .btn-dark:hover {
+            background: #23272b;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #4a6bff;
+            border: 2px solid #4a6bff;
+        }
+        .btn-outline:hover {
+            background: #4a6bff;
+            color: white;
+        }
+        .btn-text {
+            background: transparent;
+            color: #4a6bff;
+            border: none;
+        }
+        .btn-text:hover {
+            background: rgba(74, 107, 255, 0.1);
+        }
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        .btn-lg {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .btn-icon {
+            padding: 12px;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-group {
+            display: flex;
+            border-radius: 50px;
+            overflow: hidden;
+            border: 2px solid #4a6bff;
+        }
+        .btn-group .btn {
+            border: none;
+            border-radius: 0;
+        }
+        .btn-group .btn:first-child {
+            border-radius: 50px 0 0 50px;
+        }
+        .btn-group .btn:last-child {
+            border-radius: 0 50px 50px 0;
+        }
+        .btn-group .btn:not(:last-child) {
+            border-right: 2px solid #4a6bff;
+        }
+        @media (max-width: 768px) {
+            .component-main {
+                padding: 20px 15px;
+            }
+            .page-title {
+                font-size: 2rem;
+            }
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="component-page">
+    <header class="legal-header">
+        <a href="../../index.html" class="logo">
+            <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+            <span class="logo-text">Bigsite</span>
+        </a>
+        <nav class="legal-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../components.html">Components</a>
+            <a href="../../pages/dashboard/index.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="component-main">
+        <div class="page-header">
+            <h1 class="page-title"><i class="fas fa-hand-pointer"></i> Button Components</h1>
+            <p class="page-subtitle">Reusable button components for various use cases</p>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Primary Buttons</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Primary Button</h3>
+                    <p class="description">The main call-to-action button with blue background</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary">Primary Button</button>
+                        <button class="btn btn-primary btn-sm">Small Primary</button>
+                        <button class="btn btn-primary btn-lg">Large Primary</button>
+                        <button class="btn btn-primary btn-icon" title="Add"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-primary"&gt;Primary Button&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Secondary Button</h3>
+                    <p class="description">Outline button with blue border</p>
+                    <div class="component-preview">
+                        <button class="btn btn-secondary">Secondary Button</button>
+                        <button class="btn btn-secondary btn-sm">Small Secondary</button>
+                        <button class="btn btn-secondary btn-lg">Large Secondary</button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-secondary"&gt;Secondary Button&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Outline Button</h3>
+                    <p class="description">Transparent button with outline</p>
+                    <div class="component-preview">
+                        <button class="btn btn-outline">Outline Button</button>
+                        <button class="btn btn-outline btn-sm">Small Outline</button>
+                        <button class="btn btn-outline btn-lg">Large Outline</button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-outline"&gt;Outline Button&lt;/button&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Status Buttons</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Success Button</h3>
+                    <p class="description">Green button for success actions</p>
+                    <div class="component-preview">
+                        <button class="btn btn-success">Success Button</button>
+                        <button class="btn btn-success btn-sm">Small Success</button>
+                        <button class="btn btn-success btn-icon" title="Check"><i class="fas fa-check"></i></button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-success"&gt;Success Button&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Danger Button</h3>
+                    <p class="description">Red button for destructive actions</p>
+                    <div class="component-preview">
+                        <button class="btn btn-danger">Danger Button</button>
+                        <button class="btn btn-danger btn-sm">Small Danger</button>
+                        <button class="btn btn-danger btn-icon" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-danger"&gt;Danger Button&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Warning Button</h3>
+                    <p class="description">Yellow button for warning actions</p>
+                    <div class="component-preview">
+                        <button class="btn btn-warning">Warning Button</button>
+                        <button class="btn btn-warning btn-sm">Small Warning</button>
+                        <button class="btn btn-warning btn-icon" title="Warning"><i class="fas fa-exclamation-triangle"></i></button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-warning"&gt;Warning Button&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Info Button</h3>
+                    <p class="description">Cyan button for information actions</p>
+                    <div class="component-preview">
+                        <button class="btn btn-info">Info Button</button>
+                        <button class="btn btn-info btn-sm">Small Info</button>
+                        <button class="btn btn-info btn-icon" title="Info"><i class="fas fa-info-circle"></i></button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-info"&gt;Info Button&lt;/button&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Neutral Buttons</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Light Button</h3>
+                    <p class="description">Light gray button for subtle actions</p>
+                    <div class="component-preview">
+                        <button class="btn btn-light">Light Button</button>
+                        <button class="btn btn-light btn-sm">Small Light</button>
+                        <button class="btn btn-light btn-lg">Large Light</button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-light"&gt;Light Button&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Dark Button</h3>
+                    <p class="description">Dark button for high contrast</p>
+                    <div class="component-preview">
+                        <button class="btn btn-dark">Dark Button</button>
+                        <button class="btn btn-dark btn-sm">Small Dark</button>
+                        <button class="btn btn-dark btn-lg">Large Dark</button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-dark"&gt;Dark Button&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Text Button</h3>
+                    <p class="description">Minimal button with no background</p>
+                    <div class="component-preview">
+                        <button class="btn btn-text">Text Button</button>
+                        <button class="btn btn-text btn-sm">Small Text</button>
+                        <button class="btn btn-text btn-lg">Large Text</button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-text"&gt;Text Button&lt;/button&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Button Groups & States</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Button Group</h3>
+                    <p class="description">Group multiple buttons together</p>
+                    <div class="component-preview">
+                        <div class="btn-group">
+                            <button class="btn btn-primary">Left</button>
+                            <button class="btn btn-primary">Middle</button>
+                            <button class="btn btn-primary">Right</button>
+                        </div>
+                        <div class="btn-group" style="margin-top: 15px;">
+                            <button class="btn btn-outline">First</button>
+                            <button class="btn btn-outline">Second</button>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div class="btn-group"&gt;
+  &lt;button class="btn btn-primary"&gt;Left&lt;/button&gt;
+  &lt;button class="btn btn-primary"&gt;Middle&lt;/button&gt;
+  &lt;button class="btn btn-primary"&gt;Right&lt;/button&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Block Button</h3>
+                    <p class="description">Full-width button</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary btn-block">Block Button</button>
+                        <button class="btn btn-secondary btn-block">Block Secondary</button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-primary btn-block"&gt;Block Button&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Disabled Button</h3>
+                    <p class="description">Button in disabled state</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary btn-disabled" disabled>Disabled Primary</button>
+                        <button class="btn btn-secondary btn-disabled" disabled>Disabled Secondary</button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-primary btn-disabled" disabled&gt;Disabled&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Button with Icons</h3>
+                    <p class="description">Buttons with Font Awesome icons</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        <button class="btn btn-success"><i class="fas fa-check"></i> Success</button>
+                        <button class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                        <button class="btn btn-info"><i class="fas fa-info-circle"></i> Info</button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-primary"&gt;&lt;i class="fas fa-shopping-cart"&gt;&lt;/i&gt; Add to Cart&lt;/button&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Button Sizes & Variations</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Button Sizes</h3>
+                    <p class="description">Small, Medium (default), and Large buttons</p>
+                    <div class="component-preview">
+                        <div class="btn-row">
+                            <button class="btn btn-primary btn-sm">Small</button>
+                            <button class="btn btn-primary">Medium</button>
+                            <button class="btn btn-primary btn-lg">Large</button>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-primary btn-sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Medium&lt;/button&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Large&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Icon Buttons</h3>
+                    <p class="description">Circular icon-only buttons</p>
+                    <div class="component-preview">
+                        <div class="btn-row">
+                            <button class="btn btn-primary btn-icon" title="Add"><i class="fas fa-plus"></i></button>
+                            <button class="btn btn-success btn-icon" title="Success"><i class="fas fa-check"></i></button>
+                            <button class="btn btn-danger btn-icon" title="Delete"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-info btn-icon" title="Info"><i class="fas fa-info-circle"></i></button>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-primary btn-icon" title="Add"&gt;&lt;i class="fas fa-plus"&gt;&lt;/i&gt;&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Social Buttons</h3>
+                    <p class="description">Buttons with social media icons</p>
+                    <div class="component-preview">
+                        <div class="btn-row">
+                            <button class="btn btn-outline"><i class="fab fa-facebook"></i> Facebook</button>
+                            <button class="btn btn-outline"><i class="fab fa-twitter"></i> Twitter</button>
+                            <button class="btn btn-outline"><i class="fab fa-google"></i> Google</button>
+                            <button class="btn btn-outline"><i class="fab fa-github"></i> GitHub</button>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-outline"&gt;&lt;i class="fab fa-facebook"&gt;&lt;/i&gt; Facebook&lt;/button&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Loading Button</h3>
+                    <p class="description">Button with loading spinner</p>
+                    <div class="component-preview">
+                        <button class="btn btn-primary" onclick="simulateLoading(this)">
+                            <span class="btn-text">Loading Button</span>
+                            <span class="spinner" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="code-block">&lt;button class="btn btn-primary"&gt;
+  &lt;span class="btn-text"&gt;Loading&lt;/span&gt;
+  &lt;span class="spinner"&gt;&lt;i class="fas fa-spinner fa-spin"&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;/button&gt;</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="legal-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Bigsite. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../../index.html">Home</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function simulateLoading(button) {
+            const text = button.querySelector('.btn-text');
+            const spinner = button.querySelector('.spinner');
+            const originalText = text.textContent;
+            
+            text.textContent = 'Loading...';
+            spinner.style.display = 'inline-block';
+            button.disabled = true;
+            button.classList.add('btn-disabled');
+            
+            setTimeout(() => {
+                text.textContent = originalText;
+                spinner.style.display = 'none';
+                button.disabled = false;
+                button.classList.remove('btn-disabled');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

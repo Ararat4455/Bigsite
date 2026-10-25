@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Components | Bigsite</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .component-page {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+        .component-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+        .component-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+        .component-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+        }
+        .component-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .component-card .description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #4a6bff;
+            box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.1);
+        }
+        .form-input::placeholder {
+            color: #999;
+        }
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237f8c8d' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        .form-inline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .form-inline .form-input {
+            flex: 1;
+        }
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .form-check-input {
+            width: 18px;
+            height: 18px;
+            accent-color: #4a6bff;
+        }
+        .form-check-label {
+            color: #7f8c8d;
+            cursor: pointer;
+        }
+        .form-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .form-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .form-switch-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .form-switch-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .form-switch-slider {
+            background-color: #4a6bff;
+        }
+        input:checked + .form-switch-slider:before {
+            transform: translateX(26px);
+        }
+        .form-range {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        .form-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4a6bff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .form-range::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4a6bff;
+            cursor: pointer;
+            border: none;
+        }
+        .form-range::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+        .form-range::-moz-range-thumb:hover {
+            transform: scale(1.1);
+        }
+        .form-file {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-file-input {
+            display: none;
+        }
+        .form-file-label {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #7f8c8d;
+        }
+        .form-file-label:hover {
+            background: #e0e0e0;
+            border-color: #4a6bff;
+        }
+        .form-file-name {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: #4a6bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #3a5bef;
+        }
+        .btn-secondary {
+            background: white;
+            color: #4a6bff;
+            border: 2px solid #4a6bff;
+        }
+        .btn-secondary:hover {
+            background: #4a6bff;
+            color: white;
+        }
+        .form-validation {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        .form-success {
+            color: #28a745;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        .form-group.has-error .form-input,
+        .form-group.has-error .form-select {
+            border-color: #dc3545;
+        }
+        .form-group.has-success .form-input,
+        .form-group.has-success .form-select {
+            border-color: #28a745;
+        }
+        @media (max-width: 768px) {
+            .component-main {
+                padding: 20px 15px;
+            }
+            .page-title {
+                font-size: 2rem;
+            }
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="component-page">
+    <header class="legal-header">
+        <a href="../../index.html" class="logo">
+            <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+            <span class="logo-text">Bigsite</span>
+        </a>
+        <nav class="legal-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../components.html">Components</a>
+            <a href="../../pages/dashboard/index.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="component-main">
+        <div class="page-header">
+            <h1 class="page-title"><i class="fas fa-wpforms"></i> Form Components</h1>
+            <p class="page-subtitle">Reusable form components and inputs</p>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Basic Form Elements</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Text Input</h3>
+                    <p class="description">Standard text input field</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <label class="form-label" for="textInput">Text Input</label>
+                            <input type="text" id="textInput" class="form-input" placeholder="Enter text...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="emailInput">Email Input</label>
+                            <input type="email" id="emailInput" class="form-input" placeholder="Enter email...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="passwordInput">Password Input</label>
+                            <input type="password" id="passwordInput" class="form-input" placeholder="Enter password...">
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div class="form-group"&gt;
+  &lt;label class="form-label" for="inputId"&gt;Label&lt;/label&gt;
+  &lt;input type="text" id="inputId" class="form-input" placeholder="Enter text..."&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Textarea</h3>
+                    <p class="description">Multi-line text input</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <label class="form-label" for="textareaInput">Textarea</label>
+                            <textarea id="textareaInput" class="form-textarea" placeholder="Enter multiple lines of text..."></textarea>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div class="form-group"&gt;
+  &lt;label class="form-label" for="textareaId"&gt;Label&lt;/label&gt;
+  &lt;textarea id="textareaId" class="form-textarea" placeholder="Enter text..."&gt;&lt;/textarea&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Select Dropdown</h3>
+                    <p class="description">Dropdown select input</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <label class="form-label" for="selectInput">Select Input</label>
+                            <select id="selectInput" class="form-select">
+                                <option value="">Select an option...</option>
+                                <option value="option1">Option 1</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div class="form-group"&gt;
+  &lt;label class="form-label" for="selectId"&gt;Label&lt;/label&gt;
+  &lt;select id="selectId" class="form-select"&gt;
+    &lt;option value=""&gt;Select an option...&lt;/option&gt;
+    &lt;option value="option1"&gt;Option 1&lt;/option&gt;
+    &lt;option value="option2"&gt;Option 2&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Form Input Types</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Number Input</h3>
+                    <p class="description">Input for numeric values</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <label class="form-label" for="numberInput">Number Input</label>
+                            <input type="number" id="numberInput" class="form-input" placeholder="Enter a number..." min="0" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="telInput">Telephone Input</label>
+                            <input type="tel" id="telInput" class="form-input" placeholder="Enter phone number...">
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;input type="number" id="numberId" class="form-input" min="0" max="100"&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Date & Time Inputs</h3>
+                    <p class="description">Inputs for date and time</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <label class="form-label" for="dateInput">Date Input</label>
+                            <input type="date" id="dateInput" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="timeInput">Time Input</label>
+                            <input type="time" id="timeInput" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="datetimeInput">Date & Time Input</label>
+                            <input type="datetime-local" id="datetimeInput" class="form-input">
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;input type="date" id="dateId" class="form-input"&gt;
+&lt;input type="time" id="timeId" class="form-input"&gt;
+&lt;input type="datetime-local" id="datetimeId" class="form-input"&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Range Slider</h3>
+                    <p class="description">Slider input for selecting a range</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <label class="form-label" for="rangeInput">Range: <span id="rangeValue">50</span></label>
+                            <input type="range" id="rangeInput" class="form-range" min="0" max="100" value="50" oninput="updateRangeValue(this.value)">
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div class="form-group"&gt;
+  &lt;label class="form-label" for="rangeId"&gt;Range&lt;/label&gt;
+  &lt;input type="range" id="rangeId" class="form-range" min="0" max="100"&gt;
+&lt;/div&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Checkbox & Radio</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Checkbox</h3>
+                    <p class="description">Checkbox input for multiple selections</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" id="checkbox1" class="form-check-input">
+                                <label class="form-check-label" for="checkbox1">Option 1</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="checkbox2" class="form-check-input">
+                                <label class="form-check-label" for="checkbox2">Option 2</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="checkbox3" class="form-check-input">
+                                <label class="form-check-label" for="checkbox3">Option 3</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div class="form-check"&gt;
+  &lt;input type="checkbox" id="checkboxId" class="form-check-input"&gt;
+  &lt;label class="form-check-label" for="checkboxId"&gt;Label&lt;/label&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Radio Buttons</h3>
+                    <p class="description">Radio input for single selection</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="radio" id="radio1" name="radioGroup" class="form-check-input">
+                                <label class="form-check-label" for="radio1">Option A</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="radio2" name="radioGroup" class="form-check-input">
+                                <label class="form-check-label" for="radio2">Option B</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="radio3" name="radioGroup" class="form-check-input">
+                                <label class="form-check-label" for="radio3">Option C</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div class="form-check"&gt;
+  &lt;input type="radio" id="radioId" name="radioGroup" class="form-check-input"&gt;
+  &lt;label class="form-check-label" for="radioId"&gt;Label&lt;/label&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Toggle Switch</h3>
+                    <p class="description">Custom toggle switch</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <label class="form-label">Toggle Switch</label>
+                            <label class="form-switch">
+                                <input type="checkbox" id="toggleSwitch" onchange="updateToggleLabel(this)">
+                                <span class="form-switch-slider"></span>
+                            </label>
+                            <span id="toggleLabel" style="margin-left: 10px; color: #7f8c8d;">Off</span>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;label class="form-switch"&gt;
+  &lt;input type="checkbox" id="toggleId"&gt;
+  &lt;span class="form-switch-slider"&gt;&lt;/span&gt;
+&lt;/label&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Form Layouts</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Form Row</h3>
+                    <p class="description">Multiple inputs in a row</p>
+                    <div class="component-preview">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">First Name</label>
+                                <input type="text" id="firstName" class="form-input" placeholder="Enter first name...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">Last Name</label>
+                                <input type="text" id="lastName" class="form-input" placeholder="Enter last name...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div class="form-row"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="form-label" for="firstName"&gt;First Name&lt;/label&gt;
+    &lt;input type="text" id="firstName" class="form-input"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="form-label" for="lastName"&gt;Last Name&lt;/label&gt;
+    &lt;input type="text" id="lastName" class="form-input"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Inline Form</h3>
+                    <p class="description">Form elements in a single line</p>
+                    <div class="component-preview">
+                        <div class="form-inline">
+                            <input type="text" class="form-input" placeholder="Enter text...">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                        <div class="form-inline" style="margin-top: 10px;">
+                            <select class="form-select">
+                                <option value="">Select...</option>
+                                <option value="option1">Option 1</option>
+                            </select>
+                            <input type="text" class="form-input" placeholder="Search...">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div class="form-inline"&gt;
+  &lt;input type="text" class="form-input"&gt;
+  &lt;button class="btn btn-primary"&gt;Submit&lt;/button&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Form with Icon Inputs</h3>
+                    <p class="description">Inputs with icons</p>
+                    <div class="component-preview">
+                        <div style="position: relative; margin-bottom: 15px;">
+                            <input type="text" class="form-input" placeholder="Search..." style="padding-left: 40px;">
+                            <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #7f8c8d;">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                        <div style="position: relative; margin-bottom: 15px;">
+                            <input type="email" class="form-input" placeholder="Email..." style="padding-left: 40px;">
+                            <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #7f8c8d;">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                        </div>
+                        <div style="position: relative;">
+                            <input type="password" class="form-input" placeholder="Password..." style="padding-left: 40px;">
+                            <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #7f8c8d;">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div style="position: relative;"&gt;
+  &lt;input type="text" class="form-input" placeholder="Search..." style="padding-left: 40px;"&gt;
+  &lt;span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%);"&gt;
+    &lt;i class="fas fa-search"&gt;&lt;/i&gt;
+  &lt;/span&gt;
+&lt;/div&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Form Validation & File Inputs</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Form Validation</h3>
+                    <p class="description">Inputs with validation states</p>
+                    <div class="component-preview">
+                        <div class="form-group has-error">
+                            <label class="form-label" for="errorInput">Error Input</label>
+                            <input type="text" id="errorInput" class="form-input" placeholder="This field has an error...">
+                            <div class="form-validation">This field is required</div>
+                        </div>
+                        <div class="form-group has-success">
+                            <label class="form-label" for="successInput">Success Input</label>
+                            <input type="text" id="successInput" class="form-input" placeholder="This field is valid...">
+                            <div class="form-success">Looks good!</div>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;div class="form-group has-error"&gt;
+  &lt;label class="form-label" for="errorId"&gt;Label&lt;/label&gt;
+  &lt;input type="text" id="errorId" class="form-input"&gt;
+  &lt;div class="form-validation"&gt;Error message&lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>File Input</h3>
+                    <p class="description">Custom file input</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <label class="form-label">Upload File</label>
+                            <label class="form-file">
+                                <input type="file" class="form-file-input" id="fileInput" onchange="updateFileName(this)">
+                                <span class="form-file-label">
+                                    <i class="fas fa-upload"></i>
+                                    <span>Choose a file...</span>
+                                </span>
+                                <span class="form-file-name" id="fileName">No file chosen</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;label class="form-file"&gt;
+  &lt;input type="file" class="form-file-input" id="fileId"&gt;
+  &lt;span class="form-file-label"&gt;
+    &lt;i class="fas fa-upload"&gt;&lt;/i&gt;
+    &lt;span&gt;Choose a file...&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/label&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Multiple File Input</h3>
+                    <p class="description">File input for multiple files</p>
+                    <div class="component-preview">
+                        <div class="form-group">
+                            <label class="form-label">Upload Multiple Files</label>
+                            <label class="form-file">
+                                <input type="file" class="form-file-input" id="multiFileInput" multiple onchange="updateMultiFileName(this)">
+                                <span class="form-file-label">
+                                    <i class="fas fa-upload"></i>
+                                    <span>Choose files...</span>
+                                </span>
+                                <span class="form-file-name" id="multiFileName">No files chosen</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="code-block">&lt;input type="file" class="form-file-input" multiple&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-section">
+            <h2 class="section-title">Complete Form Examples</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Login Form</h3>
+                    <p class="description">Complete login form example</p>
+                    <div class="component-preview">
+                        <form>
+                            <div class="form-group">
+                                <label class="form-label" for="loginEmail">Email</label>
+                                <input type="email" id="loginEmail" class="form-input" placeholder="Enter your email...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="loginPassword">Password</label>
+                                <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password...">
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="loginRemember" class="form-check-input">
+                                <label class="form-check-label" for="loginRemember">Remember me</label>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-block" style="margin-top: 15px;" onclick="submitForm('login')">Login</button>
+                            <div style="text-align: center; margin-top: 15px;">
+                                <a href="#" style="color: #4a6bff; text-decoration: none; font-size: 0.9rem;">Forgot password?</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="code-block">&lt;form&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="form-label" for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email" class="form-input"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="form-label" for="password"&gt;Password&lt;/label&gt;
+    &lt;input type="password" id="password" class="form-input"&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-primary btn-block"&gt;Login&lt;/button&gt;
+&lt;/form&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Contact Form</h3>
+                    <p class="description">Complete contact form example</p>
+                    <div class="component-preview">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="contactName">Name</label>
+                                    <input type="text" id="contactName" class="form-input" placeholder="Your name...">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="contactEmail">Email</label>
+                                    <input type="email" id="contactEmail" class="form-input" placeholder="Your email...">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactSubject">Subject</label>
+                                <select id="contactSubject" class="form-select">
+                                    <option value="">Select a subject...</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="sales">Sales Inquiry</option>
+                                    <option value="feedback">Feedback</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactMessage">Message</label>
+                                <textarea id="contactMessage" class="form-textarea" placeholder="Your message..."></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-block" onclick="submitForm('contact')">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="code-block">&lt;form&gt;
+  &lt;div class="form-row"&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label class="form-label" for="name"&gt;Name&lt;/label&gt;
+      &lt;input type="text" id="name" class="form-input"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label class="form-label" for="email"&gt;Email&lt;/label&gt;
+      &lt;input type="email" id="email" class="form-input"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="form-label" for="message"&gt;Message&lt;/label&gt;
+    &lt;textarea id="message" class="form-textarea"&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-primary"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Registration Form</h3>
+                    <p class="description">Complete registration form example</p>
+                    <div class="component-preview">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="regFirstName">First Name</label>
+                                    <input type="text" id="regFirstName" class="form-input" placeholder="First name...">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="regLastName">Last Name</label>
+                                    <input type="text" id="regLastName" class="form-input" placeholder="Last name...">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="regEmail">Email</label>
+                                <input type="email" id="regEmail" class="form-input" placeholder="Email...">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="regPassword">Password</label>
+                                    <input type="password" id="regPassword" class="form-input" placeholder="Password...">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="regConfirm">Confirm Password</label>
+                                    <input type="password" id="regConfirm" class="form-input" placeholder="Confirm password...">
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="regTerms" class="form-check-input">
+                                <label class="form-check-label" for="regTerms">I agree to the Terms and Conditions</label>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-block" style="margin-top: 15px;" onclick="submitForm('registration')">Register</button>
+                        </form>
+                    </div>
+                    <div class="code-block">&lt;form&gt;
+  &lt;div class="form-row"&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label class="form-label" for="firstName"&gt;First Name&lt;/label&gt;
+      &lt;input type="text" id="firstName" class="form-input"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label class="form-label" for="lastName"&gt;Last Name&lt;/label&gt;
+      &lt;input type="text" id="lastName" class="form-input"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="form-label" for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email" class="form-input"&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-primary"&gt;Register&lt;/button&gt;
+&lt;/form&gt;</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="legal-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Bigsite. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../../index.html">Home</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateRangeValue(value) {
+            document.getElementById('rangeValue').textContent = value;
+        }
+
+        function updateToggleLabel(checkbox) {
+            const label = document.getElementById('toggleLabel');
+            label.textContent = checkbox.checked ? 'On' : 'Off';
+            label.style.color = checkbox.checked ? '#28a745' : '#7f8c8d';
+        }
+
+        function updateFileName(input) {
+            const fileName = document.getElementById('fileName');
+            if (input.files.length > 0) {
+                fileName.textContent = input.files[0].name;
+            } else {
+                fileName.textContent = 'No file chosen';
+            }
+        }
+
+        function updateMultiFileName(input) {
+            const fileName = document.getElementById('multiFileName');
+            if (input.files.length > 0) {
+                fileName.textContent = input.files.length + ' file(s) chosen';
+            } else {
+                fileName.textContent = 'No files chosen';
+            }
+        }
+
+        function submitForm(formType) {
+            alert(`${formType.charAt(0).toUpperCase() + formType.slice(1)} form submitted! (This is a demo)`);
+        }
+    </script>
+</body>
+</html>

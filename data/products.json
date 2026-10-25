@@ -1,0 +1,378 @@
+[
+    {
+        "id": 1,
+        "name": "Premium Wireless Headphones",
+        "description": "High-quality wireless headphones with active noise cancellation, 30-hour battery life, and premium sound quality. Features Bluetooth 5.0, built-in microphone, and comfortable over-ear design.",
+        "price": 199.99,
+        "category": "Electronics",
+        "subcategory": "Audio",
+        "brand": "AudioMaster",
+        "stock": 50,
+        "rating": 4.8,
+        "reviewCount": 245,
+        "image": "/images/products/headphones.jpg",
+        "images": [
+            "/images/products/headphones-1.jpg",
+            "/images/products/headphones-2.jpg",
+            "/images/products/headphones-3.jpg"
+        ],
+        "featured": true,
+        "new": false,
+        "onSale": false,
+        "salePrice": null,
+        "specs": {
+            "color": "Black",
+            "weight": "250g",
+            "dimensions": "20 x 18 x 8 cm",
+            "batteryLife": "30 hours",
+            "bluetoothVersion": "5.0",
+            "noiseCancellation": true,
+            "microphone": true
+        },
+        "tags": ["wireless", "noise-cancellation", "bluetooth", "audio"]
+    },
+    {
+        "id": 2,
+        "name": "Smart Watch Pro",
+        "description": "Advanced smartwatch with fitness tracking, heart rate monitor, GPS, and smartphone notifications. Features a 1.4-inch AMOLED display, water resistance, and 7-day battery life.",
+        "price": 249.99,
+        "category": "Electronics",
+        "subcategory": "Wearables",
+        "brand": "TechWear",
+        "stock": 30,
+        "rating": 4.5,
+        "reviewCount": 189,
+        "image": "/images/products/smartwatch.jpg",
+        "images": [
+            "/images/products/smartwatch-1.jpg",
+            "/images/products/smartwatch-2.jpg",
+            "/images/products/smartwatch-3.jpg"
+        ],
+        "featured": true,
+        "new": true,
+        "onSale": false,
+        "salePrice": null,
+        "specs": {
+            "color": "Silver",
+            "display": "1.4-inch AMOLED",
+            "batteryLife": "7 days",
+            "waterResistance": "50m",
+            "sensors": ["Heart Rate", "Accelerometer", "Gyroscope", "GPS"],
+            "compatibility": ["Android", "iOS"]
+        },
+        "tags": ["smartwatch", "fitness", "wearable", "health"]
+    },
+    {
+        "id": 3,
+        "name": "Bluetooth Speaker",
+        "description": "Portable Bluetooth speaker with 20-hour battery life, IPX7 waterproof rating, and 360-degree sound. Features dual drivers, passive radiators, and built-in microphone for calls.",
+        "price": 89.99,
+        "category": "Electronics",
+        "subcategory": "Audio",
+        "brand": "SoundWave",
+        "stock": 100,
+        "rating": 4.7,
+        "reviewCount": 312,
+        "image": "/images/products/speaker.jpg",
+        "images": [
+            "/images/products/speaker-1.jpg",
+            "/images/products/speaker-2.jpg",
+            "/images/products/speaker-3.jpg"
+        ],
+        "featured": false,
+        "new": false,
+        "onSale": true,
+        "salePrice": 74.99,
+        "specs": {
+            "color": "Blue",
+            "weight": "680g",
+            "dimensions": "18 x 8 x 8 cm",
+            "batteryLife": "20 hours",
+            "waterproof": "IPX7",
+            "bluetoothVersion": "5.0",
+            "drivers": "Dual 40mm"
+        },
+        "tags": ["bluetooth", "speaker", "portable", "waterproof"]
+    },
+    {
+        "id": 4,
+        "name": "Wireless Charger",
+        "description": "Fast wireless charger compatible with all Qi-enabled devices. Features 10W fast charging, LED indicator, and non-slip design. Includes USB-C cable.",
+        "price": 29.99,
+        "category": "Accessories",
+        "subcategory": "Chargers",
+        "brand": "ChargeFast",
+        "stock": 200,
+        "rating": 4.3,
+        "reviewCount": 456,
+        "image": "/images/products/charger.jpg",
+        "images": [
+            "/images/products/charger-1.jpg",
+            "/images/products/charger-2.jpg"
+        ],
+        "featured": false,
+        "new": false,
+        "onSale": false,
+        "salePrice": null,
+        "specs": {
+            "color": "Black",
+            "weight": "120g",
+            "dimensions": "10 x 10 x 1 cm",
+            "chargingPower": "10W",
+            "compatibility": "Qi-enabled devices",
+            "input": "USB-C"
+        },
+        "tags": ["wireless", "charger", "qi", "fast-charging"]
+    },
+    {
+        "id": 5,
+        "name": "Laptop Backpack",
+        "description": "Water-resistant laptop backpack with USB charging port, anti-theft design, and comfortable padded straps. Fits up to 17-inch laptops with dedicated compartments.",
+        "price": 49.99,
+        "category": "Accessories",
+        "subcategory": "Bags",
+        "brand": "BagMaster",
+        "stock": 75,
+        "rating": 4.6,
+        "reviewCount": 198,
+        "image": "/images/products/backpack.jpg",
+        "images": [
+            "/images/products/backpack-1.jpg",
+            "/images/products/backpack-2.jpg",
+            "/images/products/backpack-3.jpg"
+        ],
+        "featured": true,
+        "new": false,
+        "onSale": false,
+        "salePrice": null,
+        "specs": {
+            "color": "Black",
+            "material": "Polyester",
+            "dimensions": "45 x 30 x 20 cm",
+            "weight": "800g",
+            "laptopCompartment": "17-inch",
+            "waterResistant": true,
+            "usbPort": true
+        },
+        "tags": ["backpack", "laptop", "water-resistant", "travel"]
+    },
+    {
+        "id": 6,
+        "name": "Mechanical Keyboard",
+        "description": "RGB mechanical keyboard with customizable keys, Cherry MX switches, and aircraft-grade aluminum frame. Features NKRO, anti-ghosting, and programmable macros.",
+        "price": 129.99,
+        "category": "Electronics",
+        "subcategory": "Keyboards",
+        "brand": "KeyPro",
+        "stock": 45,
+        "rating": 4.9,
+        "reviewCount": 156,
+        "image": "/images/products/keyboard.jpg",
+        "images": [
+            "/images/products/keyboard-1.jpg",
+            "/images/products/keyboard-2.jpg",
+            "/images/products/keyboard-3.jpg"
+        ],
+        "featured": false,
+        "new": true,
+        "onSale": false,
+        "salePrice": null,
+        "specs": {
+            "color": "Black",
+            "switchType": "Cherry MX Brown",
+            "backlight": "RGB",
+            "keyCount": "104",
+            "material": "Aluminum",
+            "connection": "USB-C",
+            "nkro": true
+        },
+        "tags": ["mechanical", "keyboard", "rgb", "gaming"]
+    },
+    {
+        "id": 7,
+        "name": "4K Webcam",
+        "description": "High-definition 4K webcam with built-in microphone, autofocus, and HDR. Features 90-degree field of view, privacy shutter, and USB-C connectivity.",
+        "price": 149.99,
+        "category": "Electronics",
+        "subcategory": "Cameras",
+        "brand": "CamPro",
+        "stock": 25,
+        "rating": 4.4,
+        "reviewCount": 123,
+        "image": "/images/products/webcam.jpg",
+        "images": [
+            "/images/products/webcam-1.jpg",
+            "/images/products/webcam-2.jpg"
+        ],
+        "featured": false,
+        "new": false,
+        "onSale": true,
+        "salePrice": 129.99,
+        "specs": {
+            "color": "Black",
+            "resolution": "4K",
+            "frameRate": "30fps",
+            "fieldOfView": "90 degrees",
+            "autofocus": true,
+            "microphone": "Built-in stereo",
+            "connection": "USB-C"
+        },
+        "tags": ["webcam", "4k", "camera", "video"]
+    },
+    {
+        "id": 8,
+        "name": "Gaming Mouse",
+        "description": "Professional gaming mouse with 16,000 DPI sensor, 11 programmable buttons, and RGB lighting. Features ergonomic design, braided cable, and Omron switches.",
+        "price": 59.99,
+        "category": "Accessories",
+        "subcategory": "Mice",
+        "brand": "GameGear",
+        "stock": 150,
+        "rating": 4.7,
+        "reviewCount": 287,
+        "image": "/images/products/mouse.jpg",
+        "images": [
+            "/images/products/mouse-1.jpg",
+            "/images/products/mouse-2.jpg",
+            "/images/products/mouse-3.jpg"
+        ],
+        "featured": true,
+        "new": false,
+        "onSale": false,
+        "salePrice": null,
+        "specs": {
+            "color": "Black",
+            "dpi": "16,000",
+            "buttons": "11 programmable",
+            "lighting": "RGB",
+            "sensor": "PixArt PMW3389",
+            "switches": "Omron",
+            "connection": "USB-A"
+        },
+        "tags": ["gaming", "mouse", "rgb", "ergonomic"]
+    },
+    {
+        "id": 9,
+        "name": "USB-C Hub",
+        "description": "7-in-1 USB-C hub with HDMI, USB 3.0, USB-C, SD card reader, microSD card reader, and Ethernet port. Supports 4K video output and 100W power delivery.",
+        "price": 39.99,
+        "category": "Accessories",
+        "subcategory": "Adapters",
+        "brand": "HubMaster",
+        "stock": 85,
+        "rating": 4.2,
+        "reviewCount": 178,
+        "image": "/images/products/hub.jpg",
+        "images": [
+            "/images/products/hub-1.jpg",
+            "/images/products/hub-2.jpg"
+        ],
+        "featured": false,
+        "new": true,
+        "onSale": false,
+        "salePrice": null,
+        "specs": {
+            "color": "Silver",
+            "ports": ["HDMI", "USB 3.0 x2", "USB-C", "SD Card", "microSD Card", "Ethernet"],
+            "videoOutput": "4K@30Hz",
+            "powerDelivery": "100W",
+            "material": "Aluminum",
+            "connection": "USB-C"
+        },
+        "tags": ["hub", "usb-c", "adapter", "docking"]
+    },
+    {
+        "id": 10,
+        "name": "Noise Cancelling Earbuds",
+        "description": "True wireless noise cancelling earbuds with 25-hour battery life, touch controls, and IPX5 water resistance. Features Bluetooth 5.2, custom EQ, and comfortable fit.",
+        "price": 129.99,
+        "category": "Electronics",
+        "subcategory": "Audio",
+        "brand": "AudioMaster",
+        "stock": 60,
+        "rating": 4.6,
+        "reviewCount": 201,
+        "image": "/images/products/earbuds.jpg",
+        "images": [
+            "/images/products/earbuds-1.jpg",
+            "/images/products/earbuds-2.jpg",
+            "/images/products/earbuds-3.jpg"
+        ],
+        "featured": true,
+        "new": true,
+        "onSale": false,
+        "salePrice": null,
+        "specs": {
+            "color": "White",
+            "batteryLife": "25 hours (with case)",
+            "earbudBattery": "6 hours",
+            "noiseCancellation": "Active",
+            "bluetoothVersion": "5.2",
+            "waterResistance": "IPX5",
+            "touchControls": true
+        },
+        "tags": ["earbuds", "wireless", "noise-cancellation", "bluetooth"]
+    },
+    {
+        "id": 11,
+        "name": "Portable SSD",
+        "description": "1TB portable SSD with USB-C connectivity, 550MB/s read/write speeds, and rugged design. Features password protection, IP67 waterproof rating, and shock resistance.",
+        "price": 89.99,
+        "category": "Electronics",
+        "subcategory": "Storage",
+        "brand": "StoragePro",
+        "stock": 40,
+        "rating": 4.8,
+        "reviewCount": 145,
+        "image": "/images/products/ssd.jpg",
+        "images": [
+            "/images/products/ssd-1.jpg",
+            "/images/products/ssd-2.jpg"
+        ],
+        "featured": false,
+        "new": false,
+        "onSale": true,
+        "salePrice": 79.99,
+        "specs": {
+            "color": "Black",
+            "capacity": "1TB",
+            "interface": "USB-C",
+            "readSpeed": "550MB/s",
+            "writeSpeed": "550MB/s",
+            "waterproof": "IP67",
+            "encryption": "256-bit AES"
+        },
+        "tags": ["ssd", "storage", "portable", "waterproof"]
+    },
+    {
+        "id": 12,
+        "name": "Monitor Arm",
+        "description": "Adjustable monitor arm with gas spring, 360-degree rotation, and cable management. Supports monitors up to 32 inches and 19.8 lbs. Features VESA 75/100 mounting.",
+        "price": 49.99,
+        "category": "Accessories",
+        "subcategory": "Mounts",
+        "brand": "MountPro",
+        "stock": 95,
+        "rating": 4.5,
+        "reviewCount": 112,
+        "image": "/images/products/monitor-arm.jpg",
+        "images": [
+            "/images/products/monitor-arm-1.jpg",
+            "/images/products/monitor-arm-2.jpg"
+        ],
+        "featured": false,
+        "new": false,
+        "onSale": false,
+        "salePrice": null,
+        "specs": {
+            "color": "Black",
+            "maxWeight": "19.8 lbs",
+            "maxSize": "32 inches",
+            "mounting": "VESA 75/100",
+            "material": "Steel",
+            "rotation": "360 degrees",
+            "heightAdjustment": "15 inches"
+        },
+        "tags": ["monitor", "arm", "mount", "ergonomic"]
+    }
+]

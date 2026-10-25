@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Bigsite Dashboard</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="loading-screen">
+        <div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <p>Loading Profile...</p>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo"><span class="logo-icon"><i class="fas fa-rocket"></i></span><span class="logo-text">Bigsite</span></a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=U'"><span class="user-status online"></span></div>
+            <div class="user-info"><h4>John Doe</h4><p>Premium Member</p></div>
+            <button class="user-dropdown" onclick="toggleUserMenu()"><i class="fas fa-chevron-down"></i></button>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                <div class="divider"></div>
+                <a href="../../pages/auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+                <li class="nav-item"><a href="projects.html"><i class="fas fa-project-diagram"></i><span>Projects</span><span class="badge">5</span></a></li>
+                <li class="nav-item"><a href="messages.html"><i class="fas fa-envelope"></i><span>Messages</span><span class="badge">12</span></a></li>
+                <li class="nav-item"><a href="calendar.html"><i class="fas fa-calendar-alt"></i><span>Calendar</span></a></li>
+            </ul>
+            <div class="nav-section"><h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="files.html"><i class="fas fa-file-alt"></i><span>Files</span></a></li>
+                    <li class="nav-item"><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span><span class="badge">3</span></a></li>
+                    <li class="nav-item"><a href="subscriptions.html"><i class="fas fa-credit-card"></i><span>Subscriptions</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Account</h5>
+                <ul class="nav-list">
+                    <li class="nav-item active"><a href="profile.html"><i class="fas fa-user-circle"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                    <li class="nav-item"><a href="security.html"><i class="fas fa-shield-alt"></i><span>Security</span></a></li>
+                    <li class="nav-item"><a href="notifications.html"><i class="fas fa-bell"></i><span>Notifications</span><span class="badge">8</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Extras</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="help.html"><i class="fas fa-question-circle"></i><span>Help Center</span></a></li>
+                    <li class="nav-item"><a href="../../index.html"><i class="fas fa-external-link-alt"></i><span>Visit Site</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="storage-info"><div class="storage-bar"><div class="storage-progress" style="width:45%"></div></div>
+            <div class="storage-details"><span>45GB / 100GB</span><a href="upgrade.html">Upgrade</a></div></div>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a><span><i class="fas fa-chevron-right"></i></span><a href="profile.html">Profile</a>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-secondary" onclick="editProfile()"><i class="fas fa-edit"></i><span>Edit Profile</span></button>
+                <button class="topbar-btn notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">8</span></button>
+                <div class="topbar-user"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=U'"><span>John Doe</span><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <section class="profile-header">
+                <div class="profile-cover">
+                    <img src="../../images/cover.jpg" alt="Cover" onerror="this.src='https://via.placeholder.com/1200x200/4a6bff/ffffff?text=Cover+Photo'">
+                    <button class="cover-edit" onclick="editCover()"><i class="fas fa-camera"></i><span>Edit Cover</span></button>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <img src="../../images/avatar.jpg" alt="Profile" onerror="this.src='https://via.placeholder.com/150x150/4a6bff/ffffff?text=JD'">
+                        <button class="avatar-edit" onclick="editAvatar()"><i class="fas fa-camera"></i></button>
+                    </div>
+                    <div class="profile-details">
+                        <h1>John Doe</h1>
+                        <p class="profile-title">Premium Member</p>
+                        <div class="profile-stats">
+                            <div class="stat-item"><span class="stat-value">24</span><span class="stat-label">Projects</span></div>
+                            <div class="stat-item"><span class="stat-value">1247</span><span class="stat-label">Followers</span></div>
+                            <div class="stat-item"><span class="stat-value">85</span><span class="stat-label">Following</span></div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn btn-primary" onclick="editProfile()"><i class="fas fa-edit"></i><span>Edit Profile</span></button>
+                        <button class="btn btn-secondary" onclick="viewPublicProfile()"><i class="fas fa-eye"></i><span>View Public</span></button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="profile-content">
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-user"></i> About Me</h2>
+                        <button class="btn btn-text" onclick="editAbout()"><i class="fas fa-edit"></i><span>Edit</span></button>
+                    </div>
+                    <div class="about-content">
+                        <p>Hello! I'm John Doe, a passionate web developer and designer with over 8 years of experience in creating beautiful, functional websites and applications. I specialize in front-end development, UX/UI design, and full-stack JavaScript development.</p>
+                        <p>Currently, I'm working as a Senior Developer at Bigsite, where I lead a team of talented developers creating innovative web solutions for our clients.</p>
+                        <p>In my free time, I enjoy contributing to open-source projects, learning new technologies, and mentoring junior developers.</p>
+                    </div>
+                    <div class="about-details">
+                        <div class="detail-row">
+                            <div class="detail-item"><i class="fas fa-briefcase"></i><span><strong>Occupation:</strong> Senior Developer</span></div>
+                            <div class="detail-item"><i class="fas fa-building"></i><span><strong>Company:</strong> Bigsite</span></div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-item"><i class="fas fa-map-marker-alt"></i><span><strong>Location:</strong> San Francisco, CA</span></div>
+                            <div class="detail-item"><i class="fas fa-globe"></i><span><strong>Website:</strong> <a href="#">johndoe.dev</a></span></div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-item"><i class="fas fa-envelope"></i><span><strong>Email:</strong> john@bigsite.com</span></div>
+                            <div class="detail-item"><i class="fas fa-phone"></i><span><strong>Phone:</strong> +1 (555) 123-4567</span></div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-item"><i class="fas fa-birthday-cake"></i><span><strong>Birthday:</strong> January 15, 1990</span></div>
+                            <div class="detail-item"><i class="fas fa-calendar"></i><span><strong>Joined:</strong> May 1, 2024</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-graduation-cap"></i> Skills</h2>
+                        <button class="btn btn-text" onclick="editSkills()"><i class="fas fa-edit"></i><span>Edit</span></button>
+                    </div>
+                    <div class="skills-content">
+                        <div class="skill-category">
+                            <h3>Programming Languages</h3>
+                            <div class="skills-list">
+                                <div class="skill-item">
+                                    <span class="skill-name">JavaScript</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
+                                    <span class="skill-percent">95%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">HTML/CSS</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Python</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">PHP</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div>
+                                    <span class="skill-percent">75%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Frameworks & Libraries</h3>
+                            <div class="skills-list">
+                                <div class="skill-item">
+                                    <span class="skill-name">React</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Vue.js</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Node.js</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Express</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div>
+                                    <span class="skill-percent">75%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Tools & Platforms</h3>
+                            <div class="skills-list">
+                                <div class="skill-item">
+                                    <span class="skill-name">Git</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Webpack</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Docker</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div>
+                                    <span class="skill-percent">70%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">AWS</span>
+                                    <div class="skill-bar"><div class="skill-progress" style="width:65%"></div></div>
+                                    <span class="skill-percent">65%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
+                        <button class="btn btn-text" onclick="editExperience()"><i class="fas fa-edit"></i><span>Edit</span></button>
+                    </div>
+                    <div class="experience-content">
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="experience-company">
+                                    <h3>Bigsite</h3>
+                                    <p>Senior Developer</p>
+                                </div>
+                                <div class="experience-period">
+                                    <span>May 2024 - Present</span>
+                                    <span class="period-badge current">Current</span>
+                                </div>
+                            </div>
+                            <div class="experience-description">
+                                <p>Leading the development of the Bigsite platform, managing a team of 5 developers, and implementing new features and improvements.</p>
+                                <ul>
+                                    <li>Architected and developed the new dashboard interface</li>
+                                    <li>Implemented real-time collaboration features</li>
+                                    <li>Optimized platform performance and scalability</li>
+                                    <li>Mentored junior developers and conducted code reviews</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="experience-company">
+                                    <h3>Tech Innovations</h3>
+                                    <p>Web Developer</p>
+                                </div>
+                                <div class="experience-period">
+                                    <span>Jan 2020 - Apr 2024</span>
+                                </div>
+                            </div>
+                            <div class="experience-description">
+                                <p>Developed and maintained web applications for various clients, focusing on creating responsive, user-friendly interfaces.</p>
+                                <ul>
+                                    <li>Built 15+ custom websites using React and Node.js</li>
+                                    <li>Implemented RESTful APIs and integrated third-party services</li>
+                                    <li>Collaborated with designers to create pixel-perfect implementations</li>
+                                    <li>Optimized application performance and SEO</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="experience-company">
+                                    <h3>Digital Solutions</h3>
+                                    <p>Junior Developer</p>
+                                </div>
+                                <div class="experience-period">
+                                    <span>Jun 2017 - Dec 2019</span>
+                                </div>
+                            </div>
+                            <div class="experience-description">
+                                <p>Assisted in the development of web applications and learned best practices in front-end development.</p>
+                                <ul>
+                                    <li>Developed responsive layouts using HTML, CSS, and JavaScript</li>
+                                    <li>Assisted senior developers with bug fixing and testing</li>
+                                    <li>Participated in code reviews and team meetings</li>
+                                    <li>Learned to work with version control systems (Git)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                        <button class="btn btn-text" onclick="editEducation()"><i class="fas fa-edit"></i><span>Edit</span></button>
+                    </div>
+                    <div class="education-content">
+                        <div class="education-item">
+                            <div class="education-header">
+                                <div class="education-degree">
+                                    <h3>Master of Computer Science</h3>
+                                    <p>Stanford University</p>
+                                </div>
+                                <div class="education-period">
+                                    <span>2015 - 2017</span>
+                                </div>
+                            </div>
+                            <div class="education-description">
+                                <p>Specialized in Software Engineering and Web Development. Completed thesis on "Optimizing Front-end Performance in Single Page Applications".</p>
+                            </div>
+                        </div>
+                        <div class="education-item">
+                            <div class="education-header">
+                                <div class="education-degree">
+                                    <h3>Bachelor of Computer Science</h3>
+                                    <p>University of California, Berkeley</p>
+                                </div>
+                                <div class="education-period">
+                                    <span>2011 - 2015</span>
+                                </div>
+                            </div>
+                            <div class="education-description">
+                                <p>Graduated with honors. Major in Computer Science with a focus on Web Technologies and Human-Computer Interaction.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script>
+        function editProfile(){showNotification('Edit profile form opened','info')}
+        function editCover(){showNotification('Edit cover photo','info')}
+        function editAvatar(){showNotification('Edit profile avatar','info')}
+        function viewPublicProfile(){showNotification('Viewing public profile','info')}
+        function editAbout(){showNotification('Edit about section','info')}
+        function editSkills(){showNotification('Edit skills','info')}
+        function editExperience(){showNotification('Edit experience','info')}
+        function editEducation(){showNotification('Edit education','info')}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',hideLoadingScreen);
+    </script>
+</body>
+</html>

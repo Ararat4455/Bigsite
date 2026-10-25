@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - Bigsite Dashboard</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="loading-screen">
+        <div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <p>Loading Help Center...</p>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo"><span class="logo-icon"><i class="fas fa-rocket"></i></span><span class="logo-text">Bigsite</span></a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=U'"><span class="user-status online"></span></div>
+            <div class="user-info"><h4>John Doe</h4><p>Premium Member</p></div>
+            <button class="user-dropdown" onclick="toggleUserMenu()"><i class="fas fa-chevron-down"></i></button>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                <div class="divider"></div>
+                <a href="../../pages/auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+                <li class="nav-item"><a href="projects.html"><i class="fas fa-project-diagram"></i><span>Projects</span><span class="badge">5</span></a></li>
+                <li class="nav-item"><a href="messages.html"><i class="fas fa-envelope"></i><span>Messages</span><span class="badge">12</span></a></li>
+                <li class="nav-item"><a href="calendar.html"><i class="fas fa-calendar-alt"></i><span>Calendar</span></a></li>
+            </ul>
+            <div class="nav-section"><h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="files.html"><i class="fas fa-file-alt"></i><span>Files</span></a></li>
+                    <li class="nav-item"><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span><span class="badge">3</span></a></li>
+                    <li class="nav-item"><a href="subscriptions.html"><i class="fas fa-credit-card"></i><span>Subscriptions</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Account</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="profile.html"><i class="fas fa-user-circle"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                    <li class="nav-item"><a href="security.html"><i class="fas fa-shield-alt"></i><span>Security</span></a></li>
+                    <li class="nav-item active"><a href="help.html"><i class="fas fa-question-circle"></i><span>Help Center</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Extras</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="../../index.html"><i class="fas fa-external-link-alt"></i><span>Visit Site</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="storage-info"><div class="storage-bar"><div class="storage-progress" style="width:45%"></div></div>
+            <div class="storage-details"><span>45GB / 100GB</span><a href="upgrade.html">Upgrade</a></div></div>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a><span><i class="fas fa-chevron-right"></i></span><a href="help.html">Help Center</a>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-primary" onclick="contactSupport()"><i class="fas fa-life-ring"></i><span>Contact Support</span></button>
+                <button class="topbar-btn notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">8</span></button>
+                <div class="topbar-user"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=U'"><span>John Doe</span><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <section class="help-header">
+                <div class="help-title">
+                    <h1><i class="fas fa-question-circle"></i> Help Center</h1>
+                    <p>Find answers to your questions and get support</p>
+                </div>
+                <div class="help-search">
+                    <div class="search-input">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search help articles..." oninput="searchHelp(this)">
+                        <button class="search-close" onclick="clearSearch(this)"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="help-content">
+                <div class="help-categories">
+                    <h2>Browse by Category</h2>
+                    <div class="categories-grid">
+                        <a href="#" class="category-card" onclick="viewCategory('getting-started')">
+                            <div class="category-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="category-info">
+                                <h3>Getting Started</h3>
+                                <p>New to Bigsite? Learn the basics</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#" class="category-card" onclick="viewCategory('account')">
+                            <div class="category-icon"><i class="fas fa-user"></i></div>
+                            <div class="category-info">
+                                <h3>Account Management</h3>
+                                <p>Manage your account and profile</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#" class="category-card" onclick="viewCategory('billing')">
+                            <div class="category-icon"><i class="fas fa-credit-card"></i></div>
+                            <div class="category-info">
+                                <h3>Billing & Payments</h3>
+                                <p>Questions about billing and subscriptions</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#" class="category-card" onclick="viewCategory('projects')">
+                            <div class="category-icon"><i class="fas fa-project-diagram"></i></div>
+                            <div class="category-info">
+                                <h3>Projects</h3>
+                                <p>Learn how to manage projects</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#" class="category-card" onclick="viewCategory('security')">
+                            <div class="category-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="category-info">
+                                <h3>Security & Privacy</h3>
+                                <p>Keep your account secure</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#" class="category-card" onclick="viewCategory('features')">
+                            <div class="category-icon"><i class="fas fa-gem"></i></div>
+                            <div class="category-info">
+                                <h3>Features</h3>
+                                <p>Discover all Bigsite features</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="help-featured">
+                    <h2>Featured Articles</h2>
+                    <div class="articles-list">
+                        <div class="article-item">
+                            <div class="article-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="article-content">
+                                <h3>Getting Started with Bigsite</h3>
+                                <p>A comprehensive guide to help you get started with Bigsite and make the most of its features.</p>
+                                <div class="article-meta">
+                                    <span class="article-category">Getting Started</span>
+                                    <span class="article-time">5 min read</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-text" onclick="viewArticle('getting-started')">Read More</button>
+                        </div>
+                        <div class="article-item">
+                            <div class="article-icon"><i class="fas fa-project-diagram"></i></div>
+                            <div class="article-content">
+                                <h3>Creating Your First Project</h3>
+                                <p>Learn how to create and manage your first project in Bigsite with step-by-step instructions.</p>
+                                <div class="article-meta">
+                                    <span class="article-category">Projects</span>
+                                    <span class="article-time">8 min read</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-text" onclick="viewArticle('first-project')">Read More</button>
+                        </div>
+                        <div class="article-item">
+                            <div class="article-icon"><i class="fas fa-credit-card"></i></div>
+                            <div class="article-content">
+                                <h3>Understanding Billing and Subscriptions</h3>
+                                <p>Everything you need to know about Bigsite's billing system, subscription plans, and payment methods.</p>
+                                <div class="article-meta">
+                                    <span class="article-category">Billing</span>
+                                    <span class="article-time">6 min read</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-text" onclick="viewArticle('billing-guide')">Read More</button>
+                        </div>
+                        <div class="article-item">
+                            <div class="article-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="article-content">
+                                <h3>Securing Your Account</h3>
+                                <p>Best practices for keeping your Bigsite account secure with two-factor authentication and strong passwords.</p>
+                                <div class="article-meta">
+                                    <span class="article-category">Security</span>
+                                    <span class="article-time">7 min read</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-text" onclick="viewArticle('security-guide')">Read More</button>
+                        </div>
+                        <div class="article-item">
+                            <div class="article-icon"><i class="fas fa-users"></i></div>
+                            <div class="article-content">
+                                <h3>Collaborating with Your Team</h3>
+                                <p>Learn how to invite team members, assign roles, and collaborate effectively on projects.</p>
+                                <div class="article-meta">
+                                    <span class="article-category">Features</span>
+                                    <span class="article-time">10 min read</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-text" onclick="viewArticle('collaboration')">Read More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-quick">
+                    <h2>Quick Help</h2>
+                    <div class="quick-actions">
+                        <a href="#" class="quick-action" onclick="contactSupport()">
+                            <div class="quick-icon"><i class="fas fa-life-ring"></i></div>
+                            <div class="quick-info">
+                                <h4>Contact Support</h4>
+                                <p>Get help from our support team</p>
+                            </div>
+                        </a>
+                        <a href="#" class="quick-action" onclick="viewFAQ()">
+                            <div class="quick-icon"><i class="fas fa-question"></i></div>
+                            <div class="quick-info">
+                                <h4>FAQ</h4>
+                                <p>Frequently asked questions</p>
+                            </div>
+                        </a>
+                        <a href="#" class="quick-action" onclick="viewTutorials()">
+                            <div class="quick-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="quick-info">
+                                <h4>Video Tutorials</h4>
+                                <p>Watch step-by-step video guides</p>
+                            </div>
+                        </a>
+                        <a href="#" class="quick-action" onclick="viewCommunity()">
+                            <div class="quick-icon"><i class="fas fa-comments"></i></div>
+                            <div class="quick-info">
+                                <h4>Community Forum</h4>
+                                <p>Ask questions and share knowledge</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="help-contact">
+                    <h2>Contact Us</h2>
+                    <div class="contact-options">
+                        <div class="contact-option">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-info">
+                                <h4>Email Support</h4>
+                                <p>support@bigsite.com</p>
+                                <p class="contact-hint">Response time: 24-48 hours</p>
+                            </div>
+                            <button class="btn btn-text" onclick="composeEmail()">Send Email</button>
+                        </div>
+                        <div class="contact-option">
+                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                            <div class="contact-info">
+                                <h4>Phone Support</h4>
+                                <p>+1 (555) 123-4567</p>
+                                <p class="contact-hint">Available: Mon-Fri, 9AM-5PM PST</p>
+                            </div>
+                            <button class="btn btn-text" onclick="callSupport()">Call Now</button>
+                        </div>
+                        <div class="contact-option">
+                            <div class="contact-icon"><i class="fas fa-comment-dots"></i></div>
+                            <div class="contact-info">
+                                <h4>Live Chat</h4>
+                                <p>Chat with our support team</p>
+                                <p class="contact-hint">Available: Mon-Fri, 8AM-6PM PST</p>
+                            </div>
+                            <button class="btn btn-primary" onclick="startChat()">Start Chat</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-feedback">
+                    <h2>Feedback</h2>
+                    <p>We value your feedback! Let us know how we can improve Bigsite.</p>
+                    <div class="feedback-form">
+                        <div class="form-group">
+                            <label>How satisfied are you with Bigsite?</label>
+                            <div class="rating-stars">
+                                <button class="star-btn" onclick="rate(1)"><i class="fas fa-star"></i></button>
+                                <button class="star-btn" onclick="rate(2)"><i class="fas fa-star"></i></button>
+                                <button class="star-btn" onclick="rate(3)"><i class="fas fa-star"></i></button>
+                                <button class="star-btn" onclick="rate(4)"><i class="fas fa-star"></i></button>
+                                <button class="star-btn" onclick="rate(5)"><i class="fas fa-star"></i></button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Feedback</label>
+                            <textarea placeholder="Tell us what you think..." id="feedbackText"></textarea>
+                        </div>
+                        <button class="btn btn-primary" onclick="submitFeedback()">Submit Feedback</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal" id="articleModal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header"><h3 id="articleTitle">Article Title</h3><button class="modal-close" onclick="closeArticle()"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body" id="articleContent">
+                <p>Article content will be displayed here.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeArticle()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script>
+        function searchHelp(input){const q=input.value.toLowerCase();if(q.length>0)showNotification(`Searching: ${q}`,'info')}
+        function clearSearch(btn){btn.previousElementSibling.value='';showNotification('Search cleared','info')}
+        function viewCategory(category){showNotification(`Viewing category: ${category}`,'info')}
+        function viewArticle(article){showNotification(`Viewing article: ${article}`,'info');document.getElementById('articleTitle').textContent=article.replace('-',' ');document.getElementById('articleContent').innerHTML='<p>Loading article content...</p>';document.getElementById('articleModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function closeArticle(){document.getElementById('articleModal').classList.remove('active');document.getElementById('overlay').style.display='none'}
+        function contactSupport(){showNotification('Opening contact support form...','info')}
+        function viewFAQ(){showNotification('Viewing FAQ...','info')}
+        function viewTutorials(){showNotification('Opening video tutorials...','info')}
+        function viewCommunity(){showNotification('Opening community forum...','info')}
+        function composeEmail(){showNotification('Opening email client...','info')}
+        function callSupport(){showNotification('Calling support...','info')}
+        function startChat(){showNotification('Starting live chat...','info')}
+        function rate(stars){const btns=document.querySelectorAll('.star-btn');btns.forEach((b,i)=>{b.innerHTML=i<stars?'<i class="fas fa-star"></i>':'<i class="far fa-star"></i>'});showNotification(`Rated ${stars} stars`,'info')}
+        function submitFeedback(){const text=document.getElementById('feedbackText').value;if(!text){showNotification('Please enter feedback','error');return}showNotification('Feedback submitted! Thank you!','success');document.getElementById('feedbackText').value='';document.querySelectorAll('.star-btn').forEach(b=>b.innerHTML='<i class="far fa-star"></i>')}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',hideLoadingScreen);
+    </script>
+</body>
+</html>

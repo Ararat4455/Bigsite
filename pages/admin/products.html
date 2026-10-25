@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Bigsite Admin</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <div class="loading-screen">
+        <div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <p>Loading Products...</p>
+    </div>
+
+    <aside class="sidebar admin-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo"><span class="logo-icon"><i class="fas fa-cog"></i></span><span class="logo-text">Bigsite Admin</span></a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar"><img src="../../images/avatar.jpg" alt="Admin" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=A'"><span class="user-status online"></span></div>
+            <div class="user-info"><h4>Admin User</h4><p>Super Administrator</p></div>
+            <button class="user-dropdown" onclick="toggleUserMenu()"><i class="fas fa-chevron-down"></i></button>
+            <div class="user-menu" id="userMenu">
+                <a href="../dashboard/profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="../dashboard/settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <div class="divider"></div>
+                <a href="../auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+            </ul>
+            <div class="nav-section"><h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item has-submenu">
+                        <a><i class="fas fa-users"></i><span>Users</span><span class="badge">24</span></a>
+                        <ul class="submenu">
+                            <li class="nav-item"><a href="users.html"><i class="fas fa-list"></i><span>All Users</span></a></li>
+                            <li class="nav-item"><a href="users.html?status=active"><i class="fas fa-check-circle"></i><span>Active Users</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item active has-submenu">
+                        <a><i class="fas fa-box"></i><span>Products</span><span class="badge">128</span></a>
+                        <ul class="submenu">
+                            <li class="nav-item active"><a href="products.html"><i class="fas fa-list"></i><span>All Products</span></a></li>
+                            <li class="nav-item"><a href="products.html?status=active"><i class="fas fa-check-circle"></i><span>Active Products</span></a></li>
+                            <li class="nav-item"><a href="products.html?status=outofstock"><i class="fas fa-exclamation-triangle"></i><span>Out of Stock</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="orders.html"><i class="fas fa-shopping-bag"></i><span>Orders</span><span class="badge">15</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>System</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cogs"></i><span>Settings</span></a></li>
+                    <li class="nav-item"><a href="../utility/maintenance.html"><i class="fas fa-tools"></i><span>Maintenance</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a><span><i class="fas fa-chevron-right"></i></span><a href="products.html">Products</a>
+            </div>
+            <div class="topbar-actions">
+                <div class="topbar-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search products..." oninput="searchProducts(this)">
+                    <button class="search-close" onclick="clearSearch(this)"><i class="fas fa-times"></i></button>
+                </div>
+                <button class="btn btn-primary" onclick="addProduct()"><i class="fas fa-plus"></i><span>Add Product</span></button>
+                <button class="btn btn-secondary" onclick="importProducts()"><i class="fas fa-file-import"></i><span>Import</span></button>
+                <button class="btn btn-secondary" onclick="exportProducts()"><i class="fas fa-file-export"></i><span>Export</span></button>
+                <button class="topbar-btn notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">5</span></button>
+                <div class="topbar-user"><img src="../../images/avatar.jpg" alt="Admin" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=A'"><span>Admin</span><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <section class="products-header">
+                <div class="products-title">
+                    <h1><i class="fas fa-box"></i> Products Management</h1>
+                    <p>Manage all products in the store</p>
+                </div>
+                <div class="products-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-boxes"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">128</span>
+                            <span class="stat-label">Total Products</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">112</span>
+                            <span class="stat-label">Active</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">16</span>
+                            <span class="stat-label">Out of Stock</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-tag"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">12</span>
+                            <span class="stat-label">Categories</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="products-section">
+                <div class="products-controls">
+                    <div class="products-filter">
+                        <span>Category:</span>
+                        <select onchange="filterByCategory(this)">
+                            <option value="all">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="books">Books</option>
+                            <option value="home">Home & Garden</option>
+                        </select>
+                    </div>
+                    <div class="products-filter">
+                        <span>Status:</span>
+                        <select onchange="filterByStatus(this)">
+                            <option value="all">All Statuses</option>
+                            <option value="active">Active</option>
+                            <option value="outofstock">Out of Stock</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                    </div>
+                    <div class="products-sort">
+                        <span>Sort by:</span>
+                        <select onchange="sortProducts(this)">
+                            <option value="name">Name</option>
+                            <option value="price">Price</option>
+                            <option value="date">Date Added</option>
+                            <option value="stock">Stock Level</option>
+                        </select>
+                    </div>
+                    <div class="products-view">
+                        <button class="view-btn active" onclick="changeView('list')" title="List"><i class="fas fa-list"></i></button>
+                        <button class="view-btn" onclick="changeView('grid')" title="Grid"><i class="fas fa-th"></i></button>
+                    </div>
+                </div>
+
+                <div class="products-container">
+                    <table class="products-table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllProducts" onchange="toggleSelectAllProducts()"></th>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Rating</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsList">
+                            <tr class="product-row">
+                                <td><input type="checkbox" class="product-checkbox"></td>
+                                <td>
+                                    <div class="product-cell">
+                                        <div class="product-image small">
+                                            <img src="https://via.placeholder.com/40x40/f0f0f0/4a6bff?text=P" alt="Product">
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>Wireless Headphones</h4>
+                                            <p>SKU: WH-001</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>$129.99</td>
+                                <td><span class="stock-badge in-stock">124</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(45)</span></div></td>
+                                <td>
+                                    <div class="product-actions">
+                                        <button class="action-btn" title="View" onclick="viewProduct('WH-001')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editProduct('WH-001')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Duplicate" onclick="duplicateProduct('WH-001')"><i class="fas fa-copy"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteProduct('WH-001')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="product-row">
+                                <td><input type="checkbox" class="product-checkbox"></td>
+                                <td>
+                                    <div class="product-cell">
+                                        <div class="product-image small">
+                                            <img src="https://via.placeholder.com/40x40/f0f0f0/ff6b9d?text=P" alt="Product">
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>Smart Watch</h4>
+                                            <p>SKU: SW-002</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>$199.99</td>
+                                <td><span class="stock-badge low-stock">12</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(32)</span></div></td>
+                                <td>
+                                    <div class="product-actions">
+                                        <button class="action-btn" title="View" onclick="viewProduct('SW-002')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editProduct('SW-002')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Duplicate" onclick="duplicateProduct('SW-002')"><i class="fas fa-copy"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteProduct('SW-002')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="product-row">
+                                <td><input type="checkbox" class="product-checkbox"></td>
+                                <td>
+                                    <div class="product-cell">
+                                        <div class="product-image small">
+                                            <img src="https://via.placeholder.com/40x40/f0f0f0/4ecdc4?text=P" alt="Product">
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>Bluetooth Speaker</h4>
+                                            <p>SKU: BS-003</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>$89.99</td>
+                                <td><span class="stock-badge out-of-stock">0</span></td>
+                                <td><span class="status-badge out-of-stock">Out of Stock</span></td>
+                                <td><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(58)</span></div></td>
+                                <td>
+                                    <div class="product-actions">
+                                        <button class="action-btn" title="View" onclick="viewProduct('BS-003')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editProduct('BS-003')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Duplicate" onclick="duplicateProduct('BS-003')"><i class="fas fa-copy"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteProduct('BS-003')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="product-row">
+                                <td><input type="checkbox" class="product-checkbox"></td>
+                                <td>
+                                    <div class="product-cell">
+                                        <div class="product-image small">
+                                            <img src="https://via.placeholder.com/40x40/f0f0f0/f39c12?text=P" alt="Product">
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>Smartphone</h4>
+                                            <p>SKU: SP-004</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>$699.99</td>
+                                <td><span class="stock-badge in-stock">56</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(124)</span></div></td>
+                                <td>
+                                    <div class="product-actions">
+                                        <button class="action-btn" title="View" onclick="viewProduct('SP-004')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editProduct('SP-004')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Duplicate" onclick="duplicateProduct('SP-004')"><i class="fas fa-copy"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteProduct('SP-004')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="product-row">
+                                <td><input type="checkbox" class="product-checkbox"></td>
+                                <td>
+                                    <div class="product-cell">
+                                        <div class="product-image small">
+                                            <img src="https://via.placeholder.com/40x40/f0f0f0/9b59b6?text=P" alt="Product">
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>Laptop</h4>
+                                            <p>SKU: LP-005</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>$999.99</td>
+                                <td><span class="stock-badge in-stock">23</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><span>(42)</span></div></td>
+                                <td>
+                                    <div class="product-actions">
+                                        <button class="action-btn" title="View" onclick="viewProduct('LP-005')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editProduct('LP-005')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Duplicate" onclick="duplicateProduct('LP-005')"><i class="fas fa-copy"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteProduct('LP-005')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="product-row">
+                                <td><input type="checkbox" class="product-checkbox"></td>
+                                <td>
+                                    <div class="product-cell">
+                                        <div class="product-image small">
+                                            <img src="https://via.placeholder.com/40x40/f0f0f0/3498db?text=P" alt="Product">
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>Tablet</h4>
+                                            <p>SKU: TB-006</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>$399.99</td>
+                                <td><span class="stock-badge in-stock">89</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(67)</span></div></td>
+                                <td>
+                                    <div class="product-actions">
+                                        <button class="action-btn" title="View" onclick="viewProduct('TB-006')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editProduct('TB-006')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Duplicate" onclick="duplicateProduct('TB-006')"><i class="fas fa-copy"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteProduct('TB-006')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="product-row">
+                                <td><input type="checkbox" class="product-checkbox"></td>
+                                <td>
+                                    <div class="product-cell">
+                                        <div class="product-image small">
+                                            <img src="https://via.placeholder.com/40x40/f0f0f0/e67e22?text=P" alt="Product">
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>Digital Camera</h4>
+                                            <p>SKU: DC-007</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>$499.99</td>
+                                <td><span class="stock-badge in-stock">34</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(38)</span></div></td>
+                                <td>
+                                    <div class="product-actions">
+                                        <button class="action-btn" title="View" onclick="viewProduct('DC-007')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editProduct('DC-007')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Duplicate" onclick="duplicateProduct('DC-007')"><i class="fas fa-copy"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteProduct('DC-007')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="product-row">
+                                <td><input type="checkbox" class="product-checkbox"></td>
+                                <td>
+                                    <div class="product-cell">
+                                        <div class="product-image small">
+                                            <img src="https://via.placeholder.com/40x40/f0f0f0/2ecc71?text=P" alt="Product">
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>4K TV</h4>
+                                            <p>SKU: TV-008</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>$1,299.99</td>
+                                <td><span class="stock-badge in-stock">15</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td><div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(156)</span></div></td>
+                                <td>
+                                    <div class="product-actions">
+                                        <button class="action-btn" title="View" onclick="viewProduct('TV-008')"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit" onclick="editProduct('TV-008')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn" title="Duplicate" onclick="duplicateProduct('TV-008')"><i class="fas fa-copy"></i></button>
+                                        <button class="action-btn" title="Delete" onclick="deleteProduct('TV-008')"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="products-grid" id="productsGrid" style="display:none;"></div>
+                </div>
+
+                <div class="products-pagination">
+                    <div class="pagination-info">Showing 1-8 of 128 products</div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" onclick="previousPage()"><i class="fas fa-chevron-left"></i></button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span>...</span>
+                        <button class="pagination-btn">16</button>
+                        <button class="pagination-btn" onclick="nextPage()"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="pagination-actions">
+                        <select onchange="changePageSize(this)">
+                            <option value="5">5 per page</option>
+                            <option value="10" selected>10 per page</option>
+                            <option value="20">20 per page</option>
+                            <option value="50">50 per page</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header"><h3 id="modalTitle">Product Details</h3><button class="modal-close" onclick="closeProductModal()"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeProductModal()">Close</button>
+                <button class="btn btn-primary" id="saveProductBtn" onclick="saveProduct()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="addProductModal">
+        <div class="modal-content modal-xl">
+            <div class="modal-header"><h3>Add New Product</h3><button class="modal-close" onclick="closeAddProductModal()"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body">
+                <form id="addProductForm">
+                    <div class="form-row">
+                        <div class="form-group col-6"><label>Product Name</label><input type="text" id="newProductName" placeholder="Enter product name" required></div>
+                        <div class="form-group col-6"><label>SKU</label><input type="text" id="newProductSKU" placeholder="Enter SKU" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Category</label>
+                            <select id="newProductCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="clothing">Clothing</option>
+                                <option value="books">Books</option>
+                                <option value="home">Home & Garden</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-6"><label>Brand</label><input type="text" id="newProductBrand" placeholder="Enter brand"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6"><label>Price</label><input type="number" id="newProductPrice" placeholder="Enter price" step="0.01" min="0" required></div>
+                        <div class="form-group col-6"><label>Compare at Price</label><input type="number" id="newProductComparePrice" placeholder="Enter compare at price" step="0.01" min="0"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6"><label>Stock Quantity</label><input type="number" id="newProductStock" placeholder="Enter stock quantity" min="0" value="0"></div>
+                        <div class="form-group col-6"><label>Stock Status</label>
+                            <select id="newProductStockStatus">
+                                <option value="instock">In Stock</option>
+                                <option value="outofstock">Out of Stock</option>
+                                <option value="backorder">On Backorder</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Description</label><textarea id="newProductDescription" placeholder="Enter product description" rows="5"></textarea></div>
+                    <div class="form-group"><label>Product Images</label>
+                        <div class="image-upload">
+                            <div class="upload-area" onclick="document.getElementById('newProductImages').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload images or drag and drop</p>
+                                <input type="file" id="newProductImages" multiple style="display:none;">
+                            </div>
+                            <div class="uploaded-images" id="newProductUploadedImages"></div>
+                        </div>
+                    </div>
+                    <div class="form-section"><h4>SEO Information</h4>
+                        <div class="form-row">
+                            <div class="form-group col-6"><label>SEO Title</label><input type="text" id="newProductSEOTitle" placeholder="Enter SEO title"></div>
+                            <div class="form-group col-6"><label>SEO Description</label><input type="text" id="newProductSEODescription" placeholder="Enter SEO description"></div>
+                        </div>
+                        <div class="form-group"><label>SEO Keywords</label><input type="text" id="newProductSEOKeywords" placeholder="Enter SEO keywords"></div>
+                    </div>
+                    <div class="form-section"><h4>Product Status</h4>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>Status</label>
+                                <select id="newProductStatus">
+                                    <option value="draft">Draft</option>
+                                    <option value="active" selected>Active</option>
+                                    <option value="archived">Archived</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Visibility</label>
+                                <select id="newProductVisibility">
+                                    <option value="public">Public</option>
+                                    <option value="private">Private</option>
+                                    <option value="password">Password Protected</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeAddProductModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="createProduct()">Create Product</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/admin.js"></script>
+    <script>
+        function addProduct(){document.getElementById('addProductModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function closeAddProductModal(){document.getElementById('addProductModal').classList.remove('active');document.getElementById('overlay').style.display='none'}
+        function createProduct(){const name=document.getElementById('newProductName').value;const sku=document.getElementById('newProductSKU').value;if(!name||!sku){showNotification('Please fill all required fields','error');return}showNotification('Product created successfully!','success');closeAddProductModal()}
+        function viewProduct(sku){document.getElementById('modalTitle').textContent=`Product: ${sku}`;document.getElementById('modalBody').innerHTML=`<div class="product-details-modal"><div class="product-image-medium"><img src="https://via.placeholder.com/150x150/f0f0f0/4a6bff?text=${sku}" alt="Product"></div><h4>${sku}</h4><p>Product details will be displayed here</p></div>`;document.getElementById('productModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function editProduct(sku){document.getElementById('modalTitle').textContent=`Edit Product: ${sku}`;document.getElementById('modalBody').innerHTML=`<form id="editProductForm"><div class="form-group"><label>SKU</label><input type="text" value="${sku}" readonly></div><div class="form-group"><label>Name</label><input type="text" value="Product Name"></div><div class="form-group"><label>Price</label><input type="number" value="129.99"></div><div class="form-group"><label>Stock</label><input type="number" value="124"></div></form>`;document.getElementById('productModal').classList.add('active');document.getElementById('overlay').style.display='block'}
+        function closeProductModal(){document.getElementById('productModal').classList.remove('active');document.getElementById('overlay').style.display='none'}
+        function saveProduct(){showNotification('Product saved successfully!','success');closeProductModal()}
+        function duplicateProduct(sku){if(confirm(`Duplicate product ${sku}?`))showNotification(`Product ${sku} duplicated`,'success')}
+        function deleteProduct(sku){if(confirm(`Delete product ${sku}? This cannot be undone.`))showNotification(`Product ${sku} deleted`,'success')}
+        function filterByCategory(select){showNotification(`Filtered by category: ${select.value}`,'info')}
+        function filterByStatus(select){showNotification(`Filtered by status: ${select.value}`,'info')}
+        function sortProducts(select){showNotification(`Sorted by: ${select.value}`,'info')}
+        function searchProducts(input){const q=input.value.toLowerCase();if(q.length>0)showNotification(`Searching: ${q}`,'info')}
+        function clearSearch(btn){btn.previousElementSibling.value='';showNotification('Search cleared','info')}
+        function changeView(view){const table=document.getElementById('productsTable');const grid=document.getElementById('productsGrid');const btns=document.querySelectorAll('.view-btn');btns.forEach(b=>b.classList.remove('active'));event.target.classList.add('active');if(view==='list'){table.style.display='table';grid.style.display='none'}else{table.style.display='none';grid.style.display='grid'}}
+        function toggleSelectAllProducts(){const cbs=document.querySelectorAll('.product-checkbox');const all=document.getElementById('selectAllProducts');cbs.forEach(c=>c.checked=all.checked)}
+        function importProducts(){showNotification('Import products functionality','info')}
+        function exportProducts(){showNotification('Export products functionality','info')}
+        function previousPage(){showNotification('Previous page','info')}
+        function nextPage(){showNotification('Next page','info')}
+        function changePageSize(select){showNotification(`Page size: ${select.value}`,'info')}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',hideLoadingScreen);
+    </script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Bigsite Admin</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="admin-page">
+    <div class="loading-screen">
+        <div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <p>Loading Analytics...</p>
+    </div>
+
+    <aside class="sidebar admin-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo"><span class="logo-icon"><i class="fas fa-cog"></i></span><span class="logo-text">Bigsite Admin</span></a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar"><img src="../../images/avatar.jpg" alt="Admin" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=A'"><span class="user-status online"></span></div>
+            <div class="user-info"><h4>Admin User</h4><p>Super Administrator</p></div>
+            <button class="user-dropdown" onclick="toggleUserMenu()"><i class="fas fa-chevron-down"></i></button>
+            <div class="user-menu" id="userMenu">
+                <a href="../dashboard/profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="../dashboard/settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <div class="divider"></div>
+                <a href="../auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item active"><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+            </ul>
+            <div class="nav-section"><h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item has-submenu">
+                        <a><i class="fas fa-users"></i><span>Users</span><span class="badge">24</span></a>
+                        <ul class="submenu">
+                            <li class="nav-item"><a href="users.html"><i class="fas fa-list"></i><span>All Users</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-submenu">
+                        <a><i class="fas fa-box"></i><span>Products</span><span class="badge">128</span></a>
+                        <ul class="submenu">
+                            <li class="nav-item"><a href="products.html"><i class="fas fa-list"></i><span>All Products</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="orders.html"><i class="fas fa-shopping-bag"></i><span>Orders</span><span class="badge">15</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>System</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cogs"></i><span>Settings</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a><span><i class="fas fa-chevron-right"></i></span><a href="analytics.html">Analytics</a>
+            </div>
+            <div class="topbar-actions">
+                <div class="topbar-date-range">
+                    <span>Date Range:</span>
+                    <select onchange="changeDateRange(this)">
+                        <option value="today">Today</option>
+                        <option value="week">Last 7 Days</option>
+                        <option value="month" selected>Last 30 Days</option>
+                        <option value="year">Last Year</option>
+                        <option value="custom">Custom Range</option>
+                    </select>
+                </div>
+                <button class="btn btn-secondary" onclick="exportAnalytics()"><i class="fas fa-file-export"></i><span>Export</span></button>
+                <button class="topbar-btn notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">5</span></button>
+                <div class="topbar-user"><img src="../../images/avatar.jpg" alt="Admin" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=A'"><span>Admin</span><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <section class="analytics-header">
+                <div class="analytics-title">
+                    <h1><i class="fas fa-chart-line"></i> Analytics Dashboard</h1>
+                    <p>Comprehensive insights and statistics for your business</p>
+                </div>
+            </section>
+
+            <section class="analytics-stats">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon revenue"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">$12,450.00</span>
+                            <span class="stat-label">Total Revenue</span>
+                            <span class="stat-change positive">+12.5%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orders"><i class="fas fa-shopping-bag"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">248</span>
+                            <span class="stat-label">Total Orders</span>
+                            <span class="stat-change positive">+8.2%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon users"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">1,247</span>
+                            <span class="stat-label">Active Customers</span>
+                            <span class="stat-change positive">+15.3%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon products"><i class="fas fa-box"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">128</span>
+                            <span class="stat-label">Total Products</span>
+                            <span class="stat-change positive">+3.2%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon conversion"><i class="fas fa-chart-bar"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">2.45%</span>
+                            <span class="stat-label">Conversion Rate</span>
+                            <span class="stat-change positive">+0.5%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon avg-order"><i class="fas fa-receipt"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">$50.20</span>
+                            <span class="stat-label">Avg. Order Value</span>
+                            <span class="stat-change positive">+5.1%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="analytics-charts">
+                <div class="charts-grid">
+                    <div class="chart-card large">
+                        <div class="chart-header">
+                            <h3>Revenue Overview</h3>
+                            <div class="chart-controls">
+                                <button class="chart-btn active">Week</button>
+                                <button class="chart-btn">Month</button>
+                                <button class="chart-btn">Year</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card large">
+                        <div class="chart-header">
+                            <h3>Orders Overview</h3>
+                            <div class="chart-controls">
+                                <button class="chart-btn active">Week</button>
+                                <button class="chart-btn">Month</button>
+                                <button class="chart-btn">Year</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="ordersChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Top Products</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="productsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Traffic Sources</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="trafficChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="analytics-details">
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <div class="detail-header">
+                            <h3><i class="fas fa-calendar-alt"></i> Daily Statistics</h3>
+                        </div>
+                        <div class="detail-content">
+                            <div class="daily-stats">
+                                <div class="daily-stat">
+                                    <span class="stat-label">Today's Revenue</span>
+                                    <span class="stat-value">$450.00</span>
+                                </div>
+                                <div class="daily-stat">
+                                    <span class="stat-label">Today's Orders</span>
+                                    <span class="stat-value">12</span>
+                                </div>
+                                <div class="daily-stat">
+                                    <span class="stat-label">Today's Visitors</span>
+                                    <span class="stat-value">245</span>
+                                </div>
+                                <div class="daily-stat">
+                                    <span class="stat-label">Conversion Today</span>
+                                    <span class="stat-value">4.88%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-header">
+                            <h3><i class="fas fa-globe"></i> Geographic Distribution</h3>
+                        </div>
+                        <div class="detail-content">
+                            <div class="geo-stats">
+                                <div class="geo-stat">
+                                    <span class="geo-flag">🇺🇸</span>
+                                    <span class="geo-name">United States</span>
+                                    <div class="geo-bar"><div class="geo-progress" style="width:65%"></div></div>
+                                    <span class="geo-percent">65%</span>
+                                </div>
+                                <div class="geo-stat">
+                                    <span class="geo-flag">🇬🇧</span>
+                                    <span class="geo-name">United Kingdom</span>
+                                    <div class="geo-bar"><div class="geo-progress" style="width:15%"></div></div>
+                                    <span class="geo-percent">15%</span>
+                                </div>
+                                <div class="geo-stat">
+                                    <span class="geo-flag">🇨🇦</span>
+                                    <span class="geo-name">Canada</span>
+                                    <div class="geo-bar"><div class="geo-progress" style="width:10%"></div></div>
+                                    <span class="geo-percent">10%</span>
+                                </div>
+                                <div class="geo-stat">
+                                    <span class="geo-flag">🇦🇺</span>
+                                    <span class="geo-name">Australia</span>
+                                    <div class="geo-bar"><div class="geo-progress" style="width:5%"></div></div>
+                                    <span class="geo-percent">5%</span>
+                                </div>
+                                <div class="geo-stat">
+                                    <span class="geo-flag">🌍</span>
+                                    <span class="geo-name">Other</span>
+                                    <div class="geo-bar"><div class="geo-progress" style="width:5%"></div></div>
+                                    <span class="geo-percent">5%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-header">
+                            <h3><i class="fas fa-shopping-cart"></i> Recent Orders</h3>
+                            <a href="orders.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="detail-content">
+                            <div class="recent-orders">
+                                <div class="recent-order">
+                                    <div class="order-info">
+                                        <h4>ORD-001</h4>
+                                        <p>John Doe</p>
+                                    </div>
+                                    <div class="order-amount">$419.97</div>
+                                    <div class="order-status"><span class="status-badge processing">Processing</span></div>
+                                </div>
+                                <div class="recent-order">
+                                    <div class="order-info">
+                                        <h4>ORD-002</h4>
+                                        <p>Jane Smith</p>
+                                    </div>
+                                    <div class="order-amount">$289.98</div>
+                                    <div class="order-status"><span class="status-badge shipped">Shipped</span></div>
+                                </div>
+                                <div class="recent-order">
+                                    <div class="order-info">
+                                        <h4>ORD-003</h4>
+                                        <p>Mike Davis</p>
+                                    </div>
+                                    <div class="order-amount">$199.99</div>
+                                    <div class="order-status"><span class="status-badge delivered">Delivered</span></div>
+                                </div>
+                                <div class="recent-order">
+                                    <div class="order-info">
+                                        <h4>ORD-004</h4>
+                                        <p>Sarah Wilson</p>
+                                    </div>
+                                    <div class="order-amount">$899.96</div>
+                                    <div class="order-status"><span class="status-badge delivered">Delivered</span></div>
+                                </div>
+                                <div class="recent-order">
+                                    <div class="order-info">
+                                        <h4>ORD-005</h4>
+                                        <p>Robert Johnson</p>
+                                    </div>
+                                    <div class="order-amount">$279.98</div>
+                                    <div class="order-status"><span class="status-badge processing">Processing</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-header">
+                            <h3><i class="fas fa-box"></i> Top Selling Products</h3>
+                            <a href="products.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="detail-content">
+                            <div class="top-products">
+                                <div class="top-product">
+                                    <div class="product-rank">1</div>
+                                    <div class="product-image small">
+                                        <img src="https://via.placeholder.com/40x40/f0f0f0/4a6bff?text=P" alt="Product">
+                                    </div>
+                                    <div class="product-info">
+                                        <h4>Wireless Headphones</h4>
+                                        <p>SKU: WH-001</p>
+                                    </div>
+                                    <div class="product-sales">124 Sold</div>
+                                </div>
+                                <div class="top-product">
+                                    <div class="product-rank">2</div>
+                                    <div class="product-image small">
+                                        <img src="https://via.placeholder.com/40x40/f0f0f0/ff6b9d?text=P" alt="Product">
+                                    </div>
+                                    <div class="product-info">
+                                        <h4>Smart Watch</h4>
+                                        <p>SKU: SW-002</p>
+                                    </div>
+                                    <div class="product-sales">89 Sold</div>
+                                </div>
+                                <div class="top-product">
+                                    <div class="product-rank">3</div>
+                                    <div class="product-image small">
+                                        <img src="https://via.placeholder.com/40x40/f0f0f0/4ecdc4?text=P" alt="Product">
+                                    </div>
+                                    <div class="product-info">
+                                        <h4>Bluetooth Speaker</h4>
+                                        <p>SKU: BS-003</p>
+                                    </div>
+                                    <div class="product-sales">67 Sold</div>
+                                </div>
+                                <div class="top-product">
+                                    <div class="product-rank">4</div>
+                                    <div class="product-image small">
+                                        <img src="https://via.placeholder.com/40x40/f0f0f0/f39c12?text=P" alt="Product">
+                                    </div>
+                                    <div class="product-info">
+                                        <h4>Smartphone</h4>
+                                        <p>SKU: SP-004</p>
+                                    </div>
+                                    <div class="product-sales">42 Sold</div>
+                                </div>
+                                <div class="top-product">
+                                    <div class="product-rank">5</div>
+                                    <div class="product-image small">
+                                        <img src="https://via.placeholder.com/40x40/f0f0f0/9b59b6?text=P" alt="Product">
+                                    </div>
+                                    <div class="product-info">
+                                        <h4>Laptop</h4>
+                                        <p>SKU: LP-005</p>
+                                    </div>
+                                    <div class="product-sales">31 Sold</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/admin.js"></script>
+    <script>
+        function changeDateRange(select){showNotification(`Date range changed to: ${select.value}`,'info')}
+        function exportAnalytics(){showNotification('Exporting analytics data...','info')}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',function(){hideLoadingScreen();
+            const revenueCtx=document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{label:'Revenue',data:[3000,3500,4200,4800,5500,6200,6800,7200,6800,7500,8200,9000],borderColor:'#4a6bff',backgroundColor:'rgba(74,107,255,0.1)',tension:0.4,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top'}},scales:{y:{beginAtZero:true}}}});
+            
+            const ordersCtx=document.getElementById('ordersChart').getContext('2d');
+            new Chart(ordersCtx,{type:'bar',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{label:'Orders',data:[45,52,68,75,82,95,110,105,98,115,128,145],backgroundColor:'#4a6bff',borderColor:'#4a6bff',borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top'}},scales:{y:{beginAtZero:true}}}});
+            
+            const productsCtx=document.getElementById('productsChart').getContext('2d');
+            new Chart(productsCtx,{type:'doughnut',data:{labels:['Wireless Headphones','Smart Watch','Bluetooth Speaker','Smartphone','Laptop'],datasets:[{data:[124,89,67,42,31],backgroundColor:['#4a6bff','#ff6b9d','#4ecdc4','#f39c12','#9b59b6'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom'}}}});
+            
+            const trafficCtx=document.getElementById('trafficChart').getContext('2d');
+            new Chart(trafficCtx,{type:'pie',data:{labels:['Direct','Organic Search','Social Media','Referral','Email'],datasets:[{data:[35,40,15,7,3],backgroundColor:['#4a6bff','#ff6b9d','#4ecdc4','#f39c12','#9b59b6'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom'}}}});
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Bigsite Dashboard</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="loading-screen">
+        <div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <p>Loading Notifications...</p>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="logo"><span class="logo-icon"><i class="fas fa-rocket"></i></span><span class="logo-text">Bigsite</span></a>
+            <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/40x40/4a6bff/ffffff?text=U'"><span class="user-status online"></span></div>
+            <div class="user-info"><h4>John Doe</h4><p>Premium Member</p></div>
+            <button class="user-dropdown" onclick="toggleUserMenu()"><i class="fas fa-chevron-down"></i></button>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.html"><i class="fas fa-user"></i> View Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                <div class="divider"></div>
+                <a href="../../pages/auth/login.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+                <li class="nav-item"><a href="projects.html"><i class="fas fa-project-diagram"></i><span>Projects</span><span class="badge">5</span></a></li>
+                <li class="nav-item"><a href="messages.html"><i class="fas fa-envelope"></i><span>Messages</span><span class="badge">12</span></a></li>
+                <li class="nav-item"><a href="calendar.html"><i class="fas fa-calendar-alt"></i><span>Calendar</span></a></li>
+            </ul>
+            <div class="nav-section"><h5>Management</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="files.html"><i class="fas fa-file-alt"></i><span>Files</span></a></li>
+                    <li class="nav-item"><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span><span class="badge">3</span></a></li>
+                    <li class="nav-item"><a href="subscriptions.html"><i class="fas fa-credit-card"></i><span>Subscriptions</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Account</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="profile.html"><i class="fas fa-user-circle"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                    <li class="nav-item"><a href="security.html"><i class="fas fa-shield-alt"></i><span>Security</span></a></li>
+                    <li class="nav-item active"><a href="notifications.html"><i class="fas fa-bell"></i><span>Notifications</span><span class="badge">8</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-section"><h5>Extras</h5>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="help.html"><i class="fas fa-question-circle"></i><span>Help Center</span></a></li>
+                    <li class="nav-item"><a href="../../index.html"><i class="fas fa-external-link-alt"></i><span>Visit Site</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="storage-info"><div class="storage-bar"><div class="storage-progress" style="width:45%"></div></div>
+            <div class="storage-details"><span>45GB / 100GB</span><a href="upgrade.html">Upgrade</a></div></div>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a><span><i class="fas fa-chevron-right"></i></span><a href="notifications.html">Notifications</a>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-secondary" onclick="markAllAsRead()"><i class="fas fa-check-double"></i><span>Mark All as Read</span></button>
+                <button class="btn btn-secondary" onclick="clearAllNotifications()"><i class="fas fa-trash"></i><span>Clear All</span></button>
+                <button class="topbar-btn notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">8</span></button>
+                <div class="topbar-user"><img src="../../images/avatar.jpg" alt="User" onerror="this.src='https://via.placeholder.com/35x35/4a6bff/ffffff?text=U'"><span>John Doe</span><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <section class="notifications-header">
+                <div class="notifications-title">
+                    <h1><i class="fas fa-bell"></i> Notifications</h1>
+                    <p>Stay updated with the latest activity and alerts</p>
+                </div>
+            </section>
+
+            <section class="notifications-content">
+                <div class="notifications-tabs">
+                    <button class="tab-btn active" onclick="switchTab('all')">
+                        <span>All</span>
+                        <span class="tab-badge">8</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('unread')">
+                        <span>Unread</span>
+                        <span class="tab-badge">5</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('messages')">
+                        <span>Messages</span>
+                        <span class="tab-badge">3</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('alerts')">
+                        <span>Alerts</span>
+                        <span class="tab-badge">2</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('updates')">
+                        <span>Updates</span>
+                        <span class="tab-badge">3</span>
+                    </button>
+                </div>
+
+                <div class="notifications-list" id="notificationsList">
+                    <div class="notification-item unread" onclick="viewNotification(this)">
+                        <div class="notification-icon messages"><i class="fas fa-envelope"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h4>New Message</h4>
+                                <span class="notification-time">2 hours ago</span>
+                            </div>
+                            <p>You have a new message from Sarah Johnson regarding the project update.</p>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="action-btn" title="Mark as Read" onclick="event.stopPropagation();markAsRead(this)"><i class="fas fa-check"></i></button>
+                            <button class="action-btn" title="Archive" onclick="event.stopPropagation();archiveNotification(this)"><i class="fas fa-archive"></i></button>
+                        </div>
+                    </div>
+                    <div class="notification-item unread" onclick="viewNotification(this)">
+                        <div class="notification-icon alerts"><i class="fas fa-exclamation-circle"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h4>Security Alert</h4>
+                                <span class="notification-time">5 hours ago</span>
+                            </div>
+                            <p>A new login was detected from an unknown device. Please review your active sessions.</p>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="action-btn" title="Mark as Read" onclick="event.stopPropagation();markAsRead(this)"><i class="fas fa-check"></i></button>
+                            <button class="action-btn" title="Archive" onclick="event.stopPropagation();archiveNotification(this)"><i class="fas fa-archive"></i></button>
+                        </div>
+                    </div>
+                    <div class="notification-item unread" onclick="viewNotification(this)">
+                        <div class="notification-icon updates"><i class="fas fa-info-circle"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h4>System Update</h4>
+                                <span class="notification-time">1 day ago</span>
+                            </div>
+                            <p>The Bigsite platform has been updated to version 2.4.0 with new features and improvements.</p>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="action-btn" title="Mark as Read" onclick="event.stopPropagation();markAsRead(this)"><i class="fas fa-check"></i></button>
+                            <button class="action-btn" title="Archive" onclick="event.stopPropagation();archiveNotification(this)"><i class="fas fa-archive"></i></button>
+                        </div>
+                    </div>
+                    <div class="notification-item unread" onclick="viewNotification(this)">
+                        <div class="notification-icon messages"><i class="fas fa-comment"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h4>Comment on Project</h4>
+                                <span class="notification-time">1 day ago</span>
+                            </div>
+                            <p>Mike Davis commented on your task in the E-commerce Platform project.</p>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="action-btn" title="Mark as Read" onclick="event.stopPropagation();markAsRead(this)"><i class="fas fa-check"></i></button>
+                            <button class="action-btn" title="Archive" onclick="event.stopPropagation();archiveNotification(this)"><i class="fas fa-archive"></i></button>
+                        </div>
+                    </div>
+                    <div class="notification-item unread" onclick="viewNotification(this)">
+                        <div class="notification-icon alerts"><i class="fas fa-shield-alt"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h4>Security Reminder</h4>
+                                <span class="notification-time">2 days ago</span>
+                            </div>
+                            <p>Remember to enable two-factor authentication for enhanced account security.</p>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="action-btn" title="Mark as Read" onclick="event.stopPropagation();markAsRead(this)"><i class="fas fa-check"></i></button>
+                            <button class="action-btn" title="Archive" onclick="event.stopPropagation();archiveNotification(this)"><i class="fas fa-archive"></i></button>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(this)">
+                        <div class="notification-icon updates"><i class="fas fa-bullhorn"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h4>New Feature Available</h4>
+                                <span class="notification-time">3 days ago</span>
+                            </div>
+                            <p>We've just released a new calendar integration feature. Check it out in your dashboard!</p>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="action-btn" title="Mark as Read" onclick="event.stopPropagation();markAsRead(this)"><i class="fas fa-check"></i></button>
+                            <button class="action-btn" title="Archive" onclick="event.stopPropagation();archiveNotification(this)"><i class="fas fa-archive"></i></button>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(this)">
+                        <div class="notification-icon messages"><i class="fas fa-envelope-open"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h4>Message Read</h4>
+                                <span class="notification-time">4 days ago</span>
+                            </div>
+                            <p>Sarah Johnson has read your message about the project timeline.</p>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="action-btn" title="Mark as Read" onclick="event.stopPropagation();markAsRead(this)"><i class="fas fa-check"></i></button>
+                            <button class="action-btn" title="Archive" onclick="event.stopPropagation();archiveNotification(this)"><i class="fas fa-archive"></i></button>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(this)">
+                        <div class="notification-icon updates"><i class="fas fa-chart-line"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h4>Weekly Report</h4>
+                                <span class="notification-time">1 week ago</span>
+                            </div>
+                            <p>Your weekly activity report is ready. View your analytics dashboard for details.</p>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="action-btn" title="Mark as Read" onclick="event.stopPropagation();markAsRead(this)"><i class="fas fa-check"></i></button>
+                            <button class="action-btn" title="Archive" onclick="event.stopPropagation();archiveNotification(this)"><i class="fas fa-archive"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notifications-archive" id="notificationsArchive" style="display:none;">
+                    <div class="archive-header">
+                        <h3><i class="fas fa-archive"></i> Archived Notifications</h3>
+                        <button class="btn btn-text" onclick="clearArchive()"><i class="fas fa-trash"></i><span>Clear Archive</span></button>
+                    </div>
+                    <div class="archive-list" id="archiveList"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script>
+        function switchTab(tab){const tabs=document.querySelectorAll('.tab-btn');tabs.forEach(t=>t.classList.remove('active'));event.target.classList.add('active');showNotification(`Switched to ${tab} tab`,'info')}
+        function viewNotification(item){showNotification('Viewing notification','info');item.classList.remove('unread')}
+        function markAsRead(btn){const item=btn.closest('.notification-item');item.classList.remove('unread');showNotification('Marked as read','success')}
+        function archiveNotification(btn){const item=btn.closest('.notification-item');item.style.display='none';showNotification('Notification archived','success');const archiveList=document.getElementById('archiveList');archiveList.innerHTML+=item.outerHTML;archiveList.querySelectorAll('.notification-item').forEach(i=>{i.onclick=null;i.querySelectorAll('.action-btn').forEach(b=>b.onclick=null)})}
+        function markAllAsRead(){document.querySelectorAll('.notification-item.unread').forEach(i=>i.classList.remove('unread'));showNotification('All notifications marked as read','success')}
+        function clearAllNotifications(){if(confirm('Clear all notifications?')){document.getElementById('notificationsList').innerHTML='';showNotification('All notifications cleared','success')}}
+        function clearArchive(){if(confirm('Clear archive?')){document.getElementById('archiveList').innerHTML='';showNotification('Archive cleared','success')}}
+        function showNotification(msg,type){const n=document.createElement('div');n.className=`notification notification-${type}`;n.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':type==='error'?'exclamation-circle':'info-circle'}"></i><span>${msg}</span>`;document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),100);setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300)},3000)}
+        function hideLoadingScreen(){setTimeout(()=>document.querySelector('.loading-screen').style.display='none',500)}
+        document.addEventListener('DOMContentLoaded',hideLoadingScreen);
+    </script>
+</body>
+</html>
